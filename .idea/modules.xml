@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/bookManageSystem.iml" filepath="$PROJECT_DIR$/bookManageSystem.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bookManageSystem-business/bookManageSystem-business.iml" filepath="$PROJECT_DIR$/bookManageSystem-business/bookManageSystem-business.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bookManageSystem-business/bookManageSystem-business-anonymous/bookManageSystem-business-anonymous.iml" filepath="$PROJECT_DIR$/bookManageSystem-business/bookManageSystem-business-anonymous/bookManageSystem-business-anonymous.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bookManageSystem-fundamental/bookManageSystem-fundamental.iml" filepath="$PROJECT_DIR$/bookManageSystem-fundamental/bookManageSystem-fundamental.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bookManageSystem-fundamental/bookManageSystem-fundamental-config/bookManageSystem-fundamental-config.iml" filepath="$PROJECT_DIR$/bookManageSystem-fundamental/bookManageSystem-fundamental-config/bookManageSystem-fundamental-config.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bookManageSystem-fundamental/bookManageSystem-fundamental-datasource/bookManageSystem-fundamental-datasource.iml" filepath="$PROJECT_DIR$/bookManageSystem-fundamental/bookManageSystem-fundamental-datasource/bookManageSystem-fundamental-datasource.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bookManageSystem-fundamental/bookManageSystem-fundamental-exception/bookManageSystem-fundamental-exception.iml" filepath="$PROJECT_DIR$/bookManageSystem-fundamental/bookManageSystem-fundamental-exception/bookManageSystem-fundamental-exception.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bookManageSystem-fundamental/bookManageSystem-fundamental-logger/bookManageSystem-fundamental-logger.iml" filepath="$PROJECT_DIR$/bookManageSystem-fundamental/bookManageSystem-fundamental-logger/bookManageSystem-fundamental-logger.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bookManageSystem-fundamental/bookManageSystem-fundamental-orm/bookManageSystem-fundamental-orm.iml" filepath="$PROJECT_DIR$/bookManageSystem-fundamental/bookManageSystem-fundamental-orm/bookManageSystem-fundamental-orm.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bookManageSystem-fundamental/bookManageSystem-fundamental-security/bookManageSystem-fundamental-security.iml" filepath="$PROJECT_DIR$/bookManageSystem-fundamental/bookManageSystem-fundamental-security/bookManageSystem-fundamental-security.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bookManageSystem-fundamental/bookManageSystem-fundamental-util/bookManageSystem-fundamental-util.iml" filepath="$PROJECT_DIR$/bookManageSystem-fundamental/bookManageSystem-fundamental-util/bookManageSystem-fundamental-util.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bookManageSystemWeb/bookManageSystemWeb.iml" filepath="$PROJECT_DIR$/bookManageSystemWeb/bookManageSystemWeb.iml" />
+    </modules>
+  </component>
+</project>
+

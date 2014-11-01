@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <option name="DEFAULT_COMPILER" value="Javac" />
+    <resourceExtensions />
+    <wildcardResourcePatterns>
+      <entry name="!?*.java" />
+      <entry name="!?*.form" />
+      <entry name="!?*.class" />
+      <entry name="!?*.groovy" />
+      <entry name="!?*.scala" />
+      <entry name="!?*.flex" />
+      <entry name="!?*.kt" />
+      <entry name="!?*.clj" />
+    </wildcardResourcePatterns>
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="false">
+        <processorPath useClasspath="true" />
+      </profile>
+      <profile default="false" name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+        <module name="bookManageSystem-business-anonymous" />
+        <module name="bookManageSystem-business-test" />
+        <module name="bookManageSystem-fundamental-config" />
+        <module name="bookManageSystem-fundamental-datasource" />
+        <module name="bookManageSystem-fundamental-exception" />
+        <module name="bookManageSystem-fundamental-logger" />
+        <module name="bookManageSystem-fundamental-orm" />
+        <module name="bookManageSystem-fundamental-security" />
+        <module name="bookManageSystem-fundamental-util" />
+        <module name="bookManageSystemWeb" />
+      </profile>
+    </annotationProcessing>
+  </component>
+</project>
+
