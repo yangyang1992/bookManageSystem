@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50151
 File Encoding         : 65001
 
-Date: 2014-11-01 22:03:48
+Date: 2014-11-02 15:40:01
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -217,7 +217,7 @@ DROP TABLE IF EXISTS `reader_booktype`;
 CREATE TABLE `reader_booktype` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `readerId` bigint(20) DEFAULT NULL,
-  `deviceTypeId` bigint(20) DEFAULT NULL,
+  `bookTypeId` bigint(20) DEFAULT NULL,
   `appId` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
