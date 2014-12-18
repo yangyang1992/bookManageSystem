@@ -13,6 +13,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>bookManageSystem-business-anonymous</module>
+        <module>bookManageSystem-business-reader</module>
     </modules>
 
 
