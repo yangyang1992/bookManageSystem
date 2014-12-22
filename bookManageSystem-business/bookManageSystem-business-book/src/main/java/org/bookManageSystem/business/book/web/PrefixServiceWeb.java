@@ -1,7 +1,7 @@
-package org.bookManageSystem.business.reader.web;
+package org.bookManageSystem.business.book.web;
 
-import org.bookManageSystem.business.reader.entity.Reader;
-import org.bookManageSystem.business.reader.service.ReaderService;
+import org.bookManageSystem.business.book.entity.Prefix;
+import org.bookManageSystem.business.book.service.PrefixService;
 import org.bookManageSystem.fundamental.security.UserContext;
 import org.bookManageSystem.fundamental.util.json.JsonMapper;
 import org.bookManageSystem.fundamental.util.json.JsonResultUtils;
@@ -22,15 +22,15 @@ import java.util.Map;
 /**
  * Created with IntelliJ IDEA.
  * User: cww
- * Date: 14-12-18
- * Time: 下午3:02
+ * Date: 14-12-22
+ * Time: 下午2:29
  * To change this template use File | Settings | File Templates.
  */
 @Component
-@Path("/reader")
-public class ReaderServiceWeb {
+@Path("/prefix")
+public class PrefixServiceWeb {
     @Autowired
-    private ReaderService readerService;
+    private PrefixService prefixService;
 
     @Produces(MediaType.APPLICATION_JSON + ";charset=UTF-8")
     @Path("/add")
@@ -39,27 +39,29 @@ public class ReaderServiceWeb {
         long appId= UserContext.currentUserAppId();
         Map<String, String> map = JsonMapper.buildNonDefaultMapper().fromJson(jsonString, HashMap.class);
 
-        if(map.get("name")==null||map.get("name").equals("")||map.get("userId")==null||map.get("userId").equals("")
-                ||map.get("number")==null||map.get("number").equals("")||map.get("birthday")==null
-                ||map.get("sex")==null||map.get("sex").equals("")
-                ){
+        if(map.get("cip")==null||map.get("cip").equals("")||map.get("isbn")==null||map.get("isbn").equals("")
+                ||map.get("author")==null||map.get("author").equals("")||map.get("pressName")==null||map.get("pressName").equals("")
+                ||map.get("pressLocation")==null||map.get("pressLocation").equals("")
+                ||map.get("pressTime")==null
+        ){
             return JsonResultUtils.getCodeAndMesByString(JsonResultUtils.Code.ERROR.getCode(), "参数不能为空!");
         }
-        Date birthday = null;
+        Date pressTime = null;
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         try{
-            birthday = sdf.parse(map.get("birthDay"));
+            pressTime = sdf.parse(map.get("pressTime"));
         }catch (Exception e){
             return JsonResultUtils.getCodeAndMesByString(JsonResultUtils.Code.ERROR.getCode(),"日期格式错误！");
         }
-        Reader reader=new Reader();
-        reader.setAppId(appId);
-        reader.setUserId(Long.parseLong(map.get("userId")));
-        reader.setName(map.get("name"));
-        reader.setNumber(map.get("number"));
-        reader.setSex(map.get("sex"));
-        reader.setBirthday(birthday);
-        readerService.add(reader);
+        Prefix prefix=new Prefix();
+        prefix.setAppId(appId);
+        prefix.setCip(Long.parseLong(map.get("cip")));
+        prefix.setIsbn(map.get("isbn"));
+        prefix.setAuthor(map.get("author"));
+        prefix.setPressName(map.get("pressName"));
+        prefix.setPressLocation(map.get("pressLocation"));
+        prefix.setPressTime(pressTime);
+        prefixService.add(prefix);
         return JsonResultUtils.getCodeAndMesByStringAsDefault(JsonResultUtils.Code.SUCCESS);
     }
 
@@ -70,28 +72,30 @@ public class ReaderServiceWeb {
         long appId= UserContext.currentUserAppId();
         Map<String, String> map = JsonMapper.buildNonDefaultMapper().fromJson(jsonString, HashMap.class);
 
-        if(map.get("name")==null||map.get("name").equals("")||map.get("userId")==null||map.get("userId").equals("")
-                ||map.get("number")==null||map.get("number").equals("")||map.get("birthday")==null
-                ||map.get("sex")==null||map.get("sex").equals("")
+        if(map.get("cip")==null||map.get("cip").equals("")||map.get("isbn")==null||map.get("isbn").equals("")
+                ||map.get("author")==null||map.get("author").equals("")||map.get("pressName")==null||map.get("pressName").equals("")
+                ||map.get("pressLocation")==null||map.get("pressLocation").equals("")
+                ||map.get("pressTime")==null
                 ){
             return JsonResultUtils.getCodeAndMesByString(JsonResultUtils.Code.ERROR.getCode(), "参数不能为空!");
         }
-        Date birthday = null;
+        Date pressTime = null;
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         try{
-            birthday = sdf.parse(map.get("birthDay"));
+            pressTime = sdf.parse(map.get("pressTime"));
         }catch (Exception e){
             return JsonResultUtils.getCodeAndMesByString(JsonResultUtils.Code.ERROR.getCode(),"日期格式错误！");
         }
-        Reader reader=new Reader();
-        reader.setId(Long.parseLong(map.get("id")));
-        reader.setAppId(appId);
-        reader.setUserId(Long.parseLong(map.get("userId")));
-        reader.setName(map.get("name"));
-        reader.setNumber(map.get("number"));
-        reader.setSex(map.get("sex"));
-        reader.setBirthday(birthday);
-        int result=readerService.update(reader);
+        Prefix prefix=new Prefix();
+        prefix.setAppId(appId);
+        prefix.setId(Long.parseLong(map.get("ip")));
+        prefix.setCip(Long.parseLong(map.get("cip")));
+        prefix.setIsbn(map.get("isbn"));
+        prefix.setAuthor(map.get("author"));
+        prefix.setPressName(map.get("pressName"));
+        prefix.setPressLocation(map.get("pressLocation"));
+        prefix.setPressTime(pressTime);
+        int result=prefixService.update(prefix);
         if(result>0){
             return JsonResultUtils.getCodeAndMesByStringAsDefault(JsonResultUtils.Code.SUCCESS) ;
         }
@@ -105,7 +109,7 @@ public class ReaderServiceWeb {
 //    public  String delete(@FormParam("jsonString") String jsonString)
     public  String delete(@FormParam("id") long id){
         long appId=UserContext.currentUserAppId();
-        int result=readerService.deleteById(id,appId);
+        int result=prefixService.deleteById(id,appId);
         if(result>0){
             return JsonResultUtils.getCodeAndMesByStringAsDefault(JsonResultUtils.Code.SUCCESS);
         }
@@ -119,7 +123,7 @@ public class ReaderServiceWeb {
     @POST
     public String list(){
         long appId=UserContext.currentUserAppId();
-        List<Reader> list=readerService.getListByAppId(appId);
+        List<Prefix> list=prefixService.getListByAppId(appId);
         return JsonResultUtils.getObjectResultByStringAsDefault(list,JsonResultUtils.Code.SUCCESS);
     }
 
@@ -128,7 +132,7 @@ public class ReaderServiceWeb {
     @POST
     public String getReaderById(@FormParam("id")long id){
         long appId=UserContext.currentUserAppId();
-        Reader reader=readerService.getReaderById(id,appId);
-        return JsonResultUtils.getObjectResultByStringAsDefault(reader,JsonResultUtils.Code.SUCCESS);
+        Prefix prefix=prefixService.getPrefixById(id, appId);
+        return JsonResultUtils.getObjectResultByStringAsDefault(prefix,JsonResultUtils.Code.SUCCESS);
     }
 }
