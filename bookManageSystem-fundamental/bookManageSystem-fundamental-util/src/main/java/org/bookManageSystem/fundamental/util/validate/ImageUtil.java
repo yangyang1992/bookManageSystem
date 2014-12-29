@@ -11,7 +11,9 @@ package org.bookManageSystem.fundamental.util.validate;
 import com.sun.image.codec.jpeg.JPEGCodec;
 import com.sun.image.codec.jpeg.JPEGImageEncoder;
 import org.bookManageSystem.fundamental.config.FundamentalConfigProvider;
+import org.bookManageSystem.fundamental.logger.FundamentalLogger;
 
+import javax.servlet.http.HttpServletRequest;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.*;
@@ -32,7 +34,7 @@ public class ImageUtil {
     private static final int WIDTH = 100;
     private static final int HEIGHT = 60;
     private static int FONT_SIZE = 35;
-
+    private static final FundamentalLogger logger = FundamentalLogger.getLogger(ImageUtil.class);
     /**
      *通过绘图函数生成验证码
      * @return
@@ -80,18 +82,21 @@ public class ImageUtil {
      * @return
      * @throws IOException
      */
-    public static String getInputFilePath(BufferedImage image,String key) throws IOException {
+    public static String getInputFilePath(BufferedImage image,String key,HttpServletRequest request) throws IOException {
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
         JPEGImageEncoder encoder = JPEGCodec.createJPEGEncoder(bos);
         encoder.encode(image);
         byte[] imageBts = bos.toByteArray();
         InputStream in = new ByteArrayInputStream(imageBts);
 
-        String validateImgRootPath = FundamentalConfigProvider.get("bookManageSystem.img.root.path");
-        String validateImgRelativePath = FundamentalConfigProvider.get("bookManageSystem.img.relative.path");
-        String imageDir = validateImgRootPath+validateImgRelativePath + "/validate/";
+//        String validateImgRootPath = FundamentalConfigProvider.get("bookManageSystem.img.root.path");
+//        String validateImgRelativePath = FundamentalConfigProvider.get("bookManageSystem.img.relative.path");
+//        String imageDir = validateImgRootPath+validateImgRelativePath + "/validate/";
+//        String imagePath = imageDir + key + ".jpg";
+        String realPath = request.getSession().getServletContext().getRealPath("/");
+        String imageDir = realPath + "\\image\\";
         String imagePath = imageDir + key + ".jpg";
-
+        logger.info(realPath);
         File dir = new File(imageDir);
         if (!dir.exists()) {
             dir.mkdirs();
@@ -110,7 +115,8 @@ public class ImageUtil {
         }
         out.close();
         in.close();
-        return imagePath;
+        //return imagePath;
+        return key + ".jpg";
     }
 
 }
