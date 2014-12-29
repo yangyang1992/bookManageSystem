@@ -79,11 +79,17 @@
         <groupId>org.springframework.security</groupId>
         <artifactId>spring-security-web</artifactId>
     </dependency>
+
     <dependency>
         <groupId>bookManageSystem</groupId>
         <artifactId>bookManageSystem-fundamental-logger</artifactId>
         <version>${project.version}</version>
     </dependency>
+        <dependency>
+            <groupId>bookManageSystem</groupId>
+            <artifactId>bookManageSystem-fundamental-security</artifactId>
+            <version>${project.version}</version>
+        </dependency>
   </dependencies>
 
 </project>
