@@ -53,4 +53,5 @@ public class AnonymousServiceWeb {
         logger.info("待注册用户：" + jsonString);
         return JsonResultUtils.getObjectResultByStringAsDefault(jsonString, JsonResultUtils.Code.SUCCESS);
     }
+
 }

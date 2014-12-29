@@ -116,7 +116,7 @@ public class ImageUtil {
         out.close();
         in.close();
         //return imagePath;
-        return key + ".jpg";
+        return key;
     }
 
 }
