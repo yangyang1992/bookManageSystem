@@ -64,9 +64,15 @@
             <tr>
                 <td>
             <input type="radio" name="sex" value="男" id="male" checked="checked" />男
-            <br />
+            </td>
+                <td>
             <input type="radio" name="sex" value="女" id="female" checked="checked" />女
                 </td>
+        </tr>
+        <tr>
+            <td><img  width="70" height="30"
+                      alt="验证码" title="点击更换" id="imageCode" style="cursor: pointer;"/></td>
+            <td><input id="image" name="image" type="text"></td>
         </tr>
         <tr>
             <td><input type="submit"  value="确认" onclick="commit()"/> </td>
@@ -77,8 +83,7 @@
         </tr>
     </table>
 
-    <img  width="70" height="30"
-          alt="验证码" title="点击更换" id="imageCode" style="cursor: pointer;"/>
+
 </div>
 </body>
 </html>
