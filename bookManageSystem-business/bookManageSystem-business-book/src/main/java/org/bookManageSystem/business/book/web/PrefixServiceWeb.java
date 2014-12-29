@@ -43,7 +43,7 @@ public class PrefixServiceWeb {
                 ||map.get("author")==null||map.get("author").equals("")||map.get("pressName")==null||map.get("pressName").equals("")
                 ||map.get("pressLocation")==null||map.get("pressLocation").equals("")
                 ||map.get("pressTime")==null
-        ){
+                ){
             return JsonResultUtils.getCodeAndMesByString(JsonResultUtils.Code.ERROR.getCode(), "参数不能为空!");
         }
         Date pressTime = null;
@@ -69,32 +69,7 @@ public class PrefixServiceWeb {
     @Path("/update")
     @POST
     public String update(@FormParam("jsonString") String jsonString){
-        long appId= UserContext.currentUserAppId();
-        Map<String, String> map = JsonMapper.buildNonDefaultMapper().fromJson(jsonString, HashMap.class);
-
-        if(map.get("cip")==null||map.get("cip").equals("")||map.get("isbn")==null||map.get("isbn").equals("")
-                ||map.get("author")==null||map.get("author").equals("")||map.get("pressName")==null||map.get("pressName").equals("")
-                ||map.get("pressLocation")==null||map.get("pressLocation").equals("")
-                ||map.get("pressTime")==null
-                ){
-            return JsonResultUtils.getCodeAndMesByString(JsonResultUtils.Code.ERROR.getCode(), "参数不能为空!");
-        }
-        Date pressTime = null;
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        try{
-            pressTime = sdf.parse(map.get("pressTime"));
-        }catch (Exception e){
-            return JsonResultUtils.getCodeAndMesByString(JsonResultUtils.Code.ERROR.getCode(),"日期格式错误！");
-        }
-        Prefix prefix=new Prefix();
-        prefix.setAppId(appId);
-        prefix.setId(Long.parseLong(map.get("ip")));
-        prefix.setCip(Long.parseLong(map.get("cip")));
-        prefix.setIsbn(map.get("isbn"));
-        prefix.setAuthor(map.get("author"));
-        prefix.setPressName(map.get("pressName"));
-        prefix.setPressLocation(map.get("pressLocation"));
-        prefix.setPressTime(pressTime);
+        Prefix prefix= JsonMapper.buildNonDefaultMapper().fromJson(jsonString,Prefix.class);
         int result=prefixService.update(prefix);
         if(result>0){
             return JsonResultUtils.getCodeAndMesByStringAsDefault(JsonResultUtils.Code.SUCCESS) ;
@@ -103,6 +78,41 @@ public class PrefixServiceWeb {
             return JsonResultUtils.getCodeAndMesByStringAsDefault(JsonResultUtils.Code.ERROR);
         }
     }
+    //    public String update(@FormParam("jsonString") String jsonString){
+//        long appId= UserContext.currentUserAppId();
+//        Map<String, String> map = JsonMapper.buildNonDefaultMapper().fromJson(jsonString, HashMap.class);
+//
+//        if(map.get("cip")==null||map.get("cip").equals("")||map.get("isbn")==null||map.get("isbn").equals("")
+//                ||map.get("author")==null||map.get("author").equals("")||map.get("pressName")==null||map.get("pressName").equals("")
+//                ||map.get("pressLocation")==null||map.get("pressLocation").equals("")
+//                ||map.get("pressTime")==null
+//                ){
+//            return JsonResultUtils.getCodeAndMesByString(JsonResultUtils.Code.ERROR.getCode(), "参数不能为空!");
+//        }
+//        Date pressTime = null;
+//        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+//        try{
+//            pressTime = sdf.parse(map.get("pressTime"));
+//        }catch (Exception e){
+//            return JsonResultUtils.getCodeAndMesByString(JsonResultUtils.Code.ERROR.getCode(),"日期格式错误！");
+//        }
+//        Prefix prefix=new Prefix();
+//        prefix.setAppId(appId);
+//        prefix.setId(Long.parseLong(map.get("ip")));
+//        prefix.setCip(Long.parseLong(map.get("cip")));
+//        prefix.setIsbn(map.get("isbn"));
+//        prefix.setAuthor(map.get("author"));
+//        prefix.setPressName(map.get("pressName"));
+//        prefix.setPressLocation(map.get("pressLocation"));
+//        prefix.setPressTime(pressTime);
+//        int result=prefixService.update(prefix);
+//        if(result>0){
+//            return JsonResultUtils.getCodeAndMesByStringAsDefault(JsonResultUtils.Code.SUCCESS) ;
+//        }
+//        else {
+//            return JsonResultUtils.getCodeAndMesByStringAsDefault(JsonResultUtils.Code.ERROR);
+//        }
+//    }
     @Produces(MediaType.APPLICATION_JSON + ";charset=UTF-8")
     @Path("/delete")
     @POST

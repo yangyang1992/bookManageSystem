@@ -32,6 +32,30 @@
             "validateImage":"rs/anonymous/validateImage",
             "register":"rs/anonymous/register"
         },
+        "reader":{
+            "add":"rs/reader/add",
+            "update":"rs/reader/update",
+            "delete":"rs/reader/delete",
+            "list":"rs/reader/list",
+            "getReaderById":"rs/reader/getReaderById",
+            "getNameById":"rs/reader/getNameById"
+        },
+        "optionType":{
+            "add":"rs/optionType/add",
+            "update":"rs/optionType/update",
+            "delete":"rs/optionType/delete",
+            "list":"rs/optionType/list",
+            "getOptionTypeById":"rs/optionType/getOptionTypeById",
+            "getNameById":"rs/optionType/getNameById"
+        },
+        "prefix":{
+            "add":"rs/prefix/add",
+            "update":"rs/prefix/update",
+            "delete":"rs/prefix/delete",
+            "list":"rs/prefix/list",
+            "getReaderById":"rs/prefix/getPrefixById",
+            "getNameById":"rs/prefix/getNameById"
+        },
         "anonymousUser":{
             "add":"rs/anonymousUser/add",
             "test":"rs/anonymous/test",

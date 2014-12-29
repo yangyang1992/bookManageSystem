@@ -48,7 +48,7 @@ public class ReaderServiceWeb {
         Date birthday = null;
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         try{
-            birthday = sdf.parse(map.get("birthDay"));
+            birthday = sdf.parse(map.get("birthday"));
         }catch (Exception e){
             return JsonResultUtils.getCodeAndMesByString(JsonResultUtils.Code.ERROR.getCode(),"日期格式错误！");
         }
@@ -67,30 +67,12 @@ public class ReaderServiceWeb {
     @Path("/update")
     @POST
     public String update(@FormParam("jsonString") String jsonString){
-        long appId= UserContext.currentUserAppId();
-        Map<String, String> map = JsonMapper.buildNonDefaultMapper().fromJson(jsonString, HashMap.class);
-
-        if(map.get("name")==null||map.get("name").equals("")||map.get("userId")==null||map.get("userId").equals("")
-                ||map.get("number")==null||map.get("number").equals("")||map.get("birthday")==null
-                ||map.get("sex")==null||map.get("sex").equals("")
+        Reader reader= JsonMapper.buildNonDefaultMapper().fromJson(jsonString,Reader.class);
+        if(reader.getName()==null||reader.getName().equals("")
                 ){
-            return JsonResultUtils.getCodeAndMesByString(JsonResultUtils.Code.ERROR.getCode(), "参数不能为空!");
+            return JsonResultUtils.getCodeAndMesByString(JsonResultUtils.Code.ERROR.getCode(), "姓名不能为空!");
         }
-        Date birthday = null;
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        try{
-            birthday = sdf.parse(map.get("birthDay"));
-        }catch (Exception e){
-            return JsonResultUtils.getCodeAndMesByString(JsonResultUtils.Code.ERROR.getCode(),"日期格式错误！");
-        }
-        Reader reader=new Reader();
-        reader.setId(Long.parseLong(map.get("id")));
-        reader.setAppId(appId);
-        reader.setUserId(Long.parseLong(map.get("userId")));
-        reader.setName(map.get("name"));
-        reader.setNumber(map.get("number"));
-        reader.setSex(map.get("sex"));
-        reader.setBirthday(birthday);
+
         int result=readerService.update(reader);
         if(result>0){
             return JsonResultUtils.getCodeAndMesByStringAsDefault(JsonResultUtils.Code.SUCCESS) ;
@@ -130,5 +112,14 @@ public class ReaderServiceWeb {
         long appId=UserContext.currentUserAppId();
         Reader reader=readerService.getReaderById(id,appId);
         return JsonResultUtils.getObjectResultByStringAsDefault(reader,JsonResultUtils.Code.SUCCESS);
+    }
+
+    @Produces(MediaType.APPLICATION_JSON+";charset=UTF-8")
+    @Path("/getNameById")
+    @POST
+    public String getNameById(@FormParam("id")long id){
+        long appId=UserContext.currentUserAppId();
+        String name=readerService.getNameById(id);
+        return JsonResultUtils.getObjectResultByStringAsDefault(name,JsonResultUtils.Code.SUCCESS);
     }
 }

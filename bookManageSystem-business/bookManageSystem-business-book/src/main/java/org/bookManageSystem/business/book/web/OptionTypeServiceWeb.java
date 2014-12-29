@@ -55,21 +55,12 @@ public class OptionTypeServiceWeb {
     @Path("/update")
     @POST
     public String update(@FormParam("jsonString") String jsonString){
-        long appId= UserContext.currentUserAppId();
-        Map<String, String> map = JsonMapper.buildNonDefaultMapper().fromJson(jsonString, HashMap.class);
-
-        if(map.get("name")==null||map.get("name").equals("")||
-                map.get("description")==null||map.get("description").equals("")
+        OptionType optionType= JsonMapper.buildNonDefaultMapper().fromJson(jsonString,OptionType.class);
+        if(optionType.getName()==null||optionType.getName().equals("")
                 ){
-            return JsonResultUtils.getCodeAndMesByString(JsonResultUtils.Code.ERROR.getCode(), "参数不能为空!");
+            return JsonResultUtils.getCodeAndMesByString(JsonResultUtils.Code.ERROR.getCode(), "操作名称不能为空!");
         }
 
-        OptionType optionType=new OptionType();
-
-        optionType.setAppId(appId);
-        optionType.setId(Long.parseLong(map.get("id")));
-        optionType.setName(map.get("name"));
-        optionType.setDescription(map.get("description"));
         int result=optionTypeService.update(optionType);
         if(result>0){
             return JsonResultUtils.getCodeAndMesByStringAsDefault(JsonResultUtils.Code.SUCCESS) ;
@@ -103,7 +94,7 @@ public class OptionTypeServiceWeb {
     }
 
     @Produces(MediaType.APPLICATION_JSON+";charset=UTF-8")
-    @Path("/getReaderById")
+    @Path("/getOptionTypeById")
     @POST
     public String getReaderById(@FormParam("id")long id){
         long appId=UserContext.currentUserAppId();
