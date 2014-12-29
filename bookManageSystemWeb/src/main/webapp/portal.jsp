@@ -18,6 +18,11 @@
 
         function oneClick() {
             $.post($.URL.anonymous.test,null,clickCallBack,"json");
+            $.post($.URL.anonymousUser.add,null,addCallBack,"json");
+        }
+
+        function regClick() {
+            $("#registerContainer").load("test/register.html");
         }
 
         function clickCallBack(data) {
@@ -33,14 +38,25 @@
             console.log(data.data.toString());
             $("#imageCode").attr("src", "image/" + data.data.toString());
         }
+
+        function addCallBack(data) {
+            if(data.code == 200) {
+                alert(data.message)
+            }
+            else {
+                alert("匿名用户不能访问后台资源");
+            }
+        }
+
     </script>
 </head>
 <body>
 <h2>首页，不检查权限</h2>
 <a href="index.jsp" style="color: red">登录</a><b/>
+<a href="register.html" style="color: red">注册</a> <b/>
 <p>测试未登录用户能否访问资源：<input id="testBtn" onclick="oneClick()" type="button" value="测试">
 <div align="center">
-    <img width="70" height="30"
+    <img src="image/offline.png" width="70" height="30"
          alt="验证码" title="点击更换" id="imageCode" style="cursor: pointer;"/>
     <%--<input type="button" id="validateImg" value="验证码">--%>
     <a href="register.html">注册</a>

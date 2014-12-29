@@ -31,6 +31,12 @@
             "test":"rs/anonymous/test",
             "validateImage":"rs/anonymous/validateImage",
             "register":"rs/anonymous/register"
+        },
+        "anonymousUser":{
+            "add":"rs/anonymousUser/add",
+            "test":"rs/anonymous/test",
+            "validateImage":"rs/anonymous/validateImage",
+            "register":"rs/anonymous/register"
         }
     }
 })(jQuery);
