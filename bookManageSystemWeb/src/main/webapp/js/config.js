@@ -26,6 +26,9 @@
         },
         "anonymous":{
             "test":"rs/anonymous/test"
+        },
+        "anonymousUser":{
+            "add":"rs/anonymousUser/add"
         }
     }
 })(jQuery);

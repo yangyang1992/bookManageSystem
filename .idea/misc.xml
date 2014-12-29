@@ -6,17 +6,12 @@
   <component name="FrameworkDetectionExcludesConfiguration">
     <file type="web" url="file://$PROJECT_DIR$/bookManageSystemWeb" />
   </component>
-  <component name="IdProvider" IDEtalkID="3D892AA43A95BF67DB97A3D0287AA814" />
+  <component name="IdProvider" IDEtalkID="F61FD3935E14D2B8D51DEBE61EB1016C" />
   <component name="MavenProjectsManager">
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/pom.xml" />
       </list>
-    </option>
-    <option name="ignoredFiles">
-      <set>
-        <option value="$PROJECT_DIR$/bookManageSystem-business/bookManageSystem-business-test/pom.xml" />
-      </set>
     </option>
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_1_6" assert-keyword="true" jdk-15="true" project-jdk-name="1.7" project-jdk-type="JavaSDK">

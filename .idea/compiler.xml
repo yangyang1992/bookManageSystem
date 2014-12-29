@@ -23,7 +23,6 @@
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
         <module name="bookManageSystem-business-anonymous" />
-        <module name="bookManageSystem-business-test" />
         <module name="bookManageSystem-fundamental-config" />
         <module name="bookManageSystem-fundamental-datasource" />
         <module name="bookManageSystem-fundamental-exception" />

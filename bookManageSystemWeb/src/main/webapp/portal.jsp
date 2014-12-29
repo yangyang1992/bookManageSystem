@@ -14,6 +14,11 @@
     <script type="text/javascript">
         function oneClick() {
             $.post($.URL.anonymous.test,null,clickCallBack,"json");
+            $.post($.URL.anonymousUser.add,null,addCallBack,"json");
+        }
+
+        function regClick() {
+            $("#registerContainer").load("test/register.html");
         }
 
         function clickCallBack(data) {
@@ -24,11 +29,22 @@
                 alert("匿名用户不能访问后台资源");
             }
         }
+
+        function addCallBack(data) {
+            if(data.code == 200) {
+                alert(data.message)
+            }
+            else {
+                alert("匿名用户不能访问后台资源");
+            }
+        }
+
     </script>
 </head>
 <body>
 <h2>首页，不检查权限</h2>
 <a href="index.jsp" style="color: red">登录</a><b/>
+<a href="register.html" style="color: red">注册</a> <b/>
 <p>测试未登录用户能否访问资源：<input id="testBtn" onclick="oneClick()" type="button" value="测试">
 </body>
 </html>
