@@ -24,6 +24,7 @@
         <processorPath useClasspath="true" />
         <module name="bookManageSystem-business-anonymous" />
         <module name="bookManageSystem-business-book" />
+        <module name="bookManageSystem-business-bookAnalyse" />
         <module name="bookManageSystem-business-reader" />
         <module name="bookManageSystem-fundamental-config" />
         <module name="bookManageSystem-fundamental-datasource" />

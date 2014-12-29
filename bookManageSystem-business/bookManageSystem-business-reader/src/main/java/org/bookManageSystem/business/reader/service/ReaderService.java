@@ -41,4 +41,8 @@ public class ReaderService {
         return readerMapper.getReaderById(id,appId);
     }
 
+    public String getNameById(long id){
+        return readerMapper.getNameById(id);
+    }
+
 }

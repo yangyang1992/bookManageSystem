@@ -42,7 +42,7 @@ public class AnonymousServiceWeb {
         Map<String,BufferedImage> map = ImageUtil.createImage();
         String key = map.keySet().iterator().next();
         BufferedImage image = map.get(key);
-        String imagePath = ImageUtil.getInputFilePath(image, key);
+        String imagePath = ImageUtil.getInputFilePath(image, key, request);
         return JsonResultUtils.getObjectResultByStringAsDefault(imagePath, JsonResultUtils.Code.SUCCESS);
     }
 
