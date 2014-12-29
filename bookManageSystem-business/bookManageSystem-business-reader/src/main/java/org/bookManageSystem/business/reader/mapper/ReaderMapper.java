@@ -17,4 +17,5 @@ public interface ReaderMapper extends AbstractMapper<Reader> {
     public List<Reader> getListByAppId(@Param("appId")long appId) ;
     public Reader getReaderById(@Param("id")long id,@Param("appId")long appId);
     public int deleteById(@Param("id")long id,@Param("appId")long appId);
+    public String getNameById(@Param("id")long id) ;
 }
