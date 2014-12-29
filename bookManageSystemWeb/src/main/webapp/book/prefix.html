@@ -20,12 +20,13 @@
 //            $("#customerName").ligerComboBox({isShowCheckBox:true,isMultiSelect:false,data:null,emptyText:null});
             $("#submitBtn").click(function(){
                 var data = {};
-                data.name = $("#readerName").val();
-                data.userId = $("#userId").val();
+                data.cip = $("#cip").val();
+                data.isbn = $("#isbn").val();
 //                data.customerId=$("#customerName").ligerComboBox().getValue();
-                data.number = $("#readerNumber").val();
-                data.sex = $("#sex").val();
-                data.birthday = $("#birthday").val();
+                data.author = $("#author").val();
+                data.pressName = $("#pressName").val();
+                data.pressLocation = $("#pressLocation").val();
+                data.pressTime = $("#pressTime").val();
                 var jsonString  = $.toJSON(data);
                 $.post($.URL.reader.add,{"jsonString":jsonString},addCallBack,"json") ;
             });
