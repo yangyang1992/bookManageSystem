@@ -5,10 +5,12 @@ import org.bookManageSystem.fundamental.util.json.JsonResultUtils;
 import org.bookManageSystem.fundamental.util.validate.ImageUtil;
 import org.springframework.stereotype.Component;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -36,7 +38,7 @@ public class AnonymousServiceWeb {
     @Path("/validateImage")
     @Produces(MediaType.APPLICATION_JSON+";charset=UTF-8")
     @POST
-    public String validateImage() throws IOException {
+    public String validateImage(@Context HttpServletRequest request) throws IOException {
         Map<String,BufferedImage> map = ImageUtil.createImage();
         String key = map.keySet().iterator().next();
         BufferedImage image = map.get(key);
