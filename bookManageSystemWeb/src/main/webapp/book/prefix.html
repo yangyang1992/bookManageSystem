@@ -28,7 +28,7 @@
                 data.pressLocation = $("#pressLocation").val();
                 data.pressTime = $("#pressTime").val();
                 var jsonString  = $.toJSON(data);
-                $.post($.URL.reader.add,{"jsonString":jsonString},addCallBack,"json") ;
+                $.post($.URL.prefix.add,{"jsonString":jsonString},addCallBack,"json") ;
             });
         });
 
@@ -52,7 +52,7 @@
                     { display: 'author', name: 'author',width: 100,editor:{type:'text'}},
                     { display: 'pressName', name: 'pressName',width: 100,editor:{type:'text'}},
                     { display: 'pressLocation', name: 'pressLocation',width: 100,editor:{type:'text'}},
-                    { display: 'pressTime',name: 'pressTime',width: 100,editor:{type:'date'}},
+                    { display: 'pressTime',name: 'pressTime',width: 100,type:'date',format: 'yyyy-MM-dd',editor:{type:'date',format: 'yyyy-MM-dd'}},
 //                    { display: '描述',name: 'description',type:'string',editor: { type: 'text'}
 //                    },
                     { display: '操作', isSort: false, width: 120, frozen: true,render: function (rowdata, rowindex, value)
@@ -144,7 +144,7 @@
             if(data.code==200){
                 $.ligerDialog.success(data.message);
                 document.getElementById('form1').reset();
-                $.post($.URL.reader.list,null,listCallback,"json");
+                $.post($.URL.prefix.list,null,listCallback,"json");
             }
             else{
                 $.ligerDialog.warn(data.message);

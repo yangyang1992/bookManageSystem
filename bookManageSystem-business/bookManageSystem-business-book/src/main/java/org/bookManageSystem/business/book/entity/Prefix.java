@@ -11,7 +11,7 @@ import java.util.Date;
  */
 public class Prefix {
     private long id;
-    private long cip;
+    private String cip;
     private String isbn;
     private String author;
     private String pressName;
@@ -25,14 +25,6 @@ public class Prefix {
 
     public void setId(long id) {
         this.id = id;
-    }
-
-    public long getCip() {
-        return cip;
-    }
-
-    public void setCip(long cip) {
-        this.cip = cip;
     }
 
     public String getIsbn() {
@@ -81,5 +73,13 @@ public class Prefix {
 
     public void setAppId(long appId) {
         this.appId = appId;
+    }
+
+    public String getCip() {
+        return cip;
+    }
+
+    public void setCip(String cip) {
+        this.cip = cip;
     }
 }
