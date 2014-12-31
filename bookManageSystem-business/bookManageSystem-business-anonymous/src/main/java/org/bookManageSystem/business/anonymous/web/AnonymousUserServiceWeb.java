@@ -36,17 +36,18 @@ public class AnonymousUserServiceWeb {
     @Path("/add")
     @Produces(MediaType.APPLICATION_JSON+";charset=UTF-8")
     @POST
-    public String add(@FormParam("username")String username,@FormParam("password")String password,@FormParam("sex")String sex) {
+    public String add(@FormParam("username")String username,@FormParam("password")String password,@FormParam("sex")String sex,@FormParam("image")String image,@FormParam("imageCheck")String imageCheck) {
         logger.info(username+"|"+password+"|"+sex);
-        AnonymousUser user=new AnonymousUser();
-        user.setName(username);
-        String newPassword = MD5Encoder.GetMD5Code(password);
-        user.setPassword(newPassword);
-        user.setSex(sex);
-        user.setStatus("启用");
-        user.setRole("ROLE_USER");
-        user.setAppId(Long.parseLong("1"));
-        AnonymousUserAuthority userAuthority=new AnonymousUserAuthority();
+        if (image.equals(imageCheck)){
+            AnonymousUser user=new AnonymousUser();
+            user.setName(username);
+            String newPassword = MD5Encoder.GetMD5Code(password);
+            user.setPassword(newPassword);
+            user.setSex(sex);
+            user.setStatus("启用");
+            user.setRole("ROLE_USER");
+            user.setAppId(Long.parseLong("1"));
+            AnonymousUserAuthority userAuthority=new AnonymousUserAuthority();
 
 //        if (anonymousUserService.checkUsername(username)==username){
 //            anonymousUserService.add(user);
@@ -54,23 +55,28 @@ public class AnonymousUserServiceWeb {
 //        }else{
 //            return JsonResultUtils.getCodeAndMesByStringAsDefault(JsonResultUtils.Code.ERROR);
 //        }
-        long id = 0;
-        try {
-            id = anonymousUserService.getIdByName(username);
-        } catch (Exception e){
-            e.printStackTrace();
+            long id = 0;
+            try {
+                id = anonymousUserService.getIdByName(username);
+            } catch (Exception e){
+                e.printStackTrace();
+            }
+            if (id == 0) {
+                anonymousUserService.add(user);
+                userAuthority.setUserId(user.getId());
+                userAuthority.setAuthorityId(Long.parseLong("1"));
+                userAuthority.setUserName(username);
+                userAuthority.setAuthorityName("ROLE_USER");
+                anonymousUserAuthorityService.add(userAuthority);
+                return JsonResultUtils.getCodeAndMesByStringAsDefault(JsonResultUtils.Code.SUCCESS);
+            }else {
+                return JsonResultUtils.getCodeAndMesByStringAsDefault(JsonResultUtils.Code.ERROR);
+            }
+        }else{
+            return JsonResultUtils.getCodeAndMesByString(JsonResultUtils.Code.ERROR.getCode(),"验证码错误！");
         }
-        if (id == 0) {
-            anonymousUserService.add(user);
-            userAuthority.setUserId(user.getId());
-            userAuthority.setAuthorityId(Long.parseLong("1"));
-            userAuthority.setUserName(username);
-            userAuthority.setAuthorityName("ROLE_USER");
-            anonymousUserAuthorityService.add(userAuthority);
-            return JsonResultUtils.getCodeAndMesByStringAsDefault(JsonResultUtils.Code.SUCCESS);
-        }else {
-            return JsonResultUtils.getCodeAndMesByStringAsDefault(JsonResultUtils.Code.ERROR);
-        }
+
+
     }
 
 }

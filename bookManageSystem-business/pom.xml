@@ -15,6 +15,7 @@
         <module>bookManageSystem-business-anonymous</module>
         <module>bookManageSystem-business-reader</module>
         <module>bookManageSystem-business-book</module>
+        <module>bookManageSystem-business-bookAnalyse</module>
     </modules>
 
 

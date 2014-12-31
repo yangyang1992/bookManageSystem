@@ -13,9 +13,7 @@
     <script src="js/config.js" type="text/javascript"></script>
     <script type="text/javascript">
         $(document).ready(function() {
-            $("#imageCode").click(function(){
-                $.post($.URL.anonymous.validateImage,null,imageCallBack,"json");
-            });
+            $.post($.URL.anonymous.validateImage,null,imageCallBack,"json");
         });
 
         function oneClick() {
@@ -38,7 +36,7 @@
 
         function imageCallBack(data) {
             console.log(data.data.toString());
-            $("#imageCode").attr("src", $.URL.common.rootPath+data.data.toString());
+            $("#imageCode").attr("src", "image/" + data.data.toString());
         }
 
         function addCallBack(data) {
@@ -57,5 +55,11 @@
 <a href="index.jsp" style="color: red">登录</a><b/>
 <a href="register.html" style="color: red">注册</a> <b/>
 <p>测试未登录用户能否访问资源：<input id="testBtn" onclick="oneClick()" type="button" value="测试">
+<div align="center">
+    <img src="image/offline.png" width="70" height="30"
+         alt="验证码" title="点击更换" id="imageCode" style="cursor: pointer;"/>
+    <%--<input type="button" id="validateImg" value="验证码">--%>
+    <a href="register.html">注册</a>
+</div>
 </body>
 </html>
