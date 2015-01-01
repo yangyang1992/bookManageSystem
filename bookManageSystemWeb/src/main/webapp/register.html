@@ -25,6 +25,10 @@
         <div id="registerFormDiv">
             <table>
                 <tr>
+                    <td>姓名：</td>
+                    <td><input id="name" name="j_name" type="text"></td>
+                </tr>
+                <tr>
                     <td>用户名：</td>
                     <td><input id="username" name="j_username" type="text"></td>
                 </tr>
@@ -89,18 +93,25 @@
     }
     function commit(){
         var image=$("#image").val();
-        if($("#password2").val()==$("#password").val()){
+        if($("#password2").val()==$("#password").val()&&$("#name").val()!=null&&$("#username").val()!=null&&$("#password").val()!=null){
             var username= $("#username").val();
             var passord= $("#password").val();
+            var name=$("#name").val();
             var sex;
             if($("#male").checked ==true) {
                 sex= $("#male").val();
             }else {
                 sex=$("#female").val();
             }
-            $.post($.URL.anonymousUser.add,{"username":username,"password":passord,"sex":sex,"image":image,"imageCheck":imageCheck},commitCallBack,"json");
-        }else{
+            $.post($.URL.anonymousUser.add,{"username":username,"password":passord,"sex":sex,"image":image,"imageCheck":imageCheck,"name":name},commitCallBack,"json");
+        }else if($("#password2").val()!=$("#password").val()){
             alert("两次输入密码不一样！");
+        }else if($("#name").val()==null){
+            alert("姓名不能为空！");
+        }else if($("#username").val()==null){
+            alert("用户名不能为空！");
+        }else{
+            alert("密码不能为空！");
         }
 
     }
