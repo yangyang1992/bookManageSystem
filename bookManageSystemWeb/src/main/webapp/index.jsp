@@ -12,19 +12,45 @@
     <title>图书管理系统-首页</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link href="lib/ligerUI/skins/Aqua/css/ligerui-all.css" rel="stylesheet" type="text/css" />
+
+    <link rel="stylesheet" href="nivo/themes/default/default.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="nivo/themes/light/light.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="nivo/themes/dark/dark.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="nivo/themes/bar/bar.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="nivo/nivo-slider.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="nivo/style.css" type="text/css" media="screen" />
+
     <script src="js/jquery-1.7.2.min.js" type="text/javascript"></script>
     <!--<script src="js/jquery-1.10.2.js" type="text/javascript"></script>-->
     <script src="js/jquery.json-2.4.min.js" type="text/javascript"></script>
     <script src="lib/ligerUI/js/core/base.js" type="text/javascript"></script>
     <script src="lib/ligerUI/js/plugins/ligerLayout.js" type="text/javascript"></script>
+
+    <script src="lib/ligerUI/js/plugins/ligerForm.js" type="text/javascript"></script>
+    <script src="lib/ligerUI/js/plugins/ligerDateEditor.js" type="text/javascript"></script>
+    <script src="lib/ligerUI/js/plugins/ligerComboBox.js" type="text/javascript"></script>
+    <script src="lib/ligerUI/js/plugins/ligerCheckBox.js" type="text/javascript"></script>
+    <script src="lib/ligerUI/js/plugins/ligerButton.js" type="text/javascript"></script>
+    <script src="lib/ligerUI/js/plugins/ligerDialog.js" type="text/javascript"></script>
+    <script src="lib/ligerUI/js/plugins/ligerRadio.js" type="text/javascript"></script>
+    <script src="lib/ligerUI/js/plugins/ligerSpinner.js" type="text/javascript"></script>
+    <script src="lib/ligerUI/js/plugins/ligerTextBox.js" type="text/javascript"></script>
+    <script src="lib/ligerUI/js/plugins/ligerDateEditor.js" type="text/javascript"></script>
+    <script src="lib/ligerUI/js/plugins/ligerTab.js" type="text/javascript"></script>
+    <script src="lib/ligerUI/js/plugins/ligerDrag.js" type="text/javascript"></script>
+    <script src="lib/ligerUI/js/plugins/ligerGrid.js" type="text/javascript"></script>
+    <script src="lib/ligerUI/js/plugins/ligerPanel.js" type="text/javascript"></script>
+
     <script src="js/config.js" type="text/javascript"></script>
+
+    <script type="text/javascript" src="nivo/jquery.nivo.slider.js"></script>
 
     <script type="text/javascript">
         $(function ()
         {
             $("#layout1").ligerLayout({topHeight:68});
             $("#titleContainer").load("title.html");
-            $("#mainContainer").load("dashboard/layout.html");
+            $("#mainContainer").load("dashboardUser/layout.html");
         });
 
     </script>

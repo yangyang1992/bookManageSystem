@@ -1,0 +1,65 @@
+<script type="text/javascript">
+    var rentBookList = [];
+    var rentCommendList = [];
+    $(function ()
+    {
+        $.get($.URL.user.currentUserInfo,null,userInfoCallback,"json");
+        var rentListTemp;
+        rentListTemp = [
+            {"number":"1","name":"莎士比亚文集"},
+            {"number":"2","name":"自然辨证法"},
+            {"number":"3","name":"计算机网络"},
+            {"number":"4","name":"西方哲学史"},
+            {"number":"5","name":"三国演义"}
+        ];
+
+        rentBookList.Rows = rentListTemp;
+        rentBookList.length = rentListTemp.length;
+
+        $("#rentBookDiv").ligerGrid({
+            columns:[
+                { display: '序号', name: 'number', frozen: true,width:'auto' },
+                { display:'书名',name:'name',width:'auto'}
+            ],
+            enabledEdit: true,clickToEdit:false, isScroll: false,usePager:false,
+            data:rentBookList,
+            width:'98%'
+        });
+
+        var rentCommendTemp;
+        rentCommendTemp = [
+            {"number":"1","name":"鲁迅文学选集"},
+            {"number":"2","name":"马克思哲学原理"},
+            {"number":"3","name":"软件工程"}
+        ];
+        rentCommendList.Rows = rentCommendTemp;
+        rentCommendList.length = rentCommendTemp.length;
+
+        $("#rentCommendListDiv").ligerGrid({
+            columns:[
+                { display: '序号', name: 'number', frozen: true,width:'auto' },
+                { display:'书名',name:'name',width:'auto'}
+            ],
+            enabledEdit: true,clickToEdit:false, isScroll: false,usePager:false,
+            data:rentCommendList,
+            width:'98%'
+        });
+    });
+
+    function userInfoCallback(data) {
+        if(data.code == 200) {
+            $("#userInfoDiv").html(data.data.name + "的借阅情况");
+            $("#userCommendNameDiv").html(data.data.name + "可能还会喜欢");
+        }
+    }
+
+</script>
+
+<div id="rentInfoDiv" style="height: 200px;">
+    <div id="userInfoDiv" style="cursor: pointer;background-color: #9791ff;"></div>
+    <div id="rentBookDiv" style="margin-top: 5px;background-color: #d3e4ff"></div>
+</div>
+<div id="rentCommendDiv" style="height: 200px;margin-top: 5px;">
+    <div id="userCommendNameDiv" style="cursor: pointer;background-color: #9791ff"></div>
+    <div id="rentCommendListDiv" style="margin-top: 5px;background-color: #d3e4ff"></div>
+</div>
