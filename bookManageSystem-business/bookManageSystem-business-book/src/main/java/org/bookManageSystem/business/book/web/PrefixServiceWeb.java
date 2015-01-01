@@ -55,7 +55,7 @@ public class PrefixServiceWeb {
         }
         Prefix prefix=new Prefix();
         prefix.setAppId(appId);
-        prefix.setCip(Long.parseLong(map.get("cip")));
+        prefix.setCip(map.get("cip"));
         prefix.setIsbn(map.get("isbn"));
         prefix.setAuthor(map.get("author"));
         prefix.setPressName(map.get("pressName"));
