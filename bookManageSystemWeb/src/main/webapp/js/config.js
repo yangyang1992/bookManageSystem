@@ -32,6 +32,15 @@
             "validateImage":"rs/anonymous/validateImage",
             "register":"rs/anonymous/register"
         },
+        "readerRecord":{
+            "add":"rs/readerRecord/add",
+            "update":"rs/readerRecord/update",
+            "delete":"rs/readerRecord/delete",
+            "list":"rs/readerRecord/list",
+            "getReaderRecordById":"rs/readerRecord/getReaderRecordById",
+            "getBookSetById":"rs/readerRecord/getBookSetById",
+            "getBookIdListById":"rs/readerRecord/getBookIdListById"
+        },
         "reader":{
             "add":"rs/reader/add",
             "update":"rs/reader/update",
