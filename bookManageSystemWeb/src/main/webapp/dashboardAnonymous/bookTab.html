@@ -1,0 +1,237 @@
+<style type="text/css">
+    #bookTab1 {
+        position:absolute;
+        top:28%;
+        left:0;
+        width:20%;
+        /*height:100%;*/
+        background-color:#d3e4ff;
+        margin-top: 16px;
+        margin-left: 3px;
+    }
+    #bookTab2 {
+        position:absolute;
+        top:28%;
+        left:20%;
+        width:20%;
+        /*height:100%;*/
+        background-color: #d3e4ff;
+        margin-top: 16px;
+        margin-left: 3px;
+    }
+    #bookTab3 {
+        position:absolute;
+        top:28%;
+        left:40%;
+        width:20%;
+        /*height:100%;*/
+        background-color: #d3e4ff;
+        margin-top: 16px;
+        margin-left: 3px;
+    }
+    #bookTab4 {
+        position:absolute;
+        top:28%;
+        left:60%;
+        width:20%;
+        /*height:100%;*/
+        background-color: #d3e4ff;
+        margin-top: 16px;
+        margin-left: 3px;
+    }
+    #bookTab5 {
+        position:absolute;
+        top:28%;
+        left:80%;
+        width:20%;
+        /*height:100%;*/
+        background-color: #d3e4ff;
+        margin-top: 16px;
+        margin-left: 3px;
+    }
+    #typeTitle {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 15%;
+        right: 0;
+        margin-top: 6px;
+        font-size: 20px;
+        background-color: #9791ff;
+        border: 1px solid #9791ff;
+    }
+    #typeDiv {
+        position: absolute;
+        top: 15%;
+        left: 0;
+        width: 100%;
+        height: 15%;
+        background-color: #9791ff;
+    }
+    #type1 {
+        position:absolute;
+        top:0;
+        left:0;
+        width:20%;
+        height:100%;
+        border: 1px solid #9791ff;
+        background-color: #d3e4ff;
+    }
+    #type2 {
+        position:absolute;
+        top:0;
+        left:20%;
+        width:20%;
+        height:100%;
+        border: 1px solid #9791ff;
+        background-color: #d3e4ff;
+    }
+    #type3 {
+        position:absolute;
+        top:0;
+        left:40%;
+        width:20%;
+        height:100%;
+        border: 1px solid #9791ff;
+        background-color: #d3e4ff;
+    }
+    #type4 {
+        position:absolute;
+        top:0;
+        left:60%;
+        width:20%;
+        height:100%;
+        border: 1px solid #9791ff;
+        background-color: #d3e4ff;
+    }
+    #type5 {
+        position:absolute;
+        top:0;
+        left:80%;
+        width:20%;
+        height:100%;
+        border: 1px solid #9791ff;
+        background-color: #d3e4ff;
+    }
+</style>
+
+<script type="text/javascript">
+    var lawBookData = {};
+    var compBookData = {};
+    var psyBookData = {};
+    var medBookData = {};
+    var dayBookData = {};
+    $(document).ready(function(){
+        var lawBookTemp = [
+            {"number":"1","name":"刑法"},
+            {"number":"2","name":"宪法"},
+            {"number":"3",name:"婚姻法"},
+            {"number":"4",name:"民法通则"},
+            {"number":"5",name:"劳动法"}
+        ];
+        lawBookData.Rows = lawBookTemp;
+        lawBookData.length = lawBookTemp.length;
+
+        var compBookTemp = [
+            {"number":"1","name":"计算机技术"},
+            {"number":"2","name":"软件工程"},
+            {"number":"3",name:"编译原理"},
+            {"number":"4",name:"操作系统"},
+            {"number":"5",name:"网络技术"}
+        ];
+        compBookData.Rows = compBookTemp;
+        compBookData.length = compBookTemp.length;
+
+        var psyBookTemp = [
+            {"number":"1","name":"西方哲学史"},
+            {"number":"2","name":"马克思主义原理"},
+            {"number":"3",name:"自然辩证法"},
+            {"number":"4",name:"哲学研究"},
+            {"number":"5",name:"理想国"}
+        ];
+        psyBookData.Rows = psyBookTemp;
+        psyBookData.length = psyBookTemp.length;
+
+        var medBookTemp = [
+            {"number":"1","name":"分子生物学"},
+            {"number":"2","name":"遗传学"},
+            {"number":"3",name:"生物化学"},
+            {"number":"4",name:"生物工程"},
+            {"number":"5",name:"药理学"}
+        ];
+        medBookData.Rows = medBookTemp;
+        medBookData.length = medBookTemp.length;
+
+        var dayBookTemp = [
+            {"number":"1","name":"心灵鸡汤"},
+            {"number":"2","name":"人性的弱点"},
+            {"number":"3",name:"挪威的森林"},
+            {"number":"4",name:"培根随笔"},
+            {"number":"5",name:"时间简史"}
+        ];
+        dayBookData.Rows = dayBookTemp;
+        dayBookData.length = dayBookTemp.length;
+    });
+    $("#bookTab1").ligerGrid({
+        columns:[
+            { display: '序号', name: 'number', frozen: true,width:'auto' },
+            { display:'书名',name:'name',width:'auto'}
+        ],
+        enabledEdit: true,clickToEdit:false, isScroll: false,usePager:false,
+        data:lawBookData,
+        width:'19%'
+    });
+    $("#bookTab2").ligerGrid({
+        columns:[
+            { display: '序号', name: 'number', frozen: true,width:'auto' },
+            { display:'书名',name:'name',width:'auto'}
+        ],
+        enabledEdit: true,clickToEdit:false, isScroll: false,usePager:false,
+        data:compBookData,
+        width:'19%'
+    });
+    $("#bookTab3").ligerGrid({
+        columns:[
+            { display: '序号', name: 'number', frozen: true,width:'auto' },
+            { display:'书名',name:'name',width:'auto'}
+        ],
+        enabledEdit: true,clickToEdit:false, isScroll: false,usePager:false,
+        data:psyBookData,
+        width:'19%'
+    });
+    $("#bookTab4").ligerGrid({
+        columns:[
+            { display: '序号', name: 'number', frozen: true,width:'auto' },
+            { display:'书名',name:'name',width:'auto'}
+        ],
+        enabledEdit: true,clickToEdit:false, isScroll: false,usePager:false,
+        data:medBookData,
+        width:'19%'
+    });
+    $("#bookTab5").ligerGrid({
+        columns:[
+            { display: '序号', name: 'number', frozen: true,width:'auto' },
+            { display:'书名',name:'name',width:'auto'}
+        ],
+        enabledEdit: true,clickToEdit:false, isScroll: false,usePager:false,
+        data:dayBookData,
+        width:'19%'
+    });
+</script>
+    <div id="typeTitle">
+        <!--<img src="" style="background-color: #000000">-->
+        |分类推荐书籍|
+    </div>
+<div id="typeDiv">
+    <div id="type1" style="font-size: 20px;text-align:center;color: blue">法  律</div>
+    <div id="type2" style="font-size: 20px;text-align:center;color: blue">计算机</div>
+    <div id="type3" style="font-size: 20px;text-align:center;color: blue">哲  学</div>
+    <div id="type4" style="font-size: 20px;text-align:center;color: blue">医  学</div>
+    <div id="type5" style="font-size: 20px;text-align:center;color: blue">生  活</div>
+</div>
+<div id="bookTab1"></div>
+<div id="bookTab2"></div>
+<div id="bookTab3"></div>
+<div id="bookTab4"></div>
+<div id="bookTab5"></div>

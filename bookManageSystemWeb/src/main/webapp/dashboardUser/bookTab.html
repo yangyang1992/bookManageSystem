@@ -1,0 +1,49 @@
+<style type="text/css">
+    #rentBookMenuDiv {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 40%;
+        height: 100%;
+        /*background-color: blue;*/
+    }
+    #userCardDiv {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 98%;
+        height: 15%;
+        background-color: #b9bbff;
+        cursor: pointer;
+        font: 20px;
+    }
+    #returnBookListDiv {
+        position: absolute;
+        left: 0;
+        top: 17%;
+        width: 98%;
+        height: 15%;
+        background-color: #b9bbff;
+        cursor: pointer;
+    }
+    #rentBookContainer {
+        position: absolute;
+        left: 40%;
+        top: 0;
+        width: 60%;
+        height: 100%;
+        background-color: #b9bbff;
+    }
+</style>
+
+<script type="text/javascript">
+    $("#userCardDiv").click(function(){
+        $("#rentBookContainer").load("dashboardUser/readerPage.html");
+    });
+</script>
+
+<div id="rentBookMenuDiv">
+    <div id="userCardDiv">读者信息</div>
+    <div id="returnBookListDiv">待还书籍</div>
+</div>
+<div id="rentBookContainer"></div>
