@@ -4,4 +4,5 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <bean id="readerService" class="org.bookManageSystem.business.reader.service.ReaderService" depends-on="mappers"/>
+    <bean id="readerRecordService" class="org.bookManageSystem.business.reader.service.ReaderRecordService" depends-on="mappers"/>
 </beans>

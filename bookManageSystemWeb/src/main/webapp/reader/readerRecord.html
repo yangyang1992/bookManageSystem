@@ -16,19 +16,16 @@
     <script type="text/javascript">
         $(function(){
 //            $.get($.URL.contract.getNumber,null,null,"json");
-            $.post($.URL.prefix.list,null,listCallback,"json");
+            $.post($.URL.readerRecord.list,null,listCallback,"json");
 //            $("#customerName").ligerComboBox({isShowCheckBox:true,isMultiSelect:false,data:null,emptyText:null});
             $("#submitBtn").click(function(){
                 var data = {};
-                data.cip = $("#cip").val();
-                data.isbn = $("#isbn").val();
+                data.readerId = $("#readerId").val();
+                data.bookSet = $("#bookSet").val();
 //                data.customerId=$("#customerName").ligerComboBox().getValue();
-                data.author = $("#author").val();
-                data.pressName = $("#pressName").val();
-                data.pressLocation = $("#pressLocation").val();
-                data.pressTime = $("#pressTime").val();
+                data.optionTypeId = $("#optionTypeId").val();
                 var jsonString  = $.toJSON(data);
-                $.post($.URL.prefix.add,{"jsonString":jsonString},addCallBack,"json") ;
+                $.post($.URL.readerRecord.add,{"jsonString":jsonString},addCallBack,"json") ;
             });
         });
 
@@ -47,12 +44,10 @@
             g = manager = $("#maingrid").ligerGrid({
                 columns: [
                     { display: '主键', name: 'id', width: 50, type: 'int', frozen: true},
-                    { display: 'cip',name: 'cip',width: 100,editor:{type:'text'}} ,
-                    { display: 'isbn',name: 'isbn',width: 100,editor:{type:'text'}},
-                    { display: 'author', name: 'author',width: 100,editor:{type:'text'}},
-                    { display: 'pressName', name: 'pressName',width: 100,editor:{type:'text'}},
-                    { display: 'pressLocation', name: 'pressLocation',width: 100,editor:{type:'text'}},
-                    { display: 'pressTime',name: 'pressTime',width: 100,type:'date',format: 'yyyy-MM-dd',editor:{type:'date',format: 'yyyy-MM-dd'}},
+                    { display: 'readerId',name: 'readerId',width: 100,editor:{type:'text'}} ,
+                    { display: 'bookSet',name: 'bookSet',width: 100,editor:{type:'text'}},
+                    { display: 'optionTypeId', name: 'optionTypeId',width: 100,editor:{type:'text'}},
+                    { display: 'createTime',name: 'createTime',width: 100,format: 'yyyy-MM-dd',editor:{type:'date',format: 'yyyy-MM-dd'}},
 //                    { display: '描述',name: 'description',type:'string',editor: { type: 'text'}
 //                    },
                     { display: '操作', isSort: false, width: 120, frozen: true,render: function (rowdata, rowindex, value)
@@ -62,6 +57,9 @@
                         {
                             h += "<a href='javascript:beginEdit(" + rowindex + ")'>修改</a> ";
                             h += "<a href='javascript:deleteRow(" + rowindex + ")'>删除</a> ";
+//                            h += "<a href='javascript:getBookId(" + rowindex + ")'>bookId</a> ";
+
+
                         }
                         else
                         {
@@ -92,16 +90,16 @@
             manager.endEdit(rowid);
             var row = manager.getRow(rowid);
             var jsonString  = $.toJSON(row);
-            $.post($.URL.prefix.update,{"jsonString":jsonString},updateCallback,"json");
+            $.post($.URL.readerRecord.update,{"jsonString":jsonString},updateCallback,"json");
             function updateCallback(data){
                 if(data.code==200){
                     // $("#mainContainer").load("InspectTable/inspectTableList.html");
-                    $.post($.URL.prefix.list,null,listCallback,"json");
+                    $.post($.URL.readerRecord.list,null,listCallback,"json");
                     $.ligerDialog.success(data.message);
 
                 }
                 else{
-                    $.post($.URL.prefix.list,null,listCallback,"json");
+                    $.post($.URL.readerRecord.list,null,listCallback,"json");
                     // $("#mainContainer").load("InspectTable/inspectTableList.html");
 
                     $.ligerDialog.warn(data.message);
@@ -114,10 +112,25 @@
             {
                 var row = manager.getRow(rowid);
                 var jsonString  = $.toJSON(row);
-                $.post($.URL.prefix.delete,{"id":row.id},deleteCallback,"json");
+                $.post($.URL.readerRecord.delete,{"id":row.id},deleteCallback,"json");
                 manager.deleteRow(rowid);
             }
         }
+//        function getBookId(rowid)
+//        {
+//            var row = manager.getRow(rowid);
+//            var jsonString  = $.toJSON(row);
+//            $.post($.URL.readerRecord.getBookIdListById,{"id":row.id},getBookIdCallback,"json");
+//        }
+//        function getBookIdCallback(data){
+//            if(data.code==200){
+//                alert(data.data);
+//                $.ligerDialog.success("成功！");
+//            }else{
+//                $.ligerDialog.success("失败！");
+//            }
+//        }
+
 
         function deleteCallback(data){
             if(data.code==200){
@@ -135,8 +148,8 @@
 
         function f_add() {
             document.getElementById('form1').reset();
-            $("#pressTime").ligerDateEditor();
-            $.ligerDialog.open({ target: $("#addPrefix"),width:500,title:'添加前缀信息'});
+            $("#birthday").ligerDateEditor();
+            $.ligerDialog.open({ target: $("#addReaderRecord"),width:500,title:'添加读者信息'});
         }
 
 
@@ -144,7 +157,7 @@
             if(data.code==200){
                 $.ligerDialog.success(data.message);
                 document.getElementById('form1').reset();
-                $.post($.URL.prefix.list,null,listCallback,"json");
+                $.post($.URL.readerRecord.list,null,listCallback,"json");
             }
             else{
                 $.ligerDialog.warn(data.message);
@@ -173,38 +186,23 @@
 </div>
 <div id="maingrid" style="margin-top:5px"></div>
 
-<div id="addPrefix" style=" margin:3px; display:none;">
+<div id="addReaderRecord" style=" margin:3px; display:none;">
     <form name="form1" method="post" action="" id="form1" style="margin-left: 15px">
 
         <table cellpadding="0" cellspacing="0" class="l-table-edit" >
             <tr>
-                <td align="right" class="l-table-edit-td">cip:</td>
-                <td align="left" class="l-table-edit-td"><input name="cip" class="l-table-edit-input" type="text" id="cip" ></td>
+                <td align="right" class="l-table-edit-td">readerId:</td>
+                <td align="left" class="l-table-edit-td"><input name="readerName" class="l-table-edit-input" type="text" id="readerId" ></td>
                 <td align="left"></td>
             </tr>
             <tr>
-                <td align="right" class="l-table-edit-td">isbn:</td>
-                <td align="left" class="l-table-edit-td"><input name="isbn" class="l-table-edit-input" type="text" id="isbn" ></td>
+                <td align="right" class="l-table-edit-td">bookSet:</td>
+                <td align="left" class="l-table-edit-td"><input name="bookSet" class="l-table-edit-input" type="text" id="bookSet" ></td>
                 <td align="left"></td>
             </tr>
             <tr>
-                <td align="right" class="l-table-edit-td">author:</td>
-                <td align="left" class="l-table-edit-td"><input name="author" class="l-table-edit-input" type="text" id="author" ></td>
-                <td align="left"></td>
-            </tr>
-            <tr>
-                <td align="right" class="l-table-edit-td">pressName:</td>
-                <td align="left" class="l-table-edit-td"><input name="pressName" class="l-table-edit-input" type="text" id="pressName" ></td>
-                <td align="left"></td>
-            </tr>
-            <tr>
-                <td align="right" class="l-table-edit-td">pressLocation:</td>
-                <td align="left" class="l-table-edit-td"><input name="pressLocation" class="l-table-edit-input" type="text" id="pressLocation" ></td>
-                <td align="left"></td>
-            </tr>
-            <tr>
-                <td align="right" class="l-table-edit-td">pressTime:</td>
-                <td align="left" class="l-table-edit-td"><input name="pressTime" type="text" id="pressTime" ></td>
+                <td align="right" class="l-table-edit-td">optionTypeId:</td>
+                <td align="left" class="l-table-edit-td"><input name="optionTypeId" type="text" id="optionTypeId" ></td>
                 <td align="left"></td>
             </tr>
         </table>

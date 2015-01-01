@@ -1,7 +1,7 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : yy
+Source Server         : asd
 Source Server Version : 50151
 Source Host           : localhost:3306
 Source Database       : bookmanagesystem
@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50151
 File Encoding         : 65001
 
-Date: 2014-11-02 15:40:01
+Date: 2015-01-01 16:06:47
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -143,11 +143,12 @@ CREATE TABLE `optiontype` (
   `description` varchar(255) DEFAULT NULL,
   `appId` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of optiontype
 -- ----------------------------
+INSERT INTO `optiontype` VALUES ('2', '送误杀', '搜索', '1');
 
 -- ----------------------------
 -- Table structure for `power`
@@ -185,18 +186,19 @@ CREATE TABLE `prefix` (
   `pressTime` date DEFAULT NULL,
   `appId` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of prefix
 -- ----------------------------
+INSERT INTO `prefix` VALUES ('1', '13', '223', '3', '4', '5', '2014-12-03', '1');
 
 -- ----------------------------
 -- Table structure for `reader`
 -- ----------------------------
 DROP TABLE IF EXISTS `reader`;
 CREATE TABLE `reader` (
-  `id` bigint(20) NOT NULL,
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `userId` bigint(20) DEFAULT NULL,
   `name` varchar(255) DEFAULT NULL,
   `number` varchar(255) DEFAULT NULL,
@@ -204,11 +206,33 @@ CREATE TABLE `reader` (
   `birthday` date DEFAULT NULL,
   `appId` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of reader
 -- ----------------------------
+INSERT INTO `reader` VALUES ('1', '22', '123我', '233', '11', '2014-12-02', '1');
+INSERT INTO `reader` VALUES ('2', '123', '111', '123', '123', '2014-12-02', '1');
+INSERT INTO `reader` VALUES ('3', '33', '11', '23', '123', '2014-12-02', '1');
+
+-- ----------------------------
+-- Table structure for `readerrecord`
+-- ----------------------------
+DROP TABLE IF EXISTS `readerrecord`;
+CREATE TABLE `readerrecord` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `readerId` bigint(20) DEFAULT NULL,
+  `bookSet` varchar(255) DEFAULT NULL,
+  `optionTypeId` bigint(20) DEFAULT NULL,
+  `createTime` date DEFAULT NULL,
+  `appId` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Records of readerrecord
+-- ----------------------------
+INSERT INTO `readerrecord` VALUES ('1', '12', '1;3;4;5', '2', '2015-01-01', '1');
 
 -- ----------------------------
 -- Table structure for `reader_booktype`
