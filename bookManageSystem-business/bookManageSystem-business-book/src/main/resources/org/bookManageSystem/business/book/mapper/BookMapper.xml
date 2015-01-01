@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.bookManageSystem.business.book.mapper.BookMapper">
+    <sql id="book_fields">
+         ID,NAME,PREFIXID,NUMBER,RENTNUMBER,BOOKTYPEID,COUNT,APPID
+     </sql>
+    <resultMap id="bookResultMap" type="book">
+        <id property="id" column="ID"/>
+        <result property="name" column="NAME"/>
+        <result property="prefixId" column="PREFIXID"/>
+        <result property="number" column="NUMBER"/>
+        <result property="rentNumber" column="RENTNUMBER"/>
+        <result property="bookTypeId" column="BOOKTYPEID"/>
+        <result property="count" column="COUNT"/>
+        <result property="appId" column="APPID"/>
+    </resultMap>
+
+    <insert id="add" parameterType="book"  keyProperty="id"
+            useGeneratedKeys="true">
+        INSERT INTO
+        book(
+        <include refid="book_fields" />
+        )
+        VALUES (#{id}, #{name},#{prefixId},#{number},#{bookTypeId},#{rentNumber},#{count},#{appId});
+        <selectKey resultType="long" keyProperty="id">
+            select
+            LAST_INSERT_ID() as id
+        </selectKey>
+    </insert>
+
+    <update id="update" parameterType="book">
+        UPDATE book
+        <set>
+            <if test="name!=null">NAME=#{name},</if>
+            <if test="number!=null">NUMBER=#{number}</if>
+        </set>
+        WHERE ID=#{id}
+    </update>
+
+    <delete id="delete" parameterType="book">
+        DELETE  book
+        WHERE ID=#{id}
+    </delete>
+
+    <select id="getListByAppId" parameterType="java.lang.Long" resultMap="bookResultMap">
+        select
+        <include refid="book_fields"/>
+        from book
+        where APPID=#{appId}
+    </select>
+
+    <select id="getIdByName" parameterType="map" resultType="java.lang.Long">
+        select id
+        from book
+        where NAME=#{name} and APPID=#{appId}
+    </select>
+
+    <select id="getIdByNumber" parameterType="map" resultType="java.lang.Long">
+        select id
+        from book
+        where NUMBER=#{number} and APPID=#{appId}
+    </select>
+</mapper>
