@@ -61,6 +61,20 @@
             "test":"rs/anonymous/test",
             "validateImage":"rs/anonymous/validateImage",
             "register":"rs/anonymous/register"
+        },
+       "book":{
+            "add":"rs/book/add",
+            "update":"rs/book/update",
+            "delete":"rs/book/delete",
+            "list":"rs/book/list",
+            "getIdByNumber":"rs/book/getIdByNumber"
+        },
+        "bookType":{
+            "add":"rs/bookType/add",
+            "update":"rs/bookType/update",
+            "delete":"rs/bookType/delete",
+            "list":"rs/bookType/list",
+            "getIdByName":"rs/bookType/getIdByName"
         }
     }
 })(jQuery);
