@@ -110,6 +110,7 @@
     <orderEntry type="module" module-name="bookManageSystem-business-anonymous" />
     <orderEntry type="module" module-name="bookManageSystem-business-reader" />
     <orderEntry type="module" module-name="bookManageSystem-business-book" />
+    <orderEntry type="module" module-name="bookManageSystem-business-bookAnalyse" />
   </component>
 </module>
 

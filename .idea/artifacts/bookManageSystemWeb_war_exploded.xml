@@ -106,6 +106,9 @@
           <element id="archive" name="bookManageSystem-business-book-1.0-SNAPSHOT.jar">
             <element id="module-output" name="bookManageSystem-business-book" />
           </element>
+          <element id="archive" name="bookManageSystem-business-bookAnalyse-1.0-SNAPSHOT.jar">
+            <element id="module-output" name="bookManageSystem-business-bookAnalyse" />
+          </element>
         </element>
       </element>
     </root>
