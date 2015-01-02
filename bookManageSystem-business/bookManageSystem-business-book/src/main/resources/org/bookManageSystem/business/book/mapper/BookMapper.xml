@@ -34,13 +34,18 @@
         UPDATE book
         <set>
             <if test="name!=null">NAME=#{name},</if>
-            <if test="number!=null">NUMBER=#{number}</if>
+            <if test="number!=null">NUMBER=#{number},</if>
+            <if test="prefixId!=null">PREFIXID=#{prefixId},</if>
+            <if test="rentNumber!=null">RENTNUMBER=#{rentNumber},</if>
+            <if test="bookTypeId!=null">BOOKTYPEID=#{bookTypeId},</if>
+            <if test="count!=null">COUNT=#{count},</if>
+            <if test="appId!=null">APPID=#{appId}</if>
         </set>
         WHERE ID=#{id}
     </update>
 
     <delete id="delete" parameterType="book">
-        DELETE  book
+        DELETE FROM book
         WHERE ID=#{id}
     </delete>
 
