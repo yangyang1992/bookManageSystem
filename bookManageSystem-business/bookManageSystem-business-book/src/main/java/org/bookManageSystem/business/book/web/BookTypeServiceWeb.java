@@ -44,7 +44,7 @@ public class BookTypeServiceWeb {
         }catch (Exception e){
             id = 0;
         }
-        if(id == 0){
+        if(id==0){
             BookType bookType = new BookType();
             bookType.setAppId(appId);
             bookType.setName(name);
@@ -64,8 +64,7 @@ public class BookTypeServiceWeb {
         int result=bookTypeService.delete(bookType);
         if(result>0){
             return JsonResultUtils.getCodeAndMesByStringAsDefault(JsonResultUtils.Code.SUCCESS) ;
-        }
-        else {
+        }else {
             return JsonResultUtils.getCodeAndMesByStringAsDefault(JsonResultUtils.Code.ERROR);
         }
     }
