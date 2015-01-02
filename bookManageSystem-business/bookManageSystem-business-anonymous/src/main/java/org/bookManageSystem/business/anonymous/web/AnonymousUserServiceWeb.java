@@ -4,8 +4,8 @@ import org.bookManageSystem.business.anonymous.entity.AnonymousUser;
 import org.bookManageSystem.business.anonymous.entity.AnonymousUserAuthority;
 import org.bookManageSystem.business.anonymous.service.AnonymousUserAuthorityService;
 import org.bookManageSystem.business.anonymous.service.AnonymousUserService;
-import org.bookManageSystem.business.reader.entity.Reader;
-import org.bookManageSystem.business.reader.service.ReaderService;
+//import org.bookManageSystem.business.reader.entity.Reader;
+//import org.bookManageSystem.business.reader.service.ReaderService;
 import org.bookManageSystem.fundamental.logger.FundamentalLogger;
 import org.bookManageSystem.fundamental.security.MD5Encoder;
 import org.bookManageSystem.fundamental.util.json.JsonResultUtils;
@@ -35,8 +35,6 @@ public class AnonymousUserServiceWeb {
     @Autowired
     private AnonymousUserAuthorityService anonymousUserAuthorityService;
 
-    @Autowired
-    private ReaderService  readerService;
 
     @Path("/add")
     @Produces(MediaType.APPLICATION_JSON+";charset=UTF-8")
