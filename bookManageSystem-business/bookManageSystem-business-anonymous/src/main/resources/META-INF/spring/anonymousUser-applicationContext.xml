@@ -2,6 +2,7 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
-       <bean id="userAnonymousService" class="org.bookManageSystem.business.anonymous.service.AnonymousUserService" depends-on="mappers"/>
-       <bean id="anonymousUserAuthorityService" class="org.bookManageSystem.business.anonymous.service.AnonymousUserAuthorityService" depends-on="mappers"/>
-        </beans>
+   <bean id="anonymousService" class="org.bookManageSystem.business.anonymous.service.AnonymousService" depends-on="mappers"/>
+   <bean id="userAnonymousService" class="org.bookManageSystem.business.anonymous.service.AnonymousUserService" depends-on="mappers"/>
+   <bean id="anonymousUserAuthorityService" class="org.bookManageSystem.business.anonymous.service.AnonymousUserAuthorityService" depends-on="mappers"/>
+</beans>

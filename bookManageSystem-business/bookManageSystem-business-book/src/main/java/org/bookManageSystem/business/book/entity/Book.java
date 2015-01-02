@@ -12,6 +12,7 @@ public class Book {
     private String name;
     private String number;
     private long bookTypeId;
+    private long prefixId;
     private Long count;
     private long rentNumber;
     private long appId;
@@ -70,5 +71,13 @@ public class Book {
 
     public void setAppId(long appId) {
         this.appId = appId;
+    }
+
+    public long getPrefixId() {
+        return prefixId;
+    }
+
+    public void setPrefixId(long prefixId) {
+        this.prefixId = prefixId;
     }
 }

@@ -1,8 +1,11 @@
 package org.bookManageSystem.business.anonymous.web;
 
+import org.bookManageSystem.business.anonymous.service.AnonymousService;
 import org.bookManageSystem.fundamental.logger.FundamentalLogger;
+import org.bookManageSystem.fundamental.security.UserContext;
 import org.bookManageSystem.fundamental.util.json.JsonResultUtils;
 import org.bookManageSystem.fundamental.util.validate.ImageUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,6 +17,7 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -27,6 +31,10 @@ import java.util.Map;
 @Path("/anonymous")
 public class AnonymousServiceWeb {
     private static final FundamentalLogger logger = FundamentalLogger.getLogger(AnonymousServiceWeb.class);
+
+    @Autowired
+    private AnonymousService anonymousService;
+
     @Path("/test")
     @Produces(MediaType.APPLICATION_JSON+";charset=UTF-8")
     @POST
@@ -54,4 +62,14 @@ public class AnonymousServiceWeb {
         return JsonResultUtils.getObjectResultByStringAsDefault(jsonString, JsonResultUtils.Code.SUCCESS);
     }
 
+    @Path("/commends")
+    @Produces(MediaType.APPLICATION_JSON+";charset=UTF-8")
+    @POST
+    public String anonymousCommend() {
+//        long appId = UserContext.currentUserAppId();
+        long appId = 1;
+        Map<String,List<Map<String,String>>> map = anonymousService.commendMap(appId);
+        logger.info("复杂的数据结构 " + map.toString());
+        return JsonResultUtils.getObjectResultByStringAsDefault(map, JsonResultUtils.Code.SUCCESS);
+    }
 }
