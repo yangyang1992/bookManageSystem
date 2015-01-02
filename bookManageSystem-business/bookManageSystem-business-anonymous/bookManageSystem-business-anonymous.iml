@@ -92,6 +92,7 @@
     <orderEntry type="library" name="Maven: commons-dbcp:commons-dbcp:1.4" level="project" />
     <orderEntry type="library" name="Maven: mysql:mysql-connector-java:5.1.18" level="project" />
     <orderEntry type="module" module-name="bookManageSystem-fundamental-exception" />
+    <orderEntry type="module" module-name="bookManageSystem-business-reader" />
   </component>
 </module>
 

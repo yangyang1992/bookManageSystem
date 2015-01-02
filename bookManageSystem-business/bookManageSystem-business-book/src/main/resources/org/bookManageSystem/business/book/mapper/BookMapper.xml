@@ -49,7 +49,7 @@
         WHERE ID=#{id}
     </delete>
 
-    <select id="getListByAppId" parameterType="java.lang.Long" resultMap="bookResultMap">
+    <select id="getListByAppId" parameterType="java.lang.Long" resultType="map">
         select
         <include refid="book_fields"/>
         from book

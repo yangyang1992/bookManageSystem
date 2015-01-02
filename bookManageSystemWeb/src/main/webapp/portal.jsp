@@ -51,8 +51,16 @@
             $("#layout").ligerLayout({topHeight:68});
             $("#titleContainer").load("title2.html");
             $("#mainContainer").load("dashboardAnonymous/layout.html");
+            $.post($.URL.anonymous.commends,null,commendsCallback,"json");
         });
 
+        function commendsCallback(data) {
+            if(data.code == 200) {
+                alert(data.data);
+            } else {
+                alert("error!");
+            }
+        }
     </script>
     <style type="text/css">
         body{ padding:0px; margin:0;overflow: hidden;}

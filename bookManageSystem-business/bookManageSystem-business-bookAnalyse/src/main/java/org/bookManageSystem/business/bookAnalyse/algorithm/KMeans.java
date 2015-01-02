@@ -1,7 +1,7 @@
 package org.bookManageSystem.business.bookAnalyse.algorithm;
 
 import org.bookManageSystem.business.bookAnalyse.annotation.KMeansField;
-import org.bookManageSystem.business.bookAnalyse.entity.Book;
+import org.bookManageSystem.business.bookAnalyse.entity.SubBook;
 import org.bookManageSystem.fundamental.logger.FundamentalLogger;
 
 import java.lang.annotation.Annotation;
@@ -213,7 +213,7 @@ public class KMeans<T> {
     }
 
     public static void main(String[] args) {
-        List<Book> bookList = new ArrayList<Book>();
+        List<SubBook> bookList = new ArrayList<SubBook>();
 
         for (int i=0; i<15; i++) {
             int tempNum1 = new Random(i*20).nextInt();
@@ -221,24 +221,25 @@ public class KMeans<T> {
             int tempNum2 = new Random(i*20).nextInt();
             int num2 = Math.abs(tempNum2)%15;
             System.out.println("num1: " + num1 + "num2: " + num2);
-            Book b = new Book();
+            SubBook b = new SubBook();
             b.setNumber("book_" + i);
             b.setRentNum(num1);
             b.setTotalNum(2*num2);
+            b.setBookTypeId(num1);
             bookList.add(b);
         }
 
-        KMeans<Book> kMeans = new KMeans<Book>(bookList,15);
-        List<Book>[] result = kMeans.comput();
+        KMeans<SubBook> kMeans = new KMeans<SubBook>(bookList,15);
+        List<SubBook>[] result = kMeans.comput();
         for (int i=0; i<result.length; i++) {
             System.out.println("===========类别" + (i + 1) + "================");
-            List<Book> list = result[i];
-            for (Book b : list) {
+            List<SubBook> list = result[i];
+            for (SubBook b : list) {
                 System.out.println(b.getNumber() + "--->"
                 + b.getRentNum() + "," + b.getTotalNum());
             }
         }
-        List<Book> centers = kMeans.getInitObjs();
+        List<SubBook> centers = kMeans.getInitObjs();
         for (int j=0; j< centers.size(); j++) {
             System.out.println("中心--->" + (j + 1) + centers.get(j).getNumber());
         }

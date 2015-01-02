@@ -9,7 +9,7 @@ import org.bookManageSystem.business.bookAnalyse.annotation.KMeansField;
  * Time: 上午9:10
  * To change this template use File | Settings | File Templates.
  */
-public class Book {
+public class SubBook {
     private Long id;
     private String name;
     private String number;
@@ -17,6 +17,8 @@ public class Book {
     private double rentNum;
     @KMeansField
     private double totalNum;
+    @KMeansField
+    private long bookTypeId;
     private String appId;
 
     public Long getId() {
@@ -65,5 +67,13 @@ public class Book {
 
     public void setTotalNum(double totalNum) {
         this.totalNum = totalNum;
+    }
+
+    public long getBookTypeId() {
+        return bookTypeId;
+    }
+
+    public void setBookTypeId(long bookTypeId) {
+        this.bookTypeId = bookTypeId;
     }
 }

@@ -14,19 +14,27 @@ public class Apriori {
     private final static double CONFIDENCE = 0.7; // 置信度阈值
     private final static String ITEM_SPLIT=";"; // 项之间的分隔符
     private final static String CON="->"; // 项之间的分隔符
-    private final static List<String> transList=new ArrayList<String>(); //所有交易
+    private List<String> transList=new ArrayList<String>(); //所有交易
 
-    static{//初始化交易记录
+//    static{//初始化交易记录
+//
+//        transList.add("1;2;5;");
+//        transList.add("2;4;");
+//        transList.add("2;3;");
+//        transList.add("1;2;4;");
+//        transList.add("1;3;");
+//        transList.add("2;3;");
+//        transList.add("1;3;");
+//        transList.add("1;2;3;5;");
+//        transList.add("1;2;3;");
+//    }
 
-        transList.add("1;2;5;");
-        transList.add("2;4;");
-        transList.add("2;3;");
-        transList.add("1;2;4;");
-        transList.add("1;3;");
-        transList.add("2;3;");
-        transList.add("1;3;");
-        transList.add("1;2;3;5;");
-        transList.add("1;2;3;");
+    public List<String> getTransList() {
+        return transList;
+    }
+
+    public void setTransList(List<String> transList) {
+        this.transList = transList;
     }
 
     public Map<String,Integer> getFC(){

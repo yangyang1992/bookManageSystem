@@ -30,7 +30,8 @@
         "anonymous":{
             "test":"rs/anonymous/test",
             "validateImage":"rs/anonymous/validateImage",
-            "register":"rs/anonymous/register"
+            "register":"rs/anonymous/register",
+            "commends":"rs/anonymous/commends"
         },
         "readerRecord":{
             "add":"rs/readerRecord/add",
