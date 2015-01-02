@@ -36,7 +36,7 @@
     </update>
 
     <delete id="delete" parameterType="bookType">
-        DELETE  bookType
+        DELETE FROM bookType
         WHERE ID=#{id}
     </delete>
 

@@ -37,7 +37,7 @@ public class BookServiceWeb {
     @Produces(MediaType.APPLICATION_JSON+";charset=UTF-8")
     @Path("/add")
     @POST
-    public String add(@FormParam("name")String name,@FormParam("number")String number,@FormParam("bookType")String bookType,@FormParam("count")String count)
+    public String add(@FormParam("name")String name,@FormParam("number")String number,@FormParam("bookTypeId")String bookTypeId,@FormParam("count")String count)
     throws ParseException{
         if(name==null||name.equals("")){
             return JsonResultUtils.getCodeAndMesByString(JsonResultUtils.Code.ERROR.getCode(),"参数不能是空!");
@@ -59,7 +59,11 @@ public class BookServiceWeb {
             }catch (Exception e){
                 book.setCount(null);
             }
-            book.setBookTypeId(bookTypeService.getIdByName(bookType,appId));
+            try{
+                book.setBookTypeId(Long.parseLong(bookTypeId));
+            }catch (Exception e){
+                book.setBookTypeId(null);
+            }
             bookService.add(book);
             return JsonResultUtils.getCodeAndMesByStringAsDefault(JsonResultUtils.Code.SUCCESS);
         }else {
@@ -71,7 +75,7 @@ public class BookServiceWeb {
     @Path("/delete")
     @POST
     public String delete(@FormParam("jsonString")String jsonString){
-        Book book= JsonMapper.buildNonDefaultMapper().fromJson(jsonString,Book.class);
+        Book book = JsonMapper.buildNonDefaultMapper().fromJson(jsonString,Book.class);
         int result=bookService.delete(book);
         if(result>0){
             return JsonResultUtils.getCodeAndMesByStringAsDefault(JsonResultUtils.Code.SUCCESS) ;

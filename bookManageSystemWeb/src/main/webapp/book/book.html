@@ -17,18 +17,19 @@
         $(function(){
 //            $.get($.URL.contract.getNumber,null,null,"json");
             $.post($.URL.book.list,null,listCallback,"json");
-//            $("#customerName").ligerComboBox({isShowCheckBox:true,isMultiSelect:false,data:null,emptyText:null});
+            $.post($.URL.bookType.list,bookTypeListCallback,"json");
+            $.post($.URL.prefix.list,prefixListCallback,"json");
             $("#submitBtn").click(function(){
                 var data = {};
                 data.name = $("#name").val();
                 data.number = $("#number").val();
-//                data.customerId=$("#customerName").ligerComboBox().getValue();
                 data.rentNumber = $("#rentNumber").val();
-                data.bookType = $("#bookType").val();
+                data.bookTypeId = $("#bookType").ligerComboBox().getValue();
+                data.prefixID = $("#prefix").ligerComboBox().getValue();
 //                data.pressLocation = $("#pressLocation").val();
 //                data.pressTime = $("#pressTime").val();
 //                var jsonString  = $.toJSON(data);
-                $.post($.URL.reader.add,data,addCallBack,"json") ;
+                $.post($.URL.book.add,data,addCallBack,"json") ;
             });
         });
 
@@ -41,6 +42,44 @@
                 f_initGrid();
             }
         }
+
+        var bookTypeData = [];
+        function bookTypeListCallback(data){
+            if (data.code == 200) {
+                $.each(data.data, function (index, content) {
+                    var j = {};
+                    j["text"] = content.name;
+                    j["id"] = content.id;
+                    bookTypeData.push(j);
+                });
+                $("#bookType").ligerComboBox({isShowCheckBox:true,emptyText:null,    /*实现下拉表*/
+                    data:bookTypeData,
+                    width:200,
+                    valueField:'id',
+                    textField:'text',
+                    valueFieldID:'bookTypeSelect'   /*下拉表Id是Device*/
+                });
+            }
+        }
+
+        var prefixData = [];
+        function prefixListCallback(data){
+            if (data.code == 200) {
+                $.each(data.data, function (index, content) {
+                    var j = {};
+                    j["text"] = content.cip;
+                    j["id"] = content.id;
+                    prefixData.push(j);
+                });
+                $("#prefix").ligerComboBox({isShowCheckBox:true,emptyText:null,    /*实现下拉表*/
+                    data:prefixData,
+                    width:200,
+                    valueField:'id',
+                    textField:'text',
+                    valueFieldID:'prefixSelect'   /*下拉表Id是Device*/
+                });
+            }
+        }
         var manager, g;
         function f_initGrid()
         {
@@ -49,13 +88,23 @@
                     { display: '主键', name: 'id', width: 50, type: 'int', frozen: true},
                     { display: '名称',name: 'name',width: 100,editor:{type:'text'}} ,
                     { display: '编号',name: 'number',width: 100,editor:{type:'text'}},
-                    { display: '类型', name: 'bookType',width: 100,editor:{type:'text'}},
+                    { display: '前缀信息', name: 'prefixId',width: 100,type:'int',editor: { type: 'select', emptyText: null,
+                        data:prefixData, valueField: 'id', textField: 'text'},
+                        render: function (item) {
+                            return item.cip;
+                        }},
+                    { display: '类型', name: 'bookTypeId',width: 100,type:'int',editor: { type: 'select', emptyText: null,
+                        data:bookTypeData, valueField: 'id', textField: 'text'
+                    },
+                        render: function (item) {
+                            return item.bookType;
+                        }},
                     { display: '数量', name: 'count',width: 100,editor:{type:'text'}},
 //                    { display: 'pressLocation', name: 'pressLocation',width: 100,editor:{type:'text'}},
 //                    { display: 'pressTime',name: 'pressTime',width: 100,editor:{type:'date'}},
 //                    { display: '描述',name: 'description',type:'string',editor: { type: 'text'}
 //                    },
-                    { display: '操作', isSort: false, width: 120, frozen: true,render: function (rowdata, rowindex, value)
+                    { display: '操作', isSort: false, width: 120,render: function (rowdata, rowindex, value)
                     {
                         var h = "";
                         if (!rowdata._editing)
@@ -95,10 +144,8 @@
             $.post($.URL.book.update,{"jsonString":jsonString},updateCallback,"json");
             function updateCallback(data){
                 if(data.code==200){
-                    // $("#mainContainer").load("InspectTable/inspectTableList.html");
                     $.post($.URL.book.list,null,listCallback,"json");
                     $.ligerDialog.success(data.message);
-
                 }
                 else{
                     $.post($.URL.book.list,null,listCallback,"json");
@@ -114,7 +161,7 @@
             {
                 var row = manager.getRow(rowid);
                 var jsonString  = $.toJSON(row);
-                $.post($.URL.book.delete,{"id":row.id},deleteCallback,"json");
+                $.post($.URL.book.delete,{"jsonString":jsonString},deleteCallback,"json");
                 manager.deleteRow(rowid);
             }
         }
@@ -122,6 +169,7 @@
         function deleteCallback(data){
             if(data.code==200){
                 $.ligerDialog.success("成功删除！");
+                $.post($.URL.book.list,null,listCallback,"json");
             }else{
                 $.ligerDialog.success("删除失败！");
             }
@@ -135,8 +183,12 @@
 
         function f_add() {
             document.getElementById('form1').reset();
-//            $("#pressTime").ligerDateEditor();
+            c_show();
             $.ligerDialog.open({ target: $("#addBook"),width:500,title:'添加书'});
+        }
+
+        function c_show(){
+            $('#addBook').css('display','block');
         }
 
 
@@ -144,7 +196,7 @@
             if(data.code==200){
                 $.ligerDialog.success(data.message);
                 document.getElementById('form1').reset();
-                $.post($.URL.reader.list,null,listCallback,"json");
+                $.post($.URL.book.list,null,listCallback,"json");
             }
             else{
                 $.ligerDialog.warn(data.message);
@@ -179,34 +231,34 @@
         <table cellpadding="0" cellspacing="0" class="l-table-edit" >
             <tr>
                 <td align="right" class="l-table-edit-td">名称:</td>
-                <td align="left" class="l-table-edit-td"><input name="name" class="l-table-edit-input" type="text" id="name" ></td>
+                <td align="left" class="l-table-edit-td"><input name="name" type="text" id="name" ></td>
                 <td align="left"></td>
             </tr>
+
             <tr>
                 <td align="right" class="l-table-edit-td">编号:</td>
-                <td align="left" class="l-table-edit-td"><input name="number" class="l-table-edit-input" type="text" id="number" ></td>
+                <td align="left" class="l-table-edit-td"><input name="number" type="text" id="number" ></td>
                 <td align="left"></td>
             </tr>
-            <tr>
-                <td align="right" class="l-table-edit-td">类型:</td>
-                <td align="left" class="l-table-edit-td"><input name="bookType" class="l-table-edit-input" type="text" id="bookType" ></td>
-                <td align="left"></td>
-            </tr>
+
             <tr>
                 <td align="right" class="l-table-edit-td">数量:</td>
-                <td align="left" class="l-table-edit-td"><input name="count" class="l-table-edit-input" type="text" id="count" ></td>
+                <td align="left" class="l-table-edit-td"><input name="count" type="text" id="count" ></td>
                 <td align="left"></td>
             </tr>
-            <!--<tr>-->
-                <!--<td align="right" class="l-table-edit-td">pressLocation:</td>-->
-                <!--<td align="left" class="l-table-edit-td"><input name="pressLocation" class="l-table-edit-input" type="text" id="pressLocation" ></td>-->
-                <!--<td align="left"></td>-->
-            <!--</tr>-->
-            <!--<tr>-->
-                <!--<td align="right" class="l-table-edit-td">pressTime:</td>-->
-                <!--<td align="left" class="l-table-edit-td"><input name="pressTime" type="text" id="pressTime" ></td>-->
-                <!--<td align="left"></td>-->
-            <!--</tr>-->
+
+            <tr>
+                <td align="right" class="l-table-edit-td">类型:</td>
+                <td align="left" class="l-table-edit-td"><input name="bookType" type="text" id="bookType" ></td>
+                <td align="left"></td>
+            </tr>
+
+            <tr>
+                <td align="right" class="l-table-edit-td">前缀信息:</td>
+                <td align="left" class="l-table-edit-td"><input name="prefix" type="text" id="prefix" ></td>
+                <td align="left"></td>
+            </tr>
+
         </table>
         <br />
         <input type="button" value="提交" id="submitBtn" class="l-button l-button-submit" />

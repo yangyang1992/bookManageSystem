@@ -55,7 +55,7 @@
 //                    { display: 'pressTime',name: 'pressTime',width: 100,editor:{type:'date'}},
 //                    { display: '描述',name: 'description',type:'string',editor: { type: 'text'}
 //                    },
-                    { display: '操作', isSort: false, width: 120, frozen: true,render: function (rowdata, rowindex, value)
+                    { display: '操作', isSort: false, width: 120,render: function (rowdata, rowindex, value)
                     {
                         var h = "";
                         if (!rowdata._editing)
@@ -95,15 +95,12 @@
             $.post($.URL.bookType.update,{"jsonString":jsonString},updateCallback,"json");
             function updateCallback(data){
                 if(data.code==200){
-                    // $("#mainContainer").load("InspectTable/inspectTableList.html");
                     $.post($.URL.bookType.list,null,listCallback,"json");
                     $.ligerDialog.success(data.message);
 
                 }
                 else{
                     $.post($.URL.bookType.list,null,listCallback,"json");
-                    // $("#mainContainer").load("InspectTable/inspectTableList.html");
-
                     $.ligerDialog.warn(data.message);
                 }
             }
@@ -114,7 +111,7 @@
             {
                 var row = manager.getRow(rowid);
                 var jsonString  = $.toJSON(row);
-                $.post($.URL.bookType.delete,{"id":row.id},deleteCallback,"json");
+                $.post($.URL.bookType.delete,{"jsonString":jsonString},deleteCallback,"json");
                 manager.deleteRow(rowid);
             }
         }
@@ -122,6 +119,7 @@
         function deleteCallback(data){
             if(data.code==200){
                 $.ligerDialog.success("成功删除！");
+                $.post($.URL.bookType.list,null,listCallback,"json");
             }else{
                 $.ligerDialog.success("删除失败！");
             }
@@ -135,8 +133,12 @@
 
         function f_add() {
             document.getElementById('form1').reset();
-//            $("#pressTime").ligerDateEditor();
+            c_show();
             $.ligerDialog.open({ target: $("#addType"),width:500,title:'添加类型信息'});
+        }
+
+        function c_show(){
+            $('#addType').css('display','block');
         }
 
 
