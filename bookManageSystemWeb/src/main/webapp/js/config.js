@@ -77,7 +77,8 @@
             "update":"rs/book/update",
             "delete":"rs/book/delete",
             "list":"rs/book/list",
-            "getIdByNumber":"rs/book/getIdByNumber"
+            "getIdByNumber":"rs/book/getIdByNumber",
+            "search":"rs/book/search"
         },
         "bookType":{
             "add":"rs/bookType/add",

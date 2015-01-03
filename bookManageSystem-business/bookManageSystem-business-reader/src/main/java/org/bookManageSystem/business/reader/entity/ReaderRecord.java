@@ -15,6 +15,7 @@ public class ReaderRecord {
     private String bookSet;
     private long optionTypeId;
     private Date createTime;
+    private String curBookSet;
     private long appId;
 
     public long getId() {
@@ -63,5 +64,13 @@ public class ReaderRecord {
 
     public void setAppId(long appId) {
         this.appId = appId;
+    }
+
+    public String getCurBookSet() {
+        return curBookSet;
+    }
+
+    public void setCurBookSet(String curBookSet) {
+        this.curBookSet = curBookSet;
     }
 }

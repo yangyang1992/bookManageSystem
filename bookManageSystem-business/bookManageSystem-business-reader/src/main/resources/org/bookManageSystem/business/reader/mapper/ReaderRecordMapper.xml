@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.bookManageSystem.business.reader.mapper.ReaderRecordMapper">
     <sql id="readerRecord_fields">
-          ID,READERID,BOOKSET,OPTIONTYPEID,CREATETIME,APPID
+          ID,READERID,BOOKSET,OPTIONTYPEID,CREATETIME,CURBOOKSET,APPID
     </sql>
     <resultMap id="readerRecordResultMap" type="ReaderRecord">
         <id property="id" column="ID" />
@@ -12,6 +12,7 @@
         <result property="bookSet" column="BOOKSET"/>
         <result property="optionTypeId" column="OPTIONTYPEID"/>
         <result property="createTime" column="CREATETIME"/>
+        <result property="curBookSet" column="CURBOOKSET"/>
         <result property="appId" column="APPID"/>
     </resultMap>
 
@@ -22,7 +23,7 @@
         <include refid="readerRecord_fields" />
         )
         VALUES (#{id},#{readerId},#{bookSet},#{optionTypeId},
-        #{createTime},#{appId});
+        #{createTime},#{curBookSet},#{appId});
         <selectKey resultType="long" keyProperty="id">
             select
             LAST_INSERT_ID() as id
@@ -36,6 +37,7 @@
             <if test="bookSet!=null"> BOOKSET=#{bookSet},</if>
             <if test="optionTypeId!=null"> OPTIONTYPEID=#{optionTypeId},</if>
             <if test="createTime!=null"> CREATETIME=#{createTime},</if>
+            <if test="curBookSet!=nill">CURBOOKSET=#{curBookSet}</if>
             <if test="appId!=null">APPID=#{appId},</if>
         </set>
         where ID=#{id};
@@ -82,6 +84,12 @@
         select bookSet
         from readerRecord
         where ID=#{id}
+    </select>
+    <select id="getCurBookSetByReaderId" parameterType="java.lang.Long" resultType="java.lang.String">
+        select curBookSet
+        from readerRecord
+        where READERID=#{readerId}
+        order by createTime desc limit 1
     </select>
 
     <select id="getListByAppId" parameterType="java.lang.Long" resultMap="readerRecordResultMap">

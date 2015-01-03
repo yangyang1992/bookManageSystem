@@ -67,4 +67,26 @@
         from book
         where NUMBER=#{number} and APPID=#{appId}
     </select>
+
+    <select id="getBookById" parameterType="java.lang.Long" resultMap="bookResultMap">
+        select
+        <include refid="book_fields"/>
+        from book
+        where ID=#{bookId}
+    </select>
+
+    <select id="search" parameterType="map" resultType="map">
+        select book.`name`,book.number,prefix.author,prefix.pressLocation,prefix.pressTime,book.rentNumber
+        from book left join prefix on book.prefixId=prefix.id
+        where
+        <if test="typeVal =='name'">
+         book.`name` like CONCAT(CONCAT('%', #{searchContent}),'%')
+        </if>
+        <if test="typeVal =='author'">
+            prefix.author like CONCAT(CONCAT('%', #{searchContent}),'%')
+        </if>
+        <if test="typeVal =='number'">
+            book.number like CONCAT(CONCAT('%', #{searchContent}),'%')
+        </if>
+    </select>
 </mapper>

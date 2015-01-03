@@ -119,4 +119,12 @@ public class BookServiceWeb {
         long bookId=bookService.getIdByNumber(number,appId);
         return JsonResultUtils.getObjectResultByStringAsDefault(bookId, JsonResultUtils.Code.SUCCESS);
     }
+
+    @Produces(MediaType.APPLICATION_JSON+";charset=UTF-8")
+    @Path("/search")
+    @POST
+    public String search(@FormParam("searchContent")String searchContent,@FormParam("typeVal")String typeVal){
+        List<Map<String,String>> list= bookService.search(searchContent,typeVal);
+        return JsonResultUtils.getObjectResultByStringAsDefault(list, JsonResultUtils.Code.SUCCESS);
+    }
 }

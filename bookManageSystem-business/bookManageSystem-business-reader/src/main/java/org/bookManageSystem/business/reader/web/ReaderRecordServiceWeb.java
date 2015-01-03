@@ -1,5 +1,7 @@
 package org.bookManageSystem.business.reader.web;
 
+import org.bookManageSystem.business.book.entity.Book;
+import org.bookManageSystem.business.book.service.BookService;
 import org.bookManageSystem.business.reader.entity.ReaderRecord;
 import org.bookManageSystem.business.reader.service.ReaderRecordService;
 import org.bookManageSystem.fundamental.security.UserContext;
@@ -13,7 +15,10 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-import java.util.*;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created with IntelliJ IDEA.
@@ -27,6 +32,10 @@ import java.util.*;
 public class ReaderRecordServiceWeb {
     @Autowired
     private ReaderRecordService readerRecordService;
+
+    @Autowired
+    private BookService bookService;
+
     @Produces(MediaType.APPLICATION_JSON + ";charset=UTF-8")
     @Path("/add")
     @POST
@@ -46,6 +55,53 @@ public class ReaderRecordServiceWeb {
         readerRecord.setReaderId(Long.parseLong(map.get("readerId")));
         readerRecord.setOptionTypeId(Long.parseLong(map.get("optionTypeId")));
         readerRecord.setCreateTime(createTime);
+        String curBookSet;
+        int curBookSetLength=0;
+        try{
+            curBookSet =readerRecordService.getCurBookSetByReaderId(readerRecord.getReaderId());
+            curBookSetLength=curBookSet.length();
+        }catch(Exception e){
+            curBookSet="";
+            curBookSetLength=0;
+        }
+        if(readerRecord.getOptionTypeId()==1){
+            int length=curBookSetLength+readerRecord.getBookSet().length();
+            if(length>10){
+                 return JsonResultUtils.getCodeAndMesByString(JsonResultUtils.Code.ERROR.getCode(),"超出借书数量");
+            }else
+            {
+                String[] bookIdList=readerRecord.getBookSet().split(";");
+                int i;
+                for (i=0;i<bookIdList.length;i++){
+                    borrowBook(Long.parseLong(bookIdList[i]));
+                }
+                curBookSet=curBookSet+readerRecord.getBookSet();
+                readerRecord.setCurBookSet(curBookSet);
+            }
+        }
+        else if(readerRecord.getOptionTypeId()==2)
+        {
+            String[] curBookList=curBookSet.split(";");
+            String[] bookIdList=readerRecord.getBookSet().split(";");
+            int i,j;
+
+            for(i=0;i<bookIdList.length;i++){
+                for(j=0;j<curBookList.length;j++){
+                    if(curBookList[j].equals(bookIdList[i])&&curBookList[j]!=""&&bookIdList[i]!=""){
+                        returnBook(Long.parseLong(bookIdList[i]));
+                        curBookList[j]="";
+                        bookIdList[i]="";
+                    }
+                }
+            }
+            curBookSet="";
+            for(i=0;i<curBookList.length;i++){
+                if(curBookList[i]!=""){
+                    curBookSet=curBookSet+curBookList[i]+";";
+                }
+            }
+            readerRecord.setCurBookSet(curBookSet);
+        }
         readerRecordService.add(readerRecord);
         return JsonResultUtils.getCodeAndMesByStringAsDefault(JsonResultUtils.Code.SUCCESS);
     }
@@ -68,6 +124,7 @@ public class ReaderRecordServiceWeb {
             return JsonResultUtils.getCodeAndMesByStringAsDefault(JsonResultUtils.Code.ERROR);
         }
     }
+
     @Produces(MediaType.APPLICATION_JSON + ";charset=UTF-8")
     @Path("/delete")
     @POST
@@ -118,4 +175,26 @@ public class ReaderRecordServiceWeb {
         return  JsonResultUtils.getObjectResultByStringAsDefault(bookIdList,JsonResultUtils.Code.SUCCESS);
     }
 
+    @Produces(MediaType.APPLICATION_JSON+";charset=UTF-8")
+    @Path("/borrowBook")
+    @POST
+    public Boolean borrowBook(long bookId){
+        Book book= bookService.getBookById(bookId);
+        if(book.getRentNumber()!=0){
+            book.setRentNumber(book.getRentNumber()-1);
+            book.setCount(book.getCount()+1);
+            bookService.update(book);
+            return true;
+        }
+        else return false;
+    }
+
+    @Produces(MediaType.APPLICATION_JSON+";charset=UTF-8")
+    @Path("/returnBook")
+    @POST
+    public void returnBook(long bookId){
+        Book book= bookService.getBookById(bookId);
+        book.setRentNumber(book.getRentNumber()+1);
+        bookService.update(book);
+    }
 }

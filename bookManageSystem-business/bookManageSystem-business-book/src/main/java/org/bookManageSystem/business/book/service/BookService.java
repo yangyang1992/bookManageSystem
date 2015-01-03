@@ -37,4 +37,12 @@ public class BookService {
     public long getIdByNumber(String number,long appId){
         return bookMapper.getIdByNumber(number,appId);
     }
+
+    public List<Map<String,String>> search(String searchContent,String typeVal){
+        return bookMapper.search(searchContent,typeVal);
+    }
+
+    public Book getBookById(long bookId){
+        return bookMapper.getBookById(bookId);
+    }
 }

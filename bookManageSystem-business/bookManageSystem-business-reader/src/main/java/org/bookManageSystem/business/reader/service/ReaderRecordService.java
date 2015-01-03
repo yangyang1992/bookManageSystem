@@ -44,4 +44,8 @@ public class ReaderRecordService {
     public String getBookSetById(long id){
         return readerRecordMapper.getBookSetById(id);
     }
+
+    public String getCurBookSetByReaderId(long readerId){
+        return readerRecordMapper.getCurBookSetByReaderId(readerId);
+    }
 }

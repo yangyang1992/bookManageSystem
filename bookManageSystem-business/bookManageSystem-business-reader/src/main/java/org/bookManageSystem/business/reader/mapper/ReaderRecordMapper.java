@@ -18,4 +18,6 @@ public interface ReaderRecordMapper extends AbstractMapper<ReaderRecord> {
     public ReaderRecord getReaderRecordById(@Param("id")long id,@Param("appId")long appId);
     public int deleteById(@Param("id")long id,@Param("appId")long appId);
     public String getBookSetById(@Param("id")long id) ;
+    public String getCurBookSetByReaderId(@Param("readerId")long readerId) ;
+
 }
