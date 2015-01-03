@@ -46,16 +46,16 @@
         {
             g = manager = $("#maingrid").ligerGrid({
                 columns: [
-                    { display: '主键', name: 'id', width: 50, type: 'int', frozen: true},
-                    { display: '类型名',name: 'name',width: 100,editor:{type:'text'}} ,
-                    { display: '描述',name: 'description',width: 100,editor:{type:'text'}},
+                    { display: '主键', name: 'id', width: '10%', type: 'int', frozen: true},
+                    { display: '类型名',name: 'name',width: '20%',editor:{type:'text'}} ,
+                    { display: '描述',name: 'description',width: '40%',editor:{type:'text'}},
 //                    { display: 'author', name: 'author',width: 100,editor:{type:'text'}},
 //                    { display: 'pressName', name: 'pressName',width: 100,editor:{type:'text'}},
 //                    { display: 'pressLocation', name: 'pressLocation',width: 100,editor:{type:'text'}},
 //                    { display: 'pressTime',name: 'pressTime',width: 100,editor:{type:'date'}},
 //                    { display: '描述',name: 'description',type:'string',editor: { type: 'text'}
 //                    },
-                    { display: '操作', isSort: false, width: 120,render: function (rowdata, rowindex, value)
+                    { display: '操作', isSort: false, width: '30%',render: function (rowdata, rowindex, value)
                     {
                         var h = "";
                         if (!rowdata._editing)
@@ -190,24 +190,24 @@
                 <td align="left"></td>
             </tr>
             <!--<tr>-->
-                <!--<td align="right" class="l-table-edit-td">author:</td>-->
-                <!--<td align="left" class="l-table-edit-td"><input name="author" class="l-table-edit-input" type="text" id="author" ></td>-->
-                <!--<td align="left"></td>-->
+            <!--<td align="right" class="l-table-edit-td">author:</td>-->
+            <!--<td align="left" class="l-table-edit-td"><input name="author" class="l-table-edit-input" type="text" id="author" ></td>-->
+            <!--<td align="left"></td>-->
             <!--</tr>-->
             <!--<tr>-->
-                <!--<td align="right" class="l-table-edit-td">pressName:</td>-->
-                <!--<td align="left" class="l-table-edit-td"><input name="pressName" class="l-table-edit-input" type="text" id="pressName" ></td>-->
-                <!--<td align="left"></td>-->
+            <!--<td align="right" class="l-table-edit-td">pressName:</td>-->
+            <!--<td align="left" class="l-table-edit-td"><input name="pressName" class="l-table-edit-input" type="text" id="pressName" ></td>-->
+            <!--<td align="left"></td>-->
             <!--</tr>-->
             <!--<tr>-->
-                <!--<td align="right" class="l-table-edit-td">pressLocation:</td>-->
-                <!--<td align="left" class="l-table-edit-td"><input name="pressLocation" class="l-table-edit-input" type="text" id="pressLocation" ></td>-->
-                <!--<td align="left"></td>-->
+            <!--<td align="right" class="l-table-edit-td">pressLocation:</td>-->
+            <!--<td align="left" class="l-table-edit-td"><input name="pressLocation" class="l-table-edit-input" type="text" id="pressLocation" ></td>-->
+            <!--<td align="left"></td>-->
             <!--</tr>-->
             <!--<tr>-->
-                <!--<td align="right" class="l-table-edit-td">pressTime:</td>-->
-                <!--<td align="left" class="l-table-edit-td"><input name="pressTime" type="text" id="pressTime" ></td>-->
-                <!--<td align="left"></td>-->
+            <!--<td align="right" class="l-table-edit-td">pressTime:</td>-->
+            <!--<td align="left" class="l-table-edit-td"><input name="pressTime" type="text" id="pressTime" ></td>-->
+            <!--<td align="left"></td>-->
             <!--</tr>-->
         </table>
         <br />

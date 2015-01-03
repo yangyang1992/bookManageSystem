@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.bookManageSystem.business.book.mapper.BookMapper">
     <sql id="book_fields">
-         ID,NAME,PREFIXID,NUMBER,RENTNUMBER,BOOKTYPEID,COUNT,APPID
+         id,name,prefixId,number,rentNumber,bookTypeId,count,appId
      </sql>
     <resultMap id="bookResultMap" type="book">
         <id property="id" column="ID"/>
@@ -50,10 +50,11 @@
     </delete>
 
     <select id="getListByAppId" parameterType="java.lang.Long" resultType="map">
-        select
-        <include refid="book_fields"/>
+        select book.id,book.name,book.number,book.rentNumber,book.count,booktype.name as bookType,prefix.isbn
         from book
-        where APPID=#{appId}
+        LEFT JOIN booktype ON book.bookTypeId=booktype.id
+        LEFT JOIN prefix ON book.prefixId=prefix.id
+        where book.appId=#{appId}
     </select>
 
     <select id="getIdByName" parameterType="map" resultType="java.lang.Long">
@@ -66,6 +67,12 @@
         select id
         from book
         where NUMBER=#{number} and APPID=#{appId}
+    </select>
+
+    <select id="findImageAndDescription" parameterType="map" resultType="map">
+        select b.image,b.description,p.cip as cip,p.isbn as isbn,p.author as author,p.pressName as pressName,p.pressLocation as pressLocation,p.pressTime as pressTime
+        from book as b,prefix as p
+        where b.number=#{number} and b.appId=#{appId} and b.prefixId=p.id
     </select>
 
     <select id="getBookById" parameterType="java.lang.Long" resultMap="bookResultMap">

@@ -40,25 +40,20 @@ public class ReaderServiceWeb {
         Map<String, String> map = JsonMapper.buildNonDefaultMapper().fromJson(jsonString, HashMap.class);
 
         if(map.get("name")==null||map.get("name").equals("")||map.get("userId")==null||map.get("userId").equals("")
-                ||map.get("number")==null||map.get("number").equals("")||map.get("birthday")==null
+                ||map.get("number")==null||map.get("number").equals("")
                 ||map.get("sex")==null||map.get("sex").equals("")
                 ){
             return JsonResultUtils.getCodeAndMesByString(JsonResultUtils.Code.ERROR.getCode(), "参数不能为空!");
         }
-        Date birthday = null;
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        try{
-            birthday = sdf.parse(map.get("birthday"));
-        }catch (Exception e){
-            return JsonResultUtils.getCodeAndMesByString(JsonResultUtils.Code.ERROR.getCode(),"日期格式错误！");
-        }
+        Date createTime = new Date();
+
         Reader reader=new Reader();
         reader.setAppId(appId);
         reader.setUserId(Long.parseLong(map.get("userId")));
         reader.setName(map.get("name"));
         reader.setNumber(map.get("number"));
         reader.setSex(map.get("sex"));
-        reader.setBirthday(birthday);
+        reader.setCreateTime(createTime);
         readerService.add(reader);
         return JsonResultUtils.getCodeAndMesByStringAsDefault(JsonResultUtils.Code.SUCCESS);
     }
@@ -121,5 +116,15 @@ public class ReaderServiceWeb {
         long appId=UserContext.currentUserAppId();
         String name=readerService.getNameById(id);
         return JsonResultUtils.getObjectResultByStringAsDefault(name,JsonResultUtils.Code.SUCCESS);
+    }
+
+    @Path("/getReaderByUserId")
+    @Produces(MediaType.APPLICATION_JSON+";charset=UTF-8")
+    @POST
+    public String getReaderByUserId() {
+        long appId = UserContext.currentUserAppId();
+        long userId = UserContext.currentUserId();
+        Map<String,String> map = readerService.getReaderByUserId(userId,appId);
+        return JsonResultUtils.getObjectResultByStringAsDefault(map, JsonResultUtils.Code.SUCCESS);
     }
 }

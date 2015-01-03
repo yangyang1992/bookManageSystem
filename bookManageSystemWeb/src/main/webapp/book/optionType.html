@@ -39,25 +39,25 @@
         {
             g = manager = $("#maingrid").ligerGrid({
                 columns: [
-                    { display: '主键', name: 'id', width: 50, type: 'int', frozen: true},
-                    { display: 'name',name: 'name',width: 100,editor:{type:'text'}} ,
-                    { display: 'description',name: 'description',width: 100,editor:{type:'text'}},
-                    { display: '操作', isSort: false, width: 120, frozen: true,render: function (rowdata, rowindex, value)
-                    {
-                        var h = "";
-                        if (!rowdata._editing)
-                        {
-                            h += "<a href='javascript:beginEdit(" + rowindex + ")'>修改</a> ";
-                            h += "<a href='javascript:deleteRow(" + rowindex + ")'>删除</a> ";
-                        }
-                        else
-                        {
-                            h += "<a href='javascript:endEdit(" + rowindex + ")'>提交</a> ";
-                            h += "<a href='javascript:cancelEdit(" + rowindex + ")'>取消</a> ";
-                        }
-                        return h;
-                    }
-                    }
+                    { display: '主键', name: 'id', width: '10%', type: 'int', frozen: true},
+                    { display: '名称',name: 'name',width: '20%',editor:{type:'text'}} ,
+                    { display: '描述',name: 'description',width: '70%',editor:{type:'text'}}
+//                    { display: '操作', isSort: false, width: '30%',render: function (rowdata, rowindex, value)
+//                    {
+//                        var h = "";
+//                        if (!rowdata._editing)
+//                        {
+//                            h += "<a href='javascript:beginEdit(" + rowindex + ")'>修改</a> ";
+//                            h += "<a href='javascript:deleteRow(" + rowindex + ")'>删除</a> ";
+//                        }
+//                        else
+//                        {
+//                            h += "<a href='javascript:endEdit(" + rowindex + ")'>提交</a> ";
+//                            h += "<a href='javascript:cancelEdit(" + rowindex + ")'>取消</a> ";
+//                        }
+//                        return h;
+//                    }
+//                    }
                 ],
                 onSelectRow: function (rowdata, rowindex)
                 {
@@ -152,7 +152,7 @@
 </head>
 <body  style="padding:10px">
 
-<div><input type="button" value="添加" id="addSubmitBtn" onclick="f_add()" class="l-button l-button-submit" /></div>
+<!--<div><input type="button" value="添加" id="addSubmitBtn" onclick="f_add()" class="l-button l-button-submit" /></div>-->
 <br/><br/>
 <div style="display:none;">
     <!-- g data total ttt -->

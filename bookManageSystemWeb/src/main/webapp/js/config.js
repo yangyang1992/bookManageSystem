@@ -31,7 +31,8 @@
             "test":"rs/anonymous/test",
             "validateImage":"rs/anonymous/validateImage",
             "register":"rs/anonymous/register",
-            "commends":"rs/anonymous/commends"
+            "commends":"rs/anonymous/commends",
+            "bestBookType":"rs/anonymous/bestBookType"
         },
         "readerRecord":{
             "add":"rs/readerRecord/add",
@@ -48,7 +49,8 @@
             "delete":"rs/reader/delete",
             "list":"rs/reader/list",
             "getReaderById":"rs/reader/getReaderById",
-            "getNameById":"rs/reader/getNameById"
+            "getNameById":"rs/reader/getNameById",
+            "getReaderByUserId":"rs/reader/getReaderByUserId"
         },
         "optionType":{
             "add":"rs/optionType/add",
@@ -78,7 +80,9 @@
             "delete":"rs/book/delete",
             "list":"rs/book/list",
             "getIdByNumber":"rs/book/getIdByNumber",
-            "search":"rs/book/search"
+            "search":"rs/book/search",
+            "getIdByNumber":"rs/book/getIdByNumber",
+           "findImageAndDescription":"rs/book/findImageAndDescription"
         },
         "bookType":{
             "add":"rs/bookType/add",
@@ -86,6 +90,10 @@
             "delete":"rs/bookType/delete",
             "list":"rs/bookType/list",
             "getIdByName":"rs/bookType/getIdByName"
+        },
+        "bookAnalyse":{
+            "getReaderBookList":"rs/bookAnalyse/getReaderBookList",
+            "getReaderCommendsList":"rs/bookAnalyse/getReaderCommendsList"
         }
     }
 })(jQuery);

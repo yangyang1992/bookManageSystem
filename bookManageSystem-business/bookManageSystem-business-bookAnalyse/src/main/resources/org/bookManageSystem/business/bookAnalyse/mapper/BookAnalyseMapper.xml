@@ -23,4 +23,29 @@
         from readerrecord as r
         where appId=#{appId}
     </select>
+
+    <select id="getReaderBookByUserId" parameterType="map" resultType="map">
+      SELECT b.number as number,b.name as name,b.id as id
+      FROM book as b,bookrecord as br,reader as r,user as u
+      WHERE b.appId=#{appId} and b.id=br.bookId and br.userId=#{userId} and r.userId=u.id and br.optionTypeId=1
+      GROUP BY b.number
+    </select>
+
+    <select id="getBookById" parameterType="map" resultType="map">
+      SELECT b.number as number,b.name as name,b.id as id
+      FROM book as b
+      WHERE b.appId=#{appId} and b.id=#{id}
+    </select>
+
+    <select id="getBookByNumber" parameterType="map" resultType="map">
+      SELECT b.number as number,b.name as name,b.id as id
+      FROM book as b
+      WHERE b.appId=#{appId} and b.number=#{number}
+    </select>
+
+    <select id="getNumberById" parameterType="map" resultType="java.lang.String">
+      SELECT number
+      FROM book
+      WHERE appId=#{appId} and id=#{id}
+    </select>
 </mapper>

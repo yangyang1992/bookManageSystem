@@ -34,11 +34,11 @@ public class BookTypeServiceWeb {
     @Path("/add")
     @POST
     public String add(@FormParam("name")String name,@FormParam("description")String description)throws Exception{
-        if(name==null||name.equals("")){
+        if(name==null||name.trim().equals("")){
             return JsonResultUtils.getCodeAndMesByString(JsonResultUtils.Code.ERROR.getCode(), "参数不能为空");
         }
         long appId= UserContext.currentUserAppId();
-        long id;
+        long id=0;
         try{
             id = bookTypeService.getIdByName(name,appId);
         }catch (Exception e){

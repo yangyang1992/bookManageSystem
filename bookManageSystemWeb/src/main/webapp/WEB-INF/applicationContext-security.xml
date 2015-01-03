@@ -16,6 +16,7 @@
                     login-processing-url="/j_spring_security_check"/>
         <logout logout-url="/logout"/>
         <intercept-url pattern="/rs/anonymous/**" access="ROLE_ANONYMOUS"/>
+        <intercept-url pattern="/rs/anonymous/**" access="ROLE_ANONYMOUS"/>
         <intercept-url pattern="/portal.jsp" access="ROLE_ANONYMOUS"/>
     </http>
 

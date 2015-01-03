@@ -31,44 +31,65 @@ public class BookServiceWeb {
     @Autowired
     private BookService bookService;
 
-    @Autowired
-    private BookTypeService bookTypeService;
-
     @Produces(MediaType.APPLICATION_JSON+";charset=UTF-8")
     @Path("/add")
     @POST
-    public String add(@FormParam("name")String name,@FormParam("number")String number,@FormParam("bookTypeId")String bookTypeId,@FormParam("count")String count)
-    throws ParseException{
-        if(name==null||name.equals("")){
-            return JsonResultUtils.getCodeAndMesByString(JsonResultUtils.Code.ERROR.getCode(),"参数不能是空!");
+    public String add(@FormParam("jsonString")String jsonString){
+        if(jsonString==null||jsonString.trim().equals("")){
+            return JsonResultUtils.getCodeAndMesByString(JsonResultUtils.Code.ERROR.getCode(),"参数不能为空");
         }
+        Book book = JsonMapper.buildNonDefaultMapper().fromJson(jsonString,Book.class);
         long appId= UserContext.currentUserAppId();
-        long id;
+        Long id;
         try{
-            id = bookService.getIdByNumber(number,appId);
-        }catch (Exception e){
-            id = 0;
+            id=bookService.getIdByNumber(book.getNumber(),appId);
+        }catch(Exception e){
+            id=null;
         }
-        if(id == 0){
-            Book book = new Book();
+        if(id==null){
             book.setAppId(appId);
-            book.setName(name);
-            book.setNumber(number);
-            try{
-                book.setCount(Long.parseLong(count));
-            }catch (Exception e){
-                book.setCount(null);
-            }
-            try{
-                book.setBookTypeId(Long.parseLong(bookTypeId));
-            }catch (Exception e){
-                book.setBookTypeId(null);
-            }
             bookService.add(book);
-            return JsonResultUtils.getCodeAndMesByStringAsDefault(JsonResultUtils.Code.SUCCESS);
-        }else {
-            return  JsonResultUtils.getCodeAndMesByString(JsonResultUtils.Code.ERROR.getCode(), "已存在该类型!");
+            return JsonResultUtils.getCodeAndMesByString(JsonResultUtils.Code.SUCCESS.getCode(), "添加成功!");
+        }else{
+            return JsonResultUtils.getCodeAndMesByString(JsonResultUtils.Code.ERROR.getCode(), "设备编号已存在!");
         }
+//    public String add(@FormParam("name")String name,@FormParam("number")String number,@FormParam("bookTypeId")String bookTypeId,@FormParam("prefixId")String prefixId,@FormParam("rentNumber")String rentNumber)
+//    throws ParseException{
+//        if(name==null||name.equals("")){
+//            return JsonResultUtils.getCodeAndMesByString(JsonResultUtils.Code.ERROR.getCode(),"参数不能是空!");
+//        }
+//        long appId= UserContext.currentUserAppId();
+//        long id;
+//        try{
+//            id = bookService.getIdByNumber(number,appId);
+//        }catch (Exception e){
+//            id = 0;
+//        }
+//        if(id == 0){
+//            Book book = new Book();
+//            book.setAppId(appId);
+//            book.setName(name);
+//            book.setNumber(number);
+//            try{
+//                book.setCount(Long.parseLong(rentNumber));
+//            }catch (Exception e){
+//                book.setCount(null);
+//            }
+//            try{
+//                book.setBookTypeId(Long.parseLong(bookTypeId));
+//            }catch (Exception e){
+//                book.setBookTypeId(null);
+//            }
+//            try{
+//                book.setPrefixId(Long.parseLong(prefixId));
+//            }catch (Exception e){
+//                book.setPrefixId(null);
+//            }
+//            bookService.add(book);
+//            return JsonResultUtils.getCodeAndMesByStringAsDefault(JsonResultUtils.Code.SUCCESS);
+//        }else {
+//            return  JsonResultUtils.getCodeAndMesByString(JsonResultUtils.Code.ERROR.getCode(), "已存在该类型!");
+//        }
     }
 
     @Produces(MediaType.APPLICATION_JSON+";charset=UTF-8")
@@ -118,6 +139,15 @@ public class BookServiceWeb {
         long appId= UserContext.currentUserAppId();
         long bookId=bookService.getIdByNumber(number,appId);
         return JsonResultUtils.getObjectResultByStringAsDefault(bookId, JsonResultUtils.Code.SUCCESS);
+    }
+
+    @Produces(MediaType.APPLICATION_JSON+";charset=UTF-8")
+    @POST
+    @Path("/findImageAndDescription")
+    public String findImageAndDescription(@FormParam("number")String number) {
+        long appId = UserContext.currentUserAppId();
+        Map<String,String> map = bookService.findImageAndDescription(number,appId);
+        return JsonResultUtils.getObjectResultByStringAsDefault(map, JsonResultUtils.Code.SUCCESS);
     }
 
     @Produces(MediaType.APPLICATION_JSON+";charset=UTF-8")

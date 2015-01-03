@@ -38,6 +38,10 @@ public class BookService {
         return bookMapper.getIdByNumber(number,appId);
     }
 
+    public Map<String,String> findImageAndDescription(String number,long appId) {
+        return bookMapper.findImageAndDescription(number,appId);
+    }
+
     public List<Map<String,String>> search(String searchContent,String typeVal){
         return bookMapper.search(searchContent,typeVal);
     }

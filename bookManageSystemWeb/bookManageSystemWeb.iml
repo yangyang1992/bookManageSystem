@@ -11,17 +11,6 @@
         </webroots>
       </configuration>
     </facet>
-    <facet type="Spring" name="Spring">
-      <configuration>
-        <fileset id="fileset" name="Spring Application Context" removed="false">
-          <file>file://$MODULE_DIR$/src/main/webapp/lib/ligerUI/skins/Gray2014/images/ui/grid-detail-open.gif</file>
-          <file>file://$MODULE_DIR$/src/main/webapp/lib/syntaxhighlighter/styles/shCoreDefault.css</file>
-          <file>file://$MODULE_DIR$/src/main/webapp/WEB-INF/applicationContext.xml</file>
-          <file>file://$MODULE_DIR$/src/main/webapp/WEB-INF/applicationContext-security.xml</file>
-          <file>file://$MODULE_DIR$/src/main/webapp/lib/ligerUI/skins/Aqua/images/controls/bg-trigger-over.gif</file>
-        </fileset>
-      </configuration>
-    </facet>
   </component>
   <component name="NewModuleRootManager" inherit-compiler-output="false">
     <output url="file://$MODULE_DIR$/target/classes" />
@@ -108,8 +97,8 @@
     <orderEntry type="library" name="Maven: com.sun.mail:javax.mail:1.5.0" level="project" />
     <orderEntry type="library" name="Maven: javax.activation:activation:1.1" level="project" />
     <orderEntry type="module" module-name="bookManageSystem-business-anonymous" />
-    <orderEntry type="module" module-name="bookManageSystem-business-reader" />
     <orderEntry type="module" module-name="bookManageSystem-business-book" />
+    <orderEntry type="module" module-name="bookManageSystem-business-reader" />
     <orderEntry type="module" module-name="bookManageSystem-business-bookAnalyse" />
   </component>
 </module>

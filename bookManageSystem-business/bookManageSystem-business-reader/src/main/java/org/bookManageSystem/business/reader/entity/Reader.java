@@ -15,7 +15,7 @@ public class Reader {
     private String name;
     private String number;
     private String sex;
-    private Date birthday;
+    private Date createTime;
     private long appId;
 
     public long getId() {
@@ -58,19 +58,19 @@ public class Reader {
         this.sex = sex;
     }
 
-    public Date getBirthday() {
-        return birthday;
-    }
-
-    public void setBirthday(Date birthday) {
-        this.birthday = birthday;
-    }
-
     public long getAppId() {
         return appId;
     }
 
     public void setAppId(long appId) {
         this.appId = appId;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 }
