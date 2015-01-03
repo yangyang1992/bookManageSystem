@@ -46,16 +46,16 @@
         {
             g = manager = $("#maingrid").ligerGrid({
                 columns: [
-                    { display: '主键', name: 'id', width: 50, type: 'int', frozen: true},
-                    { display: 'cip',name: 'cip',width: 100,editor:{type:'text'}} ,
-                    { display: 'isbn',name: 'isbn',width: 100,editor:{type:'text'}},
-                    { display: 'author', name: 'author',width: 100,editor:{type:'text'}},
-                    { display: 'pressName', name: 'pressName',width: 100,editor:{type:'text'}},
-                    { display: 'pressLocation', name: 'pressLocation',width: 100,editor:{type:'text'}},
-                    { display: 'pressTime',name: 'pressTime',width: 100,type:'date',format: 'yyyy-MM-dd',editor:{type:'date',format: 'yyyy-MM-dd'}},
+                    { display: '主键', name: 'id', width: '10%', type: 'int', frozen: true},
+                    { display: 'CIP',name: 'cip',width: '10%',editor:{type:'text'}} ,
+                    { display: 'ISBN',name: 'isbn',width: '10%',editor:{type:'text'}},
+                    { display: '作者', name: 'author',width: '10%',editor:{type:'text'}},
+                    { display: '出版社', name: 'pressName',width: '15%',editor:{type:'text'}},
+                    { display: '出版地址', name: 'pressLocation',width: '10%',editor:{type:'text'}},
+                    { display: '出版日期',name: 'pressTime',width: '15%',type:'date',format: 'yyyy-MM-dd',editor:{type:'date',format: 'yyyy-MM-dd'}},
 //                    { display: '描述',name: 'description',type:'string',editor: { type: 'text'}
 //                    },
-                    { display: '操作', isSort: false, width: 120, frozen: true,render: function (rowdata, rowindex, value)
+                    { display: '操作', isSort: false, width: 'auto',render: function (rowdata, rowindex, value)
                     {
                         var h = "";
                         if (!rowdata._editing)
@@ -178,32 +178,32 @@
 
         <table cellpadding="0" cellspacing="0" class="l-table-edit" >
             <tr>
-                <td align="right" class="l-table-edit-td">cip:</td>
+                <td align="right" class="l-table-edit-td">CIP:</td>
                 <td align="left" class="l-table-edit-td"><input name="cip" class="l-table-edit-input" type="text" id="cip" ></td>
                 <td align="left"></td>
             </tr>
             <tr>
-                <td align="right" class="l-table-edit-td">isbn:</td>
+                <td align="right" class="l-table-edit-td">ISBN:</td>
                 <td align="left" class="l-table-edit-td"><input name="isbn" class="l-table-edit-input" type="text" id="isbn" ></td>
                 <td align="left"></td>
             </tr>
             <tr>
-                <td align="right" class="l-table-edit-td">author:</td>
+                <td align="right" class="l-table-edit-td">作者:</td>
                 <td align="left" class="l-table-edit-td"><input name="author" class="l-table-edit-input" type="text" id="author" ></td>
                 <td align="left"></td>
             </tr>
             <tr>
-                <td align="right" class="l-table-edit-td">pressName:</td>
+                <td align="right" class="l-table-edit-td">出版社:</td>
                 <td align="left" class="l-table-edit-td"><input name="pressName" class="l-table-edit-input" type="text" id="pressName" ></td>
                 <td align="left"></td>
             </tr>
             <tr>
-                <td align="right" class="l-table-edit-td">pressLocation:</td>
+                <td align="right" class="l-table-edit-td">出版地:</td>
                 <td align="left" class="l-table-edit-td"><input name="pressLocation" class="l-table-edit-input" type="text" id="pressLocation" ></td>
                 <td align="left"></td>
             </tr>
             <tr>
-                <td align="right" class="l-table-edit-td">pressTime:</td>
+                <td align="right" class="l-table-edit-td">出版时间:</td>
                 <td align="left" class="l-table-edit-td"><input name="pressTime" type="text" id="pressTime" ></td>
                 <td align="left"></td>
             </tr>

@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50151
 File Encoding         : 65001
 
-Date: 2015-01-03 21:34:41
+Date: 2015-01-03 22:04:01
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -95,7 +95,7 @@ CREATE TABLE `book` (
   `image` varchar(255) DEFAULT NULL,
   `rentNumber` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=158 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=159 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of book
@@ -342,7 +342,7 @@ CREATE TABLE `booktype` (
   `description` varchar(255) DEFAULT NULL,
   `appId` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of booktype
@@ -366,12 +366,13 @@ CREATE TABLE `optiontype` (
   `description` varchar(255) DEFAULT NULL,
   `appId` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of optiontype
 -- ----------------------------
-INSERT INTO `optiontype` VALUES ('2', '送误杀', '搜索', '1');
+INSERT INTO `optiontype` VALUES ('1', '借书', '该操作名称，性质不可更改，由数据库维护人员添加', '1');
+INSERT INTO `optiontype` VALUES ('2', '还书', '该操作名称，性质不可更改，由数据库维护人员添加', '1');
 
 -- ----------------------------
 -- Table structure for `power`

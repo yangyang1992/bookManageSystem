@@ -85,26 +85,26 @@
     {
         g = manager = $("#maingrid").ligerGrid({
             columns: [
-                { display: '主键', name: 'id', width: 50, type: 'int', frozen: true},
-                { display: '名称',name: 'name',width: 100,editor:{type:'text'}} ,
-                { display: '编号',name: 'number',width: 100,editor:{type:'text'}},
-                { display: '前缀信息', name: 'prefixId',width: 100,type:'int',editor: { type: 'select', emptyText: null,
+                { display: '主键', name: 'id', width: '10%', type: 'int', frozen: true},
+                { display: '名称',name: 'name',width: '15%',editor:{type:'text'}} ,
+                { display: '编号',name: 'number',width: '15%',editor:{type:'text'}},
+                { display: '前缀信息', name: 'prefixId',width: '15%',type:'int',editor: { type: 'select', emptyText: null,
                     data:prefixData, valueField: 'value', textField: 'text'},
                     render: function (item) {
                         return item.isbn;
                     }},
-                { display: '类型', name: 'bookTypeId',width: 100,type:'int',editor: { type: 'select', emptyText: null,
+                { display: '类型', name: 'bookTypeId',width: '15%',type:'int',editor: { type: 'select', emptyText: null,
                     data:bookTypeData, valueField: 'value', textField: 'text'
                 },
                     render: function (item) {
                         return item.bookType;
                     }},
-                { display: '数量', name: 'rentNumber',width: 100,editor:{type:'text'}},
+                { display: '数量', name: 'rentNumber',width: '15%',editor:{type:'text'}},
 //                    { display: 'pressLocation', name: 'pressLocation',width: 100,editor:{type:'text'}},
 //                    { display: 'pressTime',name: 'pressTime',width: 100,editor:{type:'date'}},
 //                    { display: '描述',name: 'description',type:'string',editor: { type: 'text'}
 //                    },
-                { display: '操作', isSort: false, width: 120,render: function (rowdata, rowindex, value)
+                { display: '操作', isSort: false, width: '15%',render: function (rowdata, rowindex, value)
                 {
                     var h = "";
                     if (!rowdata._editing)
