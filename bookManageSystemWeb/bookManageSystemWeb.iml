@@ -11,17 +11,6 @@
         </webroots>
       </configuration>
     </facet>
-    <facet type="Spring" name="Spring">
-      <configuration>
-        <fileset id="fileset" name="Spring Application Context" removed="false">
-          <file>file://$MODULE_DIR$/src/main/webapp/lib/ligerUI/skins/Gray2014/images/ui/grid-detail-open.gif</file>
-          <file>file://$MODULE_DIR$/src/main/webapp/lib/syntaxhighlighter/styles/shCoreDefault.css</file>
-          <file>file://$MODULE_DIR$/src/main/webapp/WEB-INF/applicationContext.xml</file>
-          <file>file://$MODULE_DIR$/src/main/webapp/WEB-INF/applicationContext-security.xml</file>
-          <file>file://$MODULE_DIR$/src/main/webapp/lib/ligerUI/skins/Aqua/images/controls/bg-trigger-over.gif</file>
-        </fileset>
-      </configuration>
-    </facet>
   </component>
   <component name="NewModuleRootManager" inherit-compiler-output="false">
     <output url="file://$MODULE_DIR$/target/classes" />
