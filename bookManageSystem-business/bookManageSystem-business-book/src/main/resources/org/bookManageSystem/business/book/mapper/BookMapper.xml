@@ -67,4 +67,10 @@
         from book
         where NUMBER=#{number} and APPID=#{appId}
     </select>
+
+    <select id="findImageAndDescription" parameterType="map" resultType="map">
+        select b.image,b.description,p.cip as cip,p.isbn as isbn,p.author as author,p.pressName as pressName,p.pressLocation as pressLocation,p.pressTime as pressTime
+        from book as b,prefix as p
+        where b.number=#{number} and b.appId=#{appId} and b.prefixId=p.id
+    </select>
 </mapper>

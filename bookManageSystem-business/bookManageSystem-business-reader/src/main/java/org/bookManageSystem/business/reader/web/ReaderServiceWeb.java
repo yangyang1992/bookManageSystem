@@ -122,4 +122,14 @@ public class ReaderServiceWeb {
         String name=readerService.getNameById(id);
         return JsonResultUtils.getObjectResultByStringAsDefault(name,JsonResultUtils.Code.SUCCESS);
     }
+
+    @Path("/getReaderByUserId")
+    @Produces(MediaType.APPLICATION_JSON+";charset=UTF-8")
+    @POST
+    public String getReaderByUserId() {
+        long appId = UserContext.currentUserAppId();
+        long userId = UserContext.currentUserId();
+        Map<String,String> map = readerService.getReaderByUserId(userId,appId);
+        return JsonResultUtils.getObjectResultByStringAsDefault(map, JsonResultUtils.Code.SUCCESS);
+    }
 }

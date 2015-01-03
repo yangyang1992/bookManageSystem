@@ -49,7 +49,8 @@
             "delete":"rs/reader/delete",
             "list":"rs/reader/list",
             "getReaderById":"rs/reader/getReaderById",
-            "getNameById":"rs/reader/getNameById"
+            "getNameById":"rs/reader/getNameById",
+            "getReaderByUserId":"rs/reader/getReaderByUserId"
         },
         "optionType":{
             "add":"rs/optionType/add",
@@ -78,7 +79,8 @@
             "update":"rs/book/update",
             "delete":"rs/book/delete",
             "list":"rs/book/list",
-            "getIdByNumber":"rs/book/getIdByNumber"
+            "getIdByNumber":"rs/book/getIdByNumber",
+           "findImageAndDescription":"rs/book/findImageAndDescription"
         },
         "bookType":{
             "add":"rs/bookType/add",

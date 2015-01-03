@@ -139,7 +139,7 @@
 //            $.post($.URL.anonymous.commends,{"bookTypeId":curDataTypeId[t]},commendsCallback,"json");
             $.ajax({
             url: $.URL.anonymous.commends,
-                async:true,
+                async:false,
                 data:{"bookTypeId":curDataTypeId[t]},
                 type:"POST",
                 dataType:"json",

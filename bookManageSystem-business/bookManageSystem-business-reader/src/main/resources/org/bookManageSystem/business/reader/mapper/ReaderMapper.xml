@@ -94,4 +94,10 @@
         where APPID=#{appId}
     </select>
 
+    <select id="getReaderByUserId" parameterType="map" resultType="map">
+        select
+        r.name as name,r.number as number,r.sex as sex,a.name as appName
+        from reader as r,app as a
+        where r.appId=a.id and r.userId=#{userId} and a.id=#{appId}
+    </select>
 </mapper>

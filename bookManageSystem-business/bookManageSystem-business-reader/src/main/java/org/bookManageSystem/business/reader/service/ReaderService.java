@@ -5,6 +5,7 @@ import org.bookManageSystem.business.reader.entity.Reader;
 import org.bookManageSystem.business.reader.mapper.ReaderMapper;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created with IntelliJ IDEA.
@@ -45,4 +46,7 @@ public class ReaderService {
         return readerMapper.getNameById(id);
     }
 
+    public Map<String,String> getReaderByUserId(long userId,long appId) {
+        return  readerMapper.getReaderByUserId(userId, appId);
+    }
 }

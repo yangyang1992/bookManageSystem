@@ -30,8 +30,9 @@ public class BookAnalyseServiceWeb {
     @Path("/getReaderBookList")
     @Produces(MediaType.APPLICATION_JSON+";charset=UTF-8")
     @POST
-    public String getReaderBookList(@FormParam("userId")long userId) {
+    public String getReaderBookList() {
         long appId = UserContext.currentUserAppId();
+        long userId = UserContext.currentUserId();
         List<Map<String,String>> l = bookAnalyseService.getReaderBookByUserId(userId,appId);
         return JsonResultUtils.getObjectResultByStringAsDefault(l, JsonResultUtils.Code.SUCCESS);
     }
@@ -39,8 +40,9 @@ public class BookAnalyseServiceWeb {
     @Path("/getReaderCommendsList")
     @Produces(MediaType.APPLICATION_JSON+";charset=UTF-8")
     @POST
-    public String getReaderCommendsList(@FormParam("userId")long userId) {
+    public String getReaderCommendsList() {
         long appId = UserContext.currentUserAppId();
+        long userId = UserContext.currentUserId();
         List<Map<String,String>> list = bookAnalyseService.getReaderCommendsList(userId,appId);
         return JsonResultUtils.getObjectResultByStringAsDefault(list, JsonResultUtils.Code.SUCCESS);
     }

@@ -119,4 +119,13 @@ public class BookServiceWeb {
         long bookId=bookService.getIdByNumber(number,appId);
         return JsonResultUtils.getObjectResultByStringAsDefault(bookId, JsonResultUtils.Code.SUCCESS);
     }
+
+    @Produces(MediaType.APPLICATION_JSON+";charset=UTF-8")
+    @POST
+    @Path("/findImageAndDescription")
+    public String findImageAndDescription(@FormParam("number")String number) {
+        long appId = UserContext.currentUserAppId();
+        Map<String,String> map = bookService.findImageAndDescription(number,appId);
+        return JsonResultUtils.getObjectResultByStringAsDefault(map, JsonResultUtils.Code.SUCCESS);
+    }
 }

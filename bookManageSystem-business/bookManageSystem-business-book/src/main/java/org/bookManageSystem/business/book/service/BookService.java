@@ -37,4 +37,8 @@ public class BookService {
     public long getIdByNumber(String number,long appId){
         return bookMapper.getIdByNumber(number,appId);
     }
+
+    public Map<String,String> findImageAndDescription(String number,long appId) {
+        return bookMapper.findImageAndDescription(number,appId);
+    }
 }

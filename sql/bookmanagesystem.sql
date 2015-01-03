@@ -1,7 +1,7 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : rct
+Source Server         : yy
 Source Server Version : 50151
 Source Host           : localhost:3306
 Source Database       : bookmanagesystem
@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50151
 File Encoding         : 65001
 
-Date: 2015-01-02 19:42:55
+Date: 2015-01-03 21:34:41
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -76,7 +76,7 @@ INSERT INTO `authority_power` VALUES ('6', '2', '3', '/admin.html', 'ROLE_ADMIN'
 INSERT INTO `authority_power` VALUES ('7', '2', '4', '/index.jsp', 'ROLE_ADMIN');
 INSERT INTO `authority_power` VALUES ('8', '2', '15', 'cas/**', 'ROLE_ADMIN');
 INSERT INTO `authority_power` VALUES ('9', '3', '5', '/rs/anonymous/**', 'ROLE_ANONYMOUS');
-INSERT INTO `authority_power` VALUES ('10', '3', '5', '/rs/anonymousUser/**', 'ROLE_ANONYMOUS');
+INSERT INTO `authority_power` VALUES ('10', '3', '6', '/rs/anonymousUser/**', 'ROLE_ANONYMOUS');
 
 -- ----------------------------
 -- Table structure for `book`
@@ -87,7 +87,7 @@ CREATE TABLE `book` (
   `prefixId` bigint(20) DEFAULT NULL,
   `name` varchar(255) DEFAULT NULL,
   `number` varchar(255) DEFAULT NULL,
-  `storehouseId` bigint(20) DEFAULT NULL,
+  `description` varchar(255) DEFAULT NULL,
   `rentStatus` varchar(20) DEFAULT NULL,
   `bookTypeId` bigint(20) DEFAULT NULL,
   `appId` bigint(20) DEFAULT NULL,
@@ -100,11 +100,11 @@ CREATE TABLE `book` (
 -- ----------------------------
 -- Records of book
 -- ----------------------------
-INSERT INTO `book` VALUES ('1', '1', '自然辨证法', '0001', null, null, '7', '1', '6', null, '3');
+INSERT INTO `book` VALUES ('1', '1', '社会科学概览', '0001', '自然辩证法是马克思主义的自然观和自然科学观的反映。体现马克思主义哲学的世界观、认识论、方法论的统一，是马克思主义哲学的一个组成部分。F.恩格斯的《自然辩证法》（Dialectics of Nature）所开创的研究领域。自然界本身的辩证法是通过自然科学和技术的发展日益被揭示出来的，两个方面的研究密切相联，不可分割。', null, '7', '1', '6', 'bookImage/sociality.jpg', '3');
 INSERT INTO `book` VALUES ('2', '2', '计算机网络', '0002', null, null, '2', '1', '32', null, '9');
 INSERT INTO `book` VALUES ('3', '3', '软件工程', '0003', null, null, '2', '1', '45', null, '3');
 INSERT INTO `book` VALUES ('4', '4', '历史', '0004', null, null, '6', '1', '12', null, '1');
-INSERT INTO `book` VALUES ('5', '5', '西方哲学史', '0005', null, null, '7', '1', '23', null, '3');
+INSERT INTO `book` VALUES ('5', '5', '水文学', '0005', '研究地球大气层、地表及地壳内水的分布、运动和变化规律，以及水与环境相互作用的学科，属于地球物理科学范畴。通过测验、分析计算和模拟，预报自然界中水量和水质的变化和发展，为开发利用水资源、控制洪水和保护水环境等方面提供科学依据。属于地球物理学和自然地理学的分支学科。', null, '7', '1', '23', 'bookImage/s5910099.jpg', '3');
 INSERT INTO `book` VALUES ('6', '6', '巴黎圣母院', '0006', null, null, '4', '1', '78', null, '6');
 INSERT INTO `book` VALUES ('7', '7', '生活宝典', '0007', null, null, '5', '1', '43', null, '7');
 INSERT INTO `book` VALUES ('8', '8', '心理学', '0008', null, null, '8', '1', '14', null, '2');
@@ -113,7 +113,7 @@ INSERT INTO `book` VALUES ('10', '10', 'IT生活', '0010', null, null, '5', '1',
 INSERT INTO `book` VALUES ('11', '11', '法律行为', '0011', null, '', '1', '1', '23', '', '2');
 INSERT INTO `book` VALUES ('12', '12', '法律的基础', '0012', null, null, '1', '1', '23', 'bookImage/law.jpg', '3');
 INSERT INTO `book` VALUES ('13', '13', '法律的生长', '0013', null, null, '1', '1', '55', null, '12');
-INSERT INTO `book` VALUES ('14', '14', '法律功能论', '0014', null, null, '1', '1', '25', null, '4');
+INSERT INTO `book` VALUES ('14', '14', '法律与社会', '0014', '《法律与社会(第9版)》围绕着法律与社会这一逻辑线索系统，全面地阐释了法律社会学的基本理论知识。对法律与社会之间的关系做了丰富的。均衡的，综合的分析。《法律与社会第9版》梳理了最前沿的跨学科研究、最新的理论进展以及正在持续的论争。它描述了法律竞技场中的主要参与者以及他们对社会和我们的日常生活的影响，有助于我们对法律以及法律系统的结构和功能有新的理解。', null, '1', '1', '25', 'bookImage/s6507709.jpg', '4');
 INSERT INTO `book` VALUES ('15', '15', '美国法律史', '0015', null, null, '1', '1', '58', null, '7');
 INSERT INTO `book` VALUES ('16', '16', '法律与文学', '0016', null, null, '1', '1', '65', null, '3');
 INSERT INTO `book` VALUES ('17', '17', '论法律', '0017', null, null, '1', '1', '96', null, '2');
@@ -131,7 +131,7 @@ INSERT INTO `book` VALUES ('28', '28', '法律事务', '0028', null, null, '1', 
 INSERT INTO `book` VALUES ('29', '29', '法律史解释', '0029', null, null, '1', '1', '66', null, '25');
 INSERT INTO `book` VALUES ('30', '30', '法律导引', '0030', null, null, '1', '1', '99', null, '22');
 INSERT INTO `book` VALUES ('31', '31', '法律小词典', '0031', null, null, '1', '1', '666', null, '225');
-INSERT INTO `book` VALUES ('32', '32', '计算机导论', '0032', null, null, '2', '1', '55', 'bookImage/computer.jpg', '2');
+INSERT INTO `book` VALUES ('32', '32', '计算机导论', '0032', '本书是根据教育部高等学校计算机科学与技术教学指导委员会颁布的《高等学校计算机科学与技术专业发展战略研究报告暨专业规范（试行）》及《关于进一步加强高等学校计算机基础教学的意见暨计算机基础课程教学基本要求（试行）》中有关计算机导论和大学计算机基础课程教学基本要求编写的。', null, '2', '1', '55', 'bookImage/s5804126.jpg', '2');
 INSERT INTO `book` VALUES ('33', '33', '计算机网络', '0033', null, null, '2', '1', '888', null, '22');
 INSERT INTO `book` VALUES ('34', '34', '计算机网络', '0034', null, null, '2', '1', '654', null, '222');
 INSERT INTO `book` VALUES ('35', '35', '计算机网络', '0035', null, null, '2', '1', '665', null, '22');
@@ -142,7 +142,7 @@ INSERT INTO `book` VALUES ('39', '39', '计算机导论', '0039', null, null, '2
 INSERT INTO `book` VALUES ('40', '40', '计算机英语', '0040', null, null, '2', '1', '546', null, '222');
 INSERT INTO `book` VALUES ('41', '41', '计算机网络', '0041', null, null, '2', '1', '884', null, '225');
 INSERT INTO `book` VALUES ('42', '42', '计算机仿真', '0042', null, null, '2', '1', '545', null, '222');
-INSERT INTO `book` VALUES ('43', '43', '计算机联锁', '0043', null, null, '2', '1', '464', null, '222');
+INSERT INTO `book` VALUES ('43', '43', '计算机联锁', '0043', '计算机网络由一组结点和链络组成。网络中的结点有两类：转接结点和访问结点。通信处理机、集中器和终端控制器等属于转接结点，它们在网络中转接和交换传送信息。主计算机和终端等是访问结点，它们是信息传送的源结点和目标结点。', null, '2', '1', '464', 'bookImage/s6179109.jpg', '222');
 INSERT INTO `book` VALUES ('44', '44', '计算机绘图', '0044', null, null, '2', '1', '886', null, '222');
 INSERT INTO `book` VALUES ('45', '45', '计算机数学', '0045', null, null, '2', '1', '99', null, '52');
 INSERT INTO `book` VALUES ('46', '46', '计算机导论', '0046', null, null, '2', '1', '665', null, '232');
@@ -268,16 +268,31 @@ CREATE TABLE `bookcluster` (
   `bookNumbers` varchar(255) DEFAULT NULL,
   `appId` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=152 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of bookcluster
 -- ----------------------------
-INSERT INTO `bookcluster` VALUES ('2', '聚类0', '0001;', '1');
-INSERT INTO `bookcluster` VALUES ('3', '聚类1', '0002;0003;0007;', '1');
-INSERT INTO `bookcluster` VALUES ('4', '聚类2', '0006;', '1');
-INSERT INTO `bookcluster` VALUES ('5', '聚类3', '0004;0008;', '1');
-INSERT INTO `bookcluster` VALUES ('6', '聚类4', '0005;0009;0010;', '1');
+INSERT INTO `bookcluster` VALUES ('132', '聚类0', '0001;0069;', '1');
+INSERT INTO `bookcluster` VALUES ('133', '聚类1', '0002;0070;0075;0077;0078;0105;0134;', '1');
+INSERT INTO `bookcluster` VALUES ('134', '聚类2', '0003;0146;', '1');
+INSERT INTO `bookcluster` VALUES ('135', '聚类3', '0004;0122;0125;', '1');
+INSERT INTO `bookcluster` VALUES ('136', '聚类4', '0084;0087;0126;0131;0136;', '1');
+INSERT INTO `bookcluster` VALUES ('137', '聚类5', '0017;0019;0021;0023;0030;0115;0123;', '1');
+INSERT INTO `bookcluster` VALUES ('138', '聚类6', '0007;0147;', '1');
+INSERT INTO `bookcluster` VALUES ('139', '聚类7', '0008;', '1');
+INSERT INTO `bookcluster` VALUES ('140', '聚类8', '0009;0014;', '1');
+INSERT INTO `bookcluster` VALUES ('141', '聚类9', '0010;0142;0143;', '1');
+INSERT INTO `bookcluster` VALUES ('142', '聚类10', '0011;0071;0072;0073;0074;0088;0089;0129;0135;', '1');
+INSERT INTO `bookcluster` VALUES ('143', '聚类11', '0005;0012;', '1');
+INSERT INTO `bookcluster` VALUES ('144', '聚类12', '0025;0027;0045;', '1');
+INSERT INTO `bookcluster` VALUES ('145', '聚类13', '0085;0093;0094;', '1');
+INSERT INTO `bookcluster` VALUES ('146', '聚类14', '0024;0026;0028;0029;0067;0082;', '1');
+INSERT INTO `bookcluster` VALUES ('147', '聚类15', '0006;0016;0068;0090;0091;0092;', '1');
+INSERT INTO `bookcluster` VALUES ('148', '聚类16', '0031;0033;0034;0035;0036;0037;0038;0039;0040;0041;0042;0043;0044;0046;0047;0048;0049;0050;0051;0052;0053;0054;0055;0056;0057;0058;0059;0060;0062;0063;0064;0065;0076;0095;0096;0098;0099;0119;0139;0145;0150;0151;0152;0153;0154;', '1');
+INSERT INTO `bookcluster` VALUES ('149', '聚类17', '0013;0015;0117;', '1');
+INSERT INTO `bookcluster` VALUES ('150', '聚类18', '0061;0066;0083;0100;101;0102;0103;0104;0106;0107;0108;0109;0110;0111;0112;0113;0114;0116;0118;0120;0121;0124;0127;0128;0132;0138;0140;0141;0148;0149;', '1');
+INSERT INTO `bookcluster` VALUES ('151', '聚类19', '0018;0020;0022;0032;0079;0080;0081;0086;0097;0130;0133;0137;0144;0155;0156;0157;', '1');
 
 -- ----------------------------
 -- Table structure for `bookrecord`
@@ -293,11 +308,29 @@ CREATE TABLE `bookrecord` (
   `recordTime` date DEFAULT NULL,
   `appId` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of bookrecord
 -- ----------------------------
+INSERT INTO `bookrecord` VALUES ('1', '1', '1', '1', '0001', '1', '2015-01-02', '1');
+INSERT INTO `bookrecord` VALUES ('2', '1', '5', '5', '0005', '1', '2015-01-02', '1');
+INSERT INTO `bookrecord` VALUES ('3', '1', '14', '14', '0014', '1', '2015-01-02', '1');
+INSERT INTO `bookrecord` VALUES ('4', '1', '32', '32', '0032', '1', '2015-01-02', '1');
+INSERT INTO `bookrecord` VALUES ('5', '2', '8', '8', '0008', '1', '2015-01-02', '1');
+INSERT INTO `bookrecord` VALUES ('6', '2', '45', '45', '0045', '1', '2015-01-02', '1');
+INSERT INTO `bookrecord` VALUES ('7', '3', '54', '54', '0054', '1', '2015-01-02', '1');
+INSERT INTO `bookrecord` VALUES ('8', '2', '67', '67', '0067', '1', '2015-01-02', '1');
+INSERT INTO `bookrecord` VALUES ('9', '1', '43', '43', '0043', '1', '2015-01-02', '1');
+INSERT INTO `bookrecord` VALUES ('10', '2', '67', '67', '0067', '1', '2015-01-02', '1');
+INSERT INTO `bookrecord` VALUES ('11', '3', '130', '130', '0130', '1', '2015-01-02', '1');
+INSERT INTO `bookrecord` VALUES ('12', '3', '5', '5', '0005', '1', '2015-01-02', '1');
+INSERT INTO `bookrecord` VALUES ('13', '2', '121', '121', '0121', '1', '2015-01-02', '1');
+INSERT INTO `bookrecord` VALUES ('14', '3', '146', '146', '0146', '1', '2015-01-02', '1');
+INSERT INTO `bookrecord` VALUES ('15', '1', '1', '1', '0001', '2', '2015-01-02', '1');
+INSERT INTO `bookrecord` VALUES ('16', '1', '5', '5', '0005', '2', '2015-01-02', '1');
+INSERT INTO `bookrecord` VALUES ('17', '2', '8', '8', '0008', '2', '2015-01-02', '1');
+INSERT INTO `bookrecord` VALUES ('18', '3', '32', '32', '0032', '1', '2015-01-02', '1');
 
 -- ----------------------------
 -- Table structure for `booktype`
@@ -360,6 +393,7 @@ INSERT INTO `power` VALUES ('2', '/user.html', 'url', null);
 INSERT INTO `power` VALUES ('3', '/admin.html', 'url', null);
 INSERT INTO `power` VALUES ('4', '/index.jsp', 'url', null);
 INSERT INTO `power` VALUES ('5', '/rs/anonymous/**', 'resource', '匿名rest服务');
+INSERT INTO `power` VALUES ('6', '/rs/anonymousUser/**', 'resource', '匿名rest服务');
 INSERT INTO `power` VALUES ('15', 'cas/**', 'service', 'cas client test from android');
 
 -- ----------------------------
@@ -376,13 +410,25 @@ CREATE TABLE `prefix` (
   `pressTime` date DEFAULT NULL,
   `appId` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=147 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of prefix
 -- ----------------------------
-INSERT INTO `prefix` VALUES ('1', '13', '223', '3', '4', '5', '2014-12-03', '1');
-INSERT INTO `prefix` VALUES ('2', '44', '232', 'fdf', 'sefwe', 'wsq', '2015-01-06', '1');
+INSERT INTO `prefix` VALUES ('1', '13', '223', '401', '武汉理工大学出版社', '武汉', '2014-12-03', '1');
+INSERT INTO `prefix` VALUES ('2', '44', '232', '401', '武汉理工大学出版社', '武汉', '2015-01-06', '1');
+INSERT INTO `prefix` VALUES ('5', '146', '151', '401', '武汉理工大学出版社', '武汉', '2015-01-15', '1');
+INSERT INTO `prefix` VALUES ('8', '123', '12312', '401', '武汉理工大学出版社', '武汉', '2015-01-22', '1');
+INSERT INTO `prefix` VALUES ('14', '1212', '1212', '401', '武汉理工大学出版社', '武汉', '2015-01-13', '1');
+INSERT INTO `prefix` VALUES ('32', '232', '222', '401', '武汉理工大学出版社', '武汉', '2015-01-23', '1');
+INSERT INTO `prefix` VALUES ('35', '1212', '1212', '401', '武汉理工大学出版社', '武汉', '2015-01-21', '1');
+INSERT INTO `prefix` VALUES ('43', '232', '323', '401', '武汉理工大学出版社', '武汉', '2015-01-07', '1');
+INSERT INTO `prefix` VALUES ('45', '232', '232', '401', '武汉理工大学出版社', '武汉', '2014-12-18', '1');
+INSERT INTO `prefix` VALUES ('54', '123', '123', '401', '武汉理工大学出版社', '武汉', '2015-01-16', '1');
+INSERT INTO `prefix` VALUES ('67', '123', '232', '401', '武汉理工大学出版社', '武汉', '2015-01-12', '1');
+INSERT INTO `prefix` VALUES ('121', '232', '222', '401', '武汉理工大学出版社', '武汉', '2015-01-14', '1');
+INSERT INTO `prefix` VALUES ('130', '1223', '232', '401', '武汉理工大学出版社', '武汉', '2015-01-13', '1');
+INSERT INTO `prefix` VALUES ('146', '232', '222', '401', '武汉理工大学出版社', '武汉', '2015-01-07', '1');
 
 -- ----------------------------
 -- Table structure for `reader`
@@ -394,7 +440,7 @@ CREATE TABLE `reader` (
   `name` varchar(255) DEFAULT NULL,
   `number` varchar(255) DEFAULT NULL,
   `sex` varchar(255) DEFAULT NULL,
-  `birthday` date DEFAULT NULL,
+  `createTime` date DEFAULT NULL,
   `appId` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
@@ -402,9 +448,9 @@ CREATE TABLE `reader` (
 -- ----------------------------
 -- Records of reader
 -- ----------------------------
-INSERT INTO `reader` VALUES ('1', '22', '123我', '233', '11', '2014-12-02', '1');
-INSERT INTO `reader` VALUES ('2', '123', '111', '123', '123', '2014-12-02', '1');
-INSERT INTO `reader` VALUES ('3', '33', '11', '23', '123', '2014-12-02', '1');
+INSERT INTO `reader` VALUES ('1', '1', 'xiaozhujun', '00001', '男', '1986-08-15', '1');
+INSERT INTO `reader` VALUES ('2', '2', 'zhangsan', '00002', '男', '1987-01-13', '1');
+INSERT INTO `reader` VALUES ('3', '3', 'shunhui', '00003', '男', '1988-07-14', '1');
 
 -- ----------------------------
 -- Table structure for `readerrecord`
@@ -418,14 +464,23 @@ CREATE TABLE `readerrecord` (
   `createTime` date DEFAULT NULL,
   `appId` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of readerrecord
 -- ----------------------------
-INSERT INTO `readerrecord` VALUES ('1', '3', '1;3;4;5;', '2', '2015-01-01', '1');
-INSERT INTO `readerrecord` VALUES ('2', '1', '3;4;5;', '1', '2015-01-01', '1');
-INSERT INTO `readerrecord` VALUES ('3', '3', '3;5;2;6;', '1', '2015-01-02', '1');
+INSERT INTO `readerrecord` VALUES ('1', '1', '1;5;14;32;', '1', '2015-01-02', '1');
+INSERT INTO `readerrecord` VALUES ('2', '2', '8;45;', '1', '2015-01-02', '1');
+INSERT INTO `readerrecord` VALUES ('3', '3', '54;', '1', '2015-01-02', '1');
+INSERT INTO `readerrecord` VALUES ('4', '2', '67;', '1', '2015-01-02', '1');
+INSERT INTO `readerrecord` VALUES ('5', '1', '43;', '1', '2015-01-02', '1');
+INSERT INTO `readerrecord` VALUES ('6', '2', '67;', '1', '2015-01-02', '1');
+INSERT INTO `readerrecord` VALUES ('7', '3', '130;5;', '1', '2015-01-02', '1');
+INSERT INTO `readerrecord` VALUES ('8', '2', '121;', '1', '2015-01-02', '1');
+INSERT INTO `readerrecord` VALUES ('9', '3', '146;', '1', '2015-01-02', '1');
+INSERT INTO `readerrecord` VALUES ('10', '1', '67;24;', '1', '2015-01-02', '1');
+INSERT INTO `readerrecord` VALUES ('11', '2', '32;', '1', '2015-01-02', '1');
+INSERT INTO `readerrecord` VALUES ('12', '3', '32;', '1', '2015-01-02', '1');
 
 -- ----------------------------
 -- Table structure for `readerrule`
@@ -438,20 +493,333 @@ CREATE TABLE `readerrule` (
   `itemY` varchar(255) DEFAULT NULL,
   `appId` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=529 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of readerrule
 -- ----------------------------
-INSERT INTO `readerrule` VALUES ('10', '3', '5;', '3;', '1');
-INSERT INTO `readerrule` VALUES ('11', '3', '3;', '5;', '1');
-INSERT INTO `readerrule` VALUES ('12', '1', '4;5;', '3;', '1');
-INSERT INTO `readerrule` VALUES ('13', '1', '3;4;', '5;', '1');
-INSERT INTO `readerrule` VALUES ('14', '1', '4;', '5;', '1');
-INSERT INTO `readerrule` VALUES ('15', '1', '4;', '3;', '1');
-INSERT INTO `readerrule` VALUES ('16', '1', '5;', '3;', '1');
-INSERT INTO `readerrule` VALUES ('17', '1', '4;', '3;5;', '1');
-INSERT INTO `readerrule` VALUES ('18', '1', '3;', '5;', '1');
+INSERT INTO `readerrule` VALUES ('207', '1', '1;', '14;35;', '1');
+INSERT INTO `readerrule` VALUES ('208', '1', '35;', '14;5;', '1');
+INSERT INTO `readerrule` VALUES ('209', '1', '14;35;', '5;', '1');
+INSERT INTO `readerrule` VALUES ('210', '1', '14;35;5;', '1;', '1');
+INSERT INTO `readerrule` VALUES ('211', '1', '1;', '14;5;', '1');
+INSERT INTO `readerrule` VALUES ('212', '1', '1;', '14;35;5;', '1');
+INSERT INTO `readerrule` VALUES ('213', '1', '1;35;', '5;', '1');
+INSERT INTO `readerrule` VALUES ('214', '1', '14;', '1;', '1');
+INSERT INTO `readerrule` VALUES ('215', '1', '1;5;', '14;', '1');
+INSERT INTO `readerrule` VALUES ('216', '1', '14;', '35;5;', '1');
+INSERT INTO `readerrule` VALUES ('217', '1', '1;', '14;', '1');
+INSERT INTO `readerrule` VALUES ('218', '1', '35;', '1;14;5;', '1');
+INSERT INTO `readerrule` VALUES ('219', '1', '14;5;', '35;', '1');
+INSERT INTO `readerrule` VALUES ('220', '1', '1;14;', '5;', '1');
+INSERT INTO `readerrule` VALUES ('221', '1', '1;14;5;', '35;', '1');
+INSERT INTO `readerrule` VALUES ('222', '1', '14;', '1;35;', '1');
+INSERT INTO `readerrule` VALUES ('223', '1', '1;5;', '14;35;', '1');
+INSERT INTO `readerrule` VALUES ('224', '1', '35;5;', '1;14;', '1');
+INSERT INTO `readerrule` VALUES ('225', '1', '1;35;', '14;5;', '1');
+INSERT INTO `readerrule` VALUES ('226', '1', '14;', '5;', '1');
+INSERT INTO `readerrule` VALUES ('227', '1', '35;', '5;', '1');
+INSERT INTO `readerrule` VALUES ('228', '1', '1;14;', '35;', '1');
+INSERT INTO `readerrule` VALUES ('229', '1', '1;14;', '35;5;', '1');
+INSERT INTO `readerrule` VALUES ('230', '1', '35;5;', '14;', '1');
+INSERT INTO `readerrule` VALUES ('231', '1', '14;5;', '1;', '1');
+INSERT INTO `readerrule` VALUES ('232', '1', '1;', '35;5;', '1');
+INSERT INTO `readerrule` VALUES ('233', '1', '14;', '35;', '1');
+INSERT INTO `readerrule` VALUES ('234', '1', '1;', '5;', '1');
+INSERT INTO `readerrule` VALUES ('235', '1', '35;', '14;', '1');
+INSERT INTO `readerrule` VALUES ('236', '1', '14;35;', '1;5;', '1');
+INSERT INTO `readerrule` VALUES ('237', '1', '1;35;5;', '14;', '1');
+INSERT INTO `readerrule` VALUES ('238', '1', '35;', '1;14;', '1');
+INSERT INTO `readerrule` VALUES ('239', '1', '35;', '1;', '1');
+INSERT INTO `readerrule` VALUES ('240', '1', '14;', '1;35;5;', '1');
+INSERT INTO `readerrule` VALUES ('241', '1', '1;14;35;', '5;', '1');
+INSERT INTO `readerrule` VALUES ('242', '1', '35;', '1;5;', '1');
+INSERT INTO `readerrule` VALUES ('243', '1', '14;', '1;5;', '1');
+INSERT INTO `readerrule` VALUES ('244', '1', '1;5;', '35;', '1');
+INSERT INTO `readerrule` VALUES ('245', '1', '1;35;', '14;', '1');
+INSERT INTO `readerrule` VALUES ('246', '1', '35;5;', '1;', '1');
+INSERT INTO `readerrule` VALUES ('247', '1', '24;', '67;', '1');
+INSERT INTO `readerrule` VALUES ('248', '1', '14;35;', '1;', '1');
+INSERT INTO `readerrule` VALUES ('249', '1', '1;', '35;', '1');
+INSERT INTO `readerrule` VALUES ('250', '1', '14;5;', '1;35;', '1');
+INSERT INTO `readerrule` VALUES ('251', '2', '35;', '14;5;', '1');
+INSERT INTO `readerrule` VALUES ('252', '2', '14;35;', '5;', '1');
+INSERT INTO `readerrule` VALUES ('253', '2', '14;35;5;', '1;', '1');
+INSERT INTO `readerrule` VALUES ('254', '2', '1;', '14;5;', '1');
+INSERT INTO `readerrule` VALUES ('255', '2', '1;', '14;35;5;', '1');
+INSERT INTO `readerrule` VALUES ('256', '2', '1;35;', '5;', '1');
+INSERT INTO `readerrule` VALUES ('257', '2', '14;', '1;', '1');
+INSERT INTO `readerrule` VALUES ('258', '2', '14;', '35;5;', '1');
+INSERT INTO `readerrule` VALUES ('259', '2', '121;', '1;', '1');
+INSERT INTO `readerrule` VALUES ('260', '2', '1;', '14;', '1');
+INSERT INTO `readerrule` VALUES ('261', '2', '8;', '45;5;', '1');
+INSERT INTO `readerrule` VALUES ('262', '2', '1;14;5;', '35;', '1');
+INSERT INTO `readerrule` VALUES ('263', '2', '1;5;', '14;35;', '1');
+INSERT INTO `readerrule` VALUES ('264', '2', '14;', '1;35;', '1');
+INSERT INTO `readerrule` VALUES ('265', '2', '14;', '5;', '1');
+INSERT INTO `readerrule` VALUES ('266', '2', '45;5;', '8;', '1');
+INSERT INTO `readerrule` VALUES ('267', '2', '1;14;', '35;', '1');
+INSERT INTO `readerrule` VALUES ('268', '2', '1;', '5;', '1');
+INSERT INTO `readerrule` VALUES ('269', '2', '14;', '35;', '1');
+INSERT INTO `readerrule` VALUES ('270', '2', '1;', '35;5;', '1');
+INSERT INTO `readerrule` VALUES ('271', '2', '14;35;', '1;5;', '1');
+INSERT INTO `readerrule` VALUES ('272', '2', '1;35;5;', '14;', '1');
+INSERT INTO `readerrule` VALUES ('273', '2', '35;', '1;14;', '1');
+INSERT INTO `readerrule` VALUES ('274', '2', '1;14;35;', '5;', '1');
+INSERT INTO `readerrule` VALUES ('275', '2', '35;', '1;5;', '1');
+INSERT INTO `readerrule` VALUES ('276', '2', '14;', '1;5;', '1');
+INSERT INTO `readerrule` VALUES ('277', '2', '35;5;', '1;', '1');
+INSERT INTO `readerrule` VALUES ('278', '2', '1;35;', '14;', '1');
+INSERT INTO `readerrule` VALUES ('279', '2', '8;', '45;', '1');
+INSERT INTO `readerrule` VALUES ('280', '2', '14;35;', '1;', '1');
+INSERT INTO `readerrule` VALUES ('281', '2', '1;', '14;35;', '1');
+INSERT INTO `readerrule` VALUES ('282', '2', '45;', '5;', '1');
+INSERT INTO `readerrule` VALUES ('283', '2', '45;8;', '5;', '1');
+INSERT INTO `readerrule` VALUES ('284', '2', '1;', '121;', '1');
+INSERT INTO `readerrule` VALUES ('285', '2', '1;5;', '14;', '1');
+INSERT INTO `readerrule` VALUES ('286', '2', '35;', '1;14;5;', '1');
+INSERT INTO `readerrule` VALUES ('287', '2', '14;5;', '35;', '1');
+INSERT INTO `readerrule` VALUES ('288', '2', '1;14;', '5;', '1');
+INSERT INTO `readerrule` VALUES ('289', '2', '8;', '5;', '1');
+INSERT INTO `readerrule` VALUES ('290', '2', '35;5;', '1;14;', '1');
+INSERT INTO `readerrule` VALUES ('291', '2', '1;35;', '14;5;', '1');
+INSERT INTO `readerrule` VALUES ('292', '2', '35;', '5;', '1');
+INSERT INTO `readerrule` VALUES ('293', '2', '1;14;', '35;5;', '1');
+INSERT INTO `readerrule` VALUES ('294', '2', '35;5;', '14;', '1');
+INSERT INTO `readerrule` VALUES ('295', '2', '14;5;', '1;', '1');
+INSERT INTO `readerrule` VALUES ('296', '2', '5;8;', '45;', '1');
+INSERT INTO `readerrule` VALUES ('297', '2', '35;', '14;', '1');
+INSERT INTO `readerrule` VALUES ('298', '2', '35;', '1;', '1');
+INSERT INTO `readerrule` VALUES ('299', '2', '45;', '8;', '1');
+INSERT INTO `readerrule` VALUES ('300', '2', '14;', '1;35;5;', '1');
+INSERT INTO `readerrule` VALUES ('301', '2', '45;', '5;8;', '1');
+INSERT INTO `readerrule` VALUES ('302', '2', '1;5;', '35;', '1');
+INSERT INTO `readerrule` VALUES ('303', '2', '24;', '67;', '1');
+INSERT INTO `readerrule` VALUES ('304', '2', '1;', '35;', '1');
+INSERT INTO `readerrule` VALUES ('305', '2', '14;5;', '1;35;', '1');
+INSERT INTO `readerrule` VALUES ('306', '3', '35;', '14;5;', '1');
+INSERT INTO `readerrule` VALUES ('307', '3', '14;35;', '5;', '1');
+INSERT INTO `readerrule` VALUES ('308', '3', '14;35;5;', '1;', '1');
+INSERT INTO `readerrule` VALUES ('309', '3', '1;', '14;5;', '1');
+INSERT INTO `readerrule` VALUES ('310', '3', '1;', '14;35;5;', '1');
+INSERT INTO `readerrule` VALUES ('311', '3', '1;35;', '5;', '1');
+INSERT INTO `readerrule` VALUES ('312', '3', '14;', '1;', '1');
+INSERT INTO `readerrule` VALUES ('313', '3', '14;', '35;5;', '1');
+INSERT INTO `readerrule` VALUES ('314', '3', '121;', '1;', '1');
+INSERT INTO `readerrule` VALUES ('315', '3', '1;', '14;', '1');
+INSERT INTO `readerrule` VALUES ('316', '3', '8;', '45;5;', '1');
+INSERT INTO `readerrule` VALUES ('317', '3', '1;14;5;', '35;', '1');
+INSERT INTO `readerrule` VALUES ('318', '3', '1;5;', '14;35;', '1');
+INSERT INTO `readerrule` VALUES ('319', '3', '14;', '1;35;', '1');
+INSERT INTO `readerrule` VALUES ('320', '3', '14;', '5;', '1');
+INSERT INTO `readerrule` VALUES ('321', '3', '45;5;', '8;', '1');
+INSERT INTO `readerrule` VALUES ('322', '3', '1;14;', '35;', '1');
+INSERT INTO `readerrule` VALUES ('323', '3', '1;', '35;5;', '1');
+INSERT INTO `readerrule` VALUES ('324', '3', '1;', '5;', '1');
+INSERT INTO `readerrule` VALUES ('325', '3', '14;', '35;', '1');
+INSERT INTO `readerrule` VALUES ('326', '3', '14;35;', '1;5;', '1');
+INSERT INTO `readerrule` VALUES ('327', '3', '1;35;5;', '14;', '1');
+INSERT INTO `readerrule` VALUES ('328', '3', '35;', '1;14;', '1');
+INSERT INTO `readerrule` VALUES ('329', '3', '1;14;35;', '5;', '1');
+INSERT INTO `readerrule` VALUES ('330', '3', '35;', '1;5;', '1');
+INSERT INTO `readerrule` VALUES ('331', '3', '14;', '1;5;', '1');
+INSERT INTO `readerrule` VALUES ('332', '3', '35;5;', '1;', '1');
+INSERT INTO `readerrule` VALUES ('333', '3', '1;35;', '14;', '1');
+INSERT INTO `readerrule` VALUES ('334', '3', '8;', '45;', '1');
+INSERT INTO `readerrule` VALUES ('335', '3', '14;35;', '1;', '1');
+INSERT INTO `readerrule` VALUES ('336', '3', '1;', '14;35;', '1');
+INSERT INTO `readerrule` VALUES ('337', '3', '45;', '5;', '1');
+INSERT INTO `readerrule` VALUES ('338', '3', '45;8;', '5;', '1');
+INSERT INTO `readerrule` VALUES ('339', '3', '1;', '121;', '1');
+INSERT INTO `readerrule` VALUES ('340', '3', '1;5;', '14;', '1');
+INSERT INTO `readerrule` VALUES ('341', '3', '35;', '1;14;5;', '1');
+INSERT INTO `readerrule` VALUES ('342', '3', '14;5;', '35;', '1');
+INSERT INTO `readerrule` VALUES ('343', '3', '1;14;', '5;', '1');
+INSERT INTO `readerrule` VALUES ('344', '3', '8;', '5;', '1');
+INSERT INTO `readerrule` VALUES ('345', '3', '35;5;', '1;14;', '1');
+INSERT INTO `readerrule` VALUES ('346', '3', '1;35;', '14;5;', '1');
+INSERT INTO `readerrule` VALUES ('347', '3', '35;', '5;', '1');
+INSERT INTO `readerrule` VALUES ('348', '3', '1;14;', '35;5;', '1');
+INSERT INTO `readerrule` VALUES ('349', '3', '35;5;', '14;', '1');
+INSERT INTO `readerrule` VALUES ('350', '3', '14;5;', '1;', '1');
+INSERT INTO `readerrule` VALUES ('351', '3', '5;8;', '45;', '1');
+INSERT INTO `readerrule` VALUES ('352', '3', '35;', '14;', '1');
+INSERT INTO `readerrule` VALUES ('353', '3', '130;', '5;', '1');
+INSERT INTO `readerrule` VALUES ('354', '3', '35;', '1;', '1');
+INSERT INTO `readerrule` VALUES ('355', '3', '45;', '8;', '1');
+INSERT INTO `readerrule` VALUES ('356', '3', '14;', '1;35;5;', '1');
+INSERT INTO `readerrule` VALUES ('357', '3', '45;', '5;8;', '1');
+INSERT INTO `readerrule` VALUES ('358', '3', '1;5;', '35;', '1');
+INSERT INTO `readerrule` VALUES ('359', '3', '24;', '67;', '1');
+INSERT INTO `readerrule` VALUES ('360', '3', '1;', '35;', '1');
+INSERT INTO `readerrule` VALUES ('361', '3', '14;5;', '1;35;', '1');
+INSERT INTO `readerrule` VALUES ('362', '1', '35;', '14;5;', '1');
+INSERT INTO `readerrule` VALUES ('363', '1', '14;35;', '5;', '1');
+INSERT INTO `readerrule` VALUES ('364', '1', '14;35;5;', '1;', '1');
+INSERT INTO `readerrule` VALUES ('365', '1', '1;', '14;5;', '1');
+INSERT INTO `readerrule` VALUES ('366', '1', '1;', '14;35;5;', '1');
+INSERT INTO `readerrule` VALUES ('367', '1', '1;35;', '5;', '1');
+INSERT INTO `readerrule` VALUES ('368', '1', '14;', '1;', '1');
+INSERT INTO `readerrule` VALUES ('369', '1', '14;', '35;5;', '1');
+INSERT INTO `readerrule` VALUES ('370', '1', '121;', '1;', '1');
+INSERT INTO `readerrule` VALUES ('371', '1', '1;', '14;', '1');
+INSERT INTO `readerrule` VALUES ('372', '1', '8;', '45;5;', '1');
+INSERT INTO `readerrule` VALUES ('373', '1', '1;14;5;', '35;', '1');
+INSERT INTO `readerrule` VALUES ('374', '1', '1;5;', '14;35;', '1');
+INSERT INTO `readerrule` VALUES ('375', '1', '14;', '1;35;', '1');
+INSERT INTO `readerrule` VALUES ('376', '1', '14;', '5;', '1');
+INSERT INTO `readerrule` VALUES ('377', '1', '45;5;', '8;', '1');
+INSERT INTO `readerrule` VALUES ('378', '1', '1;14;', '35;', '1');
+INSERT INTO `readerrule` VALUES ('379', '1', '1;', '5;', '1');
+INSERT INTO `readerrule` VALUES ('380', '1', '14;', '35;', '1');
+INSERT INTO `readerrule` VALUES ('381', '1', '1;', '35;5;', '1');
+INSERT INTO `readerrule` VALUES ('382', '1', '14;35;', '1;5;', '1');
+INSERT INTO `readerrule` VALUES ('383', '1', '1;35;5;', '14;', '1');
+INSERT INTO `readerrule` VALUES ('384', '1', '35;', '1;14;', '1');
+INSERT INTO `readerrule` VALUES ('385', '1', '1;14;35;', '5;', '1');
+INSERT INTO `readerrule` VALUES ('386', '1', '35;', '1;5;', '1');
+INSERT INTO `readerrule` VALUES ('387', '1', '14;', '1;5;', '1');
+INSERT INTO `readerrule` VALUES ('388', '1', '35;5;', '1;', '1');
+INSERT INTO `readerrule` VALUES ('389', '1', '1;35;', '14;', '1');
+INSERT INTO `readerrule` VALUES ('390', '1', '8;', '45;', '1');
+INSERT INTO `readerrule` VALUES ('391', '1', '14;35;', '1;', '1');
+INSERT INTO `readerrule` VALUES ('392', '1', '1;', '14;35;', '1');
+INSERT INTO `readerrule` VALUES ('393', '1', '45;', '5;', '1');
+INSERT INTO `readerrule` VALUES ('394', '1', '45;8;', '5;', '1');
+INSERT INTO `readerrule` VALUES ('395', '1', '1;5;', '14;', '1');
+INSERT INTO `readerrule` VALUES ('396', '1', '35;', '1;14;5;', '1');
+INSERT INTO `readerrule` VALUES ('397', '1', '14;5;', '35;', '1');
+INSERT INTO `readerrule` VALUES ('398', '1', '1;14;', '5;', '1');
+INSERT INTO `readerrule` VALUES ('399', '1', '8;', '5;', '1');
+INSERT INTO `readerrule` VALUES ('400', '1', '35;5;', '1;14;', '1');
+INSERT INTO `readerrule` VALUES ('401', '1', '1;35;', '14;5;', '1');
+INSERT INTO `readerrule` VALUES ('402', '1', '35;', '5;', '1');
+INSERT INTO `readerrule` VALUES ('403', '1', '1;14;', '35;5;', '1');
+INSERT INTO `readerrule` VALUES ('404', '1', '35;5;', '14;', '1');
+INSERT INTO `readerrule` VALUES ('405', '1', '14;5;', '1;', '1');
+INSERT INTO `readerrule` VALUES ('406', '1', '5;8;', '45;', '1');
+INSERT INTO `readerrule` VALUES ('407', '1', '35;', '14;', '1');
+INSERT INTO `readerrule` VALUES ('408', '1', '130;', '5;', '1');
+INSERT INTO `readerrule` VALUES ('409', '1', '35;', '1;', '1');
+INSERT INTO `readerrule` VALUES ('410', '1', '45;', '8;', '1');
+INSERT INTO `readerrule` VALUES ('411', '1', '14;', '1;35;5;', '1');
+INSERT INTO `readerrule` VALUES ('412', '1', '45;', '5;8;', '1');
+INSERT INTO `readerrule` VALUES ('413', '1', '1;5;', '35;', '1');
+INSERT INTO `readerrule` VALUES ('414', '1', '24;', '67;', '1');
+INSERT INTO `readerrule` VALUES ('415', '1', '1;', '35;', '1');
+INSERT INTO `readerrule` VALUES ('416', '1', '14;5;', '1;35;', '1');
+INSERT INTO `readerrule` VALUES ('417', '2', '35;', '14;5;', '1');
+INSERT INTO `readerrule` VALUES ('418', '2', '14;35;', '5;', '1');
+INSERT INTO `readerrule` VALUES ('419', '2', '14;35;5;', '1;', '1');
+INSERT INTO `readerrule` VALUES ('420', '2', '1;', '14;5;', '1');
+INSERT INTO `readerrule` VALUES ('421', '2', '1;', '14;35;5;', '1');
+INSERT INTO `readerrule` VALUES ('422', '2', '1;35;', '5;', '1');
+INSERT INTO `readerrule` VALUES ('423', '2', '14;', '1;', '1');
+INSERT INTO `readerrule` VALUES ('424', '2', '14;', '35;5;', '1');
+INSERT INTO `readerrule` VALUES ('425', '2', '121;', '1;', '1');
+INSERT INTO `readerrule` VALUES ('426', '2', '1;', '14;', '1');
+INSERT INTO `readerrule` VALUES ('427', '2', '8;', '45;5;', '1');
+INSERT INTO `readerrule` VALUES ('428', '2', '1;14;5;', '35;', '1');
+INSERT INTO `readerrule` VALUES ('429', '2', '1;5;', '14;35;', '1');
+INSERT INTO `readerrule` VALUES ('430', '2', '14;', '1;35;', '1');
+INSERT INTO `readerrule` VALUES ('431', '2', '14;', '5;', '1');
+INSERT INTO `readerrule` VALUES ('432', '2', '45;5;', '8;', '1');
+INSERT INTO `readerrule` VALUES ('433', '2', '1;14;', '35;', '1');
+INSERT INTO `readerrule` VALUES ('434', '2', '1;', '35;5;', '1');
+INSERT INTO `readerrule` VALUES ('435', '2', '1;', '5;', '1');
+INSERT INTO `readerrule` VALUES ('436', '2', '14;', '35;', '1');
+INSERT INTO `readerrule` VALUES ('437', '2', '14;35;', '1;5;', '1');
+INSERT INTO `readerrule` VALUES ('438', '2', '1;35;5;', '14;', '1');
+INSERT INTO `readerrule` VALUES ('439', '2', '35;', '1;14;', '1');
+INSERT INTO `readerrule` VALUES ('440', '2', '1;14;35;', '5;', '1');
+INSERT INTO `readerrule` VALUES ('441', '2', '35;', '1;5;', '1');
+INSERT INTO `readerrule` VALUES ('442', '2', '14;', '1;5;', '1');
+INSERT INTO `readerrule` VALUES ('443', '2', '35;5;', '1;', '1');
+INSERT INTO `readerrule` VALUES ('444', '2', '1;35;', '14;', '1');
+INSERT INTO `readerrule` VALUES ('445', '2', '8;', '45;', '1');
+INSERT INTO `readerrule` VALUES ('446', '2', '14;35;', '1;', '1');
+INSERT INTO `readerrule` VALUES ('447', '2', '1;', '14;35;', '1');
+INSERT INTO `readerrule` VALUES ('448', '2', '45;', '5;', '1');
+INSERT INTO `readerrule` VALUES ('449', '2', '45;8;', '5;', '1');
+INSERT INTO `readerrule` VALUES ('450', '2', '1;', '121;', '1');
+INSERT INTO `readerrule` VALUES ('451', '2', '1;5;', '14;', '1');
+INSERT INTO `readerrule` VALUES ('452', '2', '35;', '1;14;5;', '1');
+INSERT INTO `readerrule` VALUES ('453', '2', '14;5;', '35;', '1');
+INSERT INTO `readerrule` VALUES ('454', '2', '1;14;', '5;', '1');
+INSERT INTO `readerrule` VALUES ('455', '2', '8;', '5;', '1');
+INSERT INTO `readerrule` VALUES ('456', '2', '35;5;', '1;14;', '1');
+INSERT INTO `readerrule` VALUES ('457', '2', '1;35;', '14;5;', '1');
+INSERT INTO `readerrule` VALUES ('458', '2', '35;', '5;', '1');
+INSERT INTO `readerrule` VALUES ('459', '2', '1;14;', '35;5;', '1');
+INSERT INTO `readerrule` VALUES ('460', '2', '35;5;', '14;', '1');
+INSERT INTO `readerrule` VALUES ('461', '2', '14;5;', '1;', '1');
+INSERT INTO `readerrule` VALUES ('462', '2', '5;8;', '45;', '1');
+INSERT INTO `readerrule` VALUES ('463', '2', '35;', '14;', '1');
+INSERT INTO `readerrule` VALUES ('464', '2', '130;', '5;', '1');
+INSERT INTO `readerrule` VALUES ('465', '2', '35;', '1;', '1');
+INSERT INTO `readerrule` VALUES ('466', '2', '45;', '8;', '1');
+INSERT INTO `readerrule` VALUES ('467', '2', '14;', '1;35;5;', '1');
+INSERT INTO `readerrule` VALUES ('468', '2', '45;', '5;8;', '1');
+INSERT INTO `readerrule` VALUES ('469', '2', '1;5;', '35;', '1');
+INSERT INTO `readerrule` VALUES ('470', '2', '24;', '67;', '1');
+INSERT INTO `readerrule` VALUES ('471', '2', '1;', '35;', '1');
+INSERT INTO `readerrule` VALUES ('472', '2', '14;5;', '1;35;', '1');
+INSERT INTO `readerrule` VALUES ('473', '3', '35;', '14;5;', '1');
+INSERT INTO `readerrule` VALUES ('474', '3', '14;35;', '5;', '1');
+INSERT INTO `readerrule` VALUES ('475', '3', '14;35;5;', '1;', '1');
+INSERT INTO `readerrule` VALUES ('476', '3', '1;', '14;5;', '1');
+INSERT INTO `readerrule` VALUES ('477', '3', '1;', '14;35;5;', '1');
+INSERT INTO `readerrule` VALUES ('478', '3', '1;35;', '5;', '1');
+INSERT INTO `readerrule` VALUES ('479', '3', '14;', '1;', '1');
+INSERT INTO `readerrule` VALUES ('480', '3', '14;', '35;5;', '1');
+INSERT INTO `readerrule` VALUES ('481', '3', '121;', '1;', '1');
+INSERT INTO `readerrule` VALUES ('482', '3', '1;', '14;', '1');
+INSERT INTO `readerrule` VALUES ('483', '3', '8;', '45;5;', '1');
+INSERT INTO `readerrule` VALUES ('484', '3', '1;14;5;', '35;', '1');
+INSERT INTO `readerrule` VALUES ('485', '3', '1;5;', '14;35;', '1');
+INSERT INTO `readerrule` VALUES ('486', '3', '14;', '1;35;', '1');
+INSERT INTO `readerrule` VALUES ('487', '3', '14;', '5;', '1');
+INSERT INTO `readerrule` VALUES ('488', '3', '45;5;', '8;', '1');
+INSERT INTO `readerrule` VALUES ('489', '3', '1;14;', '35;', '1');
+INSERT INTO `readerrule` VALUES ('490', '3', '1;', '35;5;', '1');
+INSERT INTO `readerrule` VALUES ('491', '3', '1;', '5;', '1');
+INSERT INTO `readerrule` VALUES ('492', '3', '14;', '35;', '1');
+INSERT INTO `readerrule` VALUES ('493', '3', '14;35;', '1;5;', '1');
+INSERT INTO `readerrule` VALUES ('494', '3', '1;35;5;', '14;', '1');
+INSERT INTO `readerrule` VALUES ('495', '3', '35;', '1;14;', '1');
+INSERT INTO `readerrule` VALUES ('496', '3', '1;14;35;', '5;', '1');
+INSERT INTO `readerrule` VALUES ('497', '3', '35;', '1;5;', '1');
+INSERT INTO `readerrule` VALUES ('498', '3', '14;', '1;5;', '1');
+INSERT INTO `readerrule` VALUES ('499', '3', '35;5;', '1;', '1');
+INSERT INTO `readerrule` VALUES ('500', '3', '1;35;', '14;', '1');
+INSERT INTO `readerrule` VALUES ('501', '3', '8;', '45;', '1');
+INSERT INTO `readerrule` VALUES ('502', '3', '14;35;', '1;', '1');
+INSERT INTO `readerrule` VALUES ('503', '3', '1;', '14;35;', '1');
+INSERT INTO `readerrule` VALUES ('504', '3', '45;', '5;', '1');
+INSERT INTO `readerrule` VALUES ('505', '3', '45;8;', '5;', '1');
+INSERT INTO `readerrule` VALUES ('506', '3', '1;', '121;', '1');
+INSERT INTO `readerrule` VALUES ('507', '3', '1;5;', '14;', '1');
+INSERT INTO `readerrule` VALUES ('508', '3', '35;', '1;14;5;', '1');
+INSERT INTO `readerrule` VALUES ('509', '3', '14;5;', '35;', '1');
+INSERT INTO `readerrule` VALUES ('510', '3', '1;14;', '5;', '1');
+INSERT INTO `readerrule` VALUES ('511', '3', '8;', '5;', '1');
+INSERT INTO `readerrule` VALUES ('512', '3', '35;5;', '1;14;', '1');
+INSERT INTO `readerrule` VALUES ('513', '3', '1;35;', '14;5;', '1');
+INSERT INTO `readerrule` VALUES ('514', '3', '35;', '5;', '1');
+INSERT INTO `readerrule` VALUES ('515', '3', '1;14;', '35;5;', '1');
+INSERT INTO `readerrule` VALUES ('516', '3', '35;5;', '14;', '1');
+INSERT INTO `readerrule` VALUES ('517', '3', '14;5;', '1;', '1');
+INSERT INTO `readerrule` VALUES ('518', '3', '5;8;', '45;', '1');
+INSERT INTO `readerrule` VALUES ('519', '3', '35;', '14;', '1');
+INSERT INTO `readerrule` VALUES ('520', '3', '130;', '5;', '1');
+INSERT INTO `readerrule` VALUES ('521', '3', '35;', '1;', '1');
+INSERT INTO `readerrule` VALUES ('522', '3', '45;', '8;', '1');
+INSERT INTO `readerrule` VALUES ('523', '3', '14;', '1;35;5;', '1');
+INSERT INTO `readerrule` VALUES ('524', '3', '45;', '5;8;', '1');
+INSERT INTO `readerrule` VALUES ('525', '3', '1;5;', '35;', '1');
+INSERT INTO `readerrule` VALUES ('526', '3', '24;', '67;', '1');
+INSERT INTO `readerrule` VALUES ('527', '3', '1;', '35;', '1');
+INSERT INTO `readerrule` VALUES ('528', '3', '14;5;', '1;35;', '1');
 
 -- ----------------------------
 -- Table structure for `reader_booktype`
@@ -500,7 +868,7 @@ CREATE TABLE `user` (
   `status` varchar(255) DEFAULT NULL,
   `image` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of user
@@ -509,7 +877,6 @@ INSERT INTO `user` VALUES ('1', 'xiaozhujun', 'e10adc3949ba59abbe56e057f20f883e'
 INSERT INTO `user` VALUES ('2', 'zhangsan', 'e10adc3949ba59abbe56e057f20f883e', '男', 'ROLE_USER;ROLE_ANONYMOUS', '1', '启用', null);
 INSERT INTO `user` VALUES ('3', 'sunhui', 'e68fa2bc61b75b8a06766e25905052c7', '男', 'ROLE_USER', '1', '启用', null);
 INSERT INTO `user` VALUES ('4', 'liujinxia', 'c99c1cbefe13019978d90cb442cb8f78', '女', 'ROLE_ADMIN', '1', '启用', null);
-INSERT INTO `user` VALUES ('5', '1111111', '7fa8282ad93047a4d6fe6111c93b308a', '女', 'ROLE_USER', '1', '启用', null);
 
 -- ----------------------------
 -- Table structure for `user_authority`
@@ -522,7 +889,7 @@ CREATE TABLE `user_authority` (
   `userName` varchar(255) DEFAULT NULL,
   `authorityName` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of user_authority
@@ -534,4 +901,3 @@ INSERT INTO `user_authority` VALUES ('4', '2', '3', 'zhangsan', 'ROLE_ANONYMOUS'
 INSERT INTO `user_authority` VALUES ('5', '2', '1', 'zhangsan', 'ROLE_USER');
 INSERT INTO `user_authority` VALUES ('6', '3', '1', 'sunhui', 'ROLE_USER');
 INSERT INTO `user_authority` VALUES ('7', '4', '2', 'liujinxia', 'ROLE_ADMIN');
-INSERT INTO `user_authority` VALUES ('8', '5', '1', '1111111', 'ROLE_USER');

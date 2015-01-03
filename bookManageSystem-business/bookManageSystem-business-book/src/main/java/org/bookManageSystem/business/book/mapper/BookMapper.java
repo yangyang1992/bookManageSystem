@@ -17,4 +17,5 @@ import java.util.Map;
 public interface BookMapper extends AbstractMapper<Book> {
     public List<Map<String,String>> getListByAppId(long appId);
     public long getIdByNumber(@Param("number")String number,@Param("appId")long appId);
+    public Map<String,String> findImageAndDescription(@Param("number")String number,@Param("appId")long appId);
 }

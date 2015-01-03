@@ -8,8 +8,8 @@
         if(data.code == 200) {
             $("#userInfoDiv").html(data.data.name + "的借阅情况");
             $("#userCommendNameDiv").html(data.data.name + "可能还会喜欢");
-            $.post($.URL.bookAnalyse.getReaderBookList,{"userId":data.data.id},bookListCallback,"json");
-            $.post($.URL.bookAnalyse.getReaderCommendsList,{"userId":data.data.id},bookCommendsCallback,"json");
+            $.post($.URL.bookAnalyse.getReaderBookList,null,bookListCallback,"json");
+            $.post($.URL.bookAnalyse.getReaderCommendsList,null,bookCommendsCallback,"json");
         }
     }
 

@@ -5,6 +5,7 @@ import org.bookManageSystem.fundamental.orm.mapper.AbstractMapper;
 import org.bookManageSystem.business.reader.entity.Reader;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created with IntelliJ IDEA.
@@ -18,4 +19,5 @@ public interface ReaderMapper extends AbstractMapper<Reader> {
     public Reader getReaderById(@Param("id")long id,@Param("appId")long appId);
     public int deleteById(@Param("id")long id,@Param("appId")long appId);
     public String getNameById(@Param("id")long id) ;
+    public Map<String,String> getReaderByUserId(@Param("userId")long userId,@Param("appId")long appId);
 }
