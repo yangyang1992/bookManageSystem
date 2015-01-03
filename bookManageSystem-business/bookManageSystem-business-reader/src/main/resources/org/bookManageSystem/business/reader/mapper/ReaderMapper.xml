@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.bookManageSystem.business.reader.mapper.ReaderMapper">
     <sql id="reader_fields">
-          ID,USERID,NAME,NUMBER,SEX,BIRTHDAY,APPID
+          ID,USERID,NAME,NUMBER,SEX,CREATETIME,APPID
     </sql>
     <resultMap id="readerResultMap" type="Reader">
         <id property="id" column="ID" />
@@ -12,7 +12,7 @@
         <result property="name" column="NAME"/>
         <result property="number" column="NUMBER"/>
         <result property="sex" column="SEX"/>
-        <result property="birthday" column="BIRTHDAY"/>
+        <result property="createTIme" column="CREATETIME"/>
         <result property="appId" column="APPID"/>
     </resultMap>
 
@@ -23,7 +23,7 @@
         <include refid="reader_fields" />
         )
         VALUES (#{id},#{userId},#{name},#{number},#{sex},
-        #{birthday},#{appId});
+        #{createTime},#{appId});
         <selectKey resultType="long" keyProperty="id">
             select
             LAST_INSERT_ID() as id
@@ -37,7 +37,6 @@
             <if test="name!=null"> NAME=#{name},</if>
             <if test="number!=null"> NUMBER=#{number},</if>
             <if test="sex!=null"> SEX=#{sex},</if>
-            <if test="birthday!=null"> BIRTHDAY=#{birthday},</if>
             <if test="appId!=null">APPID=#{appId},</if>
         </set>
         where ID=#{id};

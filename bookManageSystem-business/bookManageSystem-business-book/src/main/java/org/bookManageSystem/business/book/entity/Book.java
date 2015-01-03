@@ -11,9 +11,9 @@ public class Book {
     private long id;
     private String name;
     private String number;
-    private Long prefixId;
-    private Long bookTypeId;
-    private Long count;
+    private long prefixId;
+    private long bookTypeId;
+    private long count;
     private long rentNumber;
     private long appId;
 
@@ -41,19 +41,27 @@ public class Book {
         this.number = number;
     }
 
-    public Long getBookTypeId() {
+    public long getPrefixId() {
+        return prefixId;
+    }
+
+    public void setPrefixId(long prefixId) {
+        this.prefixId = prefixId;
+    }
+
+    public long getBookTypeId() {
         return bookTypeId;
     }
 
-    public void setBookTypeId(Long bookTypeId) {
+    public void setBookTypeId(long bookTypeId) {
         this.bookTypeId = bookTypeId;
     }
 
-    public Long getCount() {
+    public long getCount() {
         return count;
     }
 
-    public void setCount(Long count) {
+    public void setCount(long count) {
         this.count = count;
     }
 
@@ -71,13 +79,5 @@ public class Book {
 
     public void setAppId(long appId) {
         this.appId = appId;
-    }
-
-    public Long getPrefixId() {
-        return prefixId;
-    }
-
-    public void setPrefixId(Long prefixId) {
-        this.prefixId = prefixId;
     }
 }

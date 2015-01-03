@@ -4,8 +4,8 @@ import org.bookManageSystem.business.anonymous.entity.AnonymousUser;
 import org.bookManageSystem.business.anonymous.entity.AnonymousUserAuthority;
 import org.bookManageSystem.business.anonymous.service.AnonymousUserAuthorityService;
 import org.bookManageSystem.business.anonymous.service.AnonymousUserService;
-//import org.bookManageSystem.business.reader.entity.Reader;
-//import org.bookManageSystem.business.reader.service.ReaderService;
+import org.bookManageSystem.business.reader.entity.Reader;
+import org.bookManageSystem.business.reader.service.ReaderService;
 import org.bookManageSystem.fundamental.logger.FundamentalLogger;
 import org.bookManageSystem.fundamental.security.MD5Encoder;
 import org.bookManageSystem.fundamental.util.json.JsonResultUtils;
@@ -17,6 +17,7 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import java.util.Date;
 
 /**
  * Created with IntelliJ IDEA.
@@ -34,6 +35,9 @@ public class AnonymousUserServiceWeb {
 
     @Autowired
     private AnonymousUserAuthorityService anonymousUserAuthorityService;
+
+    @Autowired
+    private  ReaderService readerService;
 
 
     @Path("/add")
@@ -71,6 +75,15 @@ public class AnonymousUserServiceWeb {
                 userAuthority.setUserName(username);
                 userAuthority.setAuthorityName("ROLE_USER");
                 anonymousUserAuthorityService.add(userAuthority);
+                Date createTime=new Date();
+                Reader reader=new Reader();
+                reader.setCreateTime(createTime);
+                reader.setSex(sex);
+                reader.setName(name);
+                reader.setNumber(name+"1");
+                reader.setAppId(1);
+                reader.setUserId(user.getId());
+                readerService.add(reader);
                 return JsonResultUtils.getCodeAndMesByStringAsDefault(JsonResultUtils.Code.SUCCESS);
             }else {
                 return JsonResultUtils.getCodeAndMesByStringAsDefault(JsonResultUtils.Code.ERROR);

@@ -95,6 +95,11 @@
             <artifactId>bookManageSystem-business-book</artifactId>
             <version>${project.version}</version>
         </dependency>
+        <dependency>
+            <groupId>bookManageSystem</groupId>
+            <artifactId>bookManageSystem-business-reader</artifactId>
+            <version>${project.version}</version>
+        </dependency>
   </dependencies>
 
 </project>

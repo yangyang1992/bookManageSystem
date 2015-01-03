@@ -16,7 +16,7 @@
     <insert id="add" parameterType="bookType"  keyProperty="id"
             useGeneratedKeys="true">
         INSERT INTO
-        bookType(
+        booktype(
         <include refid="bookType_fields" />
         )
         VALUES (#{id}, #{name},#{description},#{appId});
@@ -27,7 +27,7 @@
     </insert>
 
     <update id="update" parameterType="bookType">
-        UPDATE bookType
+        UPDATE booktype
         <set>
             <if test="name!=null">NAME=#{name},</if>
             <if test="description!=null">DESCRIPTION=#{description}</if>
@@ -36,20 +36,20 @@
     </update>
 
     <delete id="delete" parameterType="bookType">
-        DELETE FROM bookType
+        DELETE FROM booktype
         WHERE ID=#{id}
     </delete>
 
     <select id="getListByAppId" parameterType="java.lang.Long" resultMap="bookTypeResultMap">
         select
         <include refid="bookType_fields"/>
-        from bookType
+        from booktype
         where APPID=#{appId}
     </select>
 
     <select id="getIdByName" parameterType="map" resultType="java.lang.Long">
         select id
-        from bookType
+        from booktype
         where NAME=#{name} and APPID=#{appId}
     </select>
 </mapper>
