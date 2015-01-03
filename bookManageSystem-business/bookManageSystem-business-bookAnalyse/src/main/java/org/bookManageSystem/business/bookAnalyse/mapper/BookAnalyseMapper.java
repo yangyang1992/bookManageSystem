@@ -1,8 +1,10 @@
 package org.bookManageSystem.business.bookAnalyse.mapper;
 
+import org.apache.ibatis.annotations.Param;
 import org.bookManageSystem.business.bookAnalyse.entity.SubBook;
 import org.bookManageSystem.fundamental.orm.mapper.AbstractMapper;
 
+import java.awt.print.Book;
 import java.util.List;
 import java.util.Map;
 
@@ -16,4 +18,8 @@ import java.util.Map;
 public interface BookAnalyseMapper extends AbstractMapper<SubBook> {
     public List<SubBook> getSubBookList(long appId);
     public List<Map<String,String>> getReaderBookByAppId(long appId);
+    public List<Map<String,String>> getReaderBookByUserId(@Param("userId")long userId,@Param("appId")long appId);
+    public Map<String,String> getBookById(@Param("id")long id,@Param("appId")long appId);
+    public Map<String,String> getBookByNumber(@Param("number")String number,@Param("appId")long appId);
+    public String getNumberById(@Param("id")long id,@Param("appId")long appId);
 }

@@ -14,4 +14,5 @@ import java.util.Map;
  */
 public interface AnonymousMapper {
     public List<Map<String,String>> getCommendBook(@Param("bookTypeId")long bookTypeId,@Param("appId")long appId);
+    public List<Map<String,Object>> getBestBookTypes(long appId);
 }

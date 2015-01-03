@@ -115,120 +115,74 @@
         background-color: #d3e4ff;
     }
 </style>
-
 <script type="text/javascript">
-    var lawBookData = {};
-    var compBookData = {};
-    var psyBookData = {};
-    var medBookData = {};
-    var dayBookData = {};
+    var curDataTypeId = new Array(),curDataTypeName = new Array();
     $(document).ready(function(){
-        var lawBookTemp = [
-            {"number":"1","name":"刑法"},
-            {"number":"2","name":"宪法"},
-            {"number":"3",name:"婚姻法"},
-            {"number":"4",name:"民法通则"},
-            {"number":"5",name:"劳动法"}
-        ];
-        lawBookData.Rows = lawBookTemp;
-        lawBookData.length = lawBookTemp.length;
+        $.post($.URL.anonymous.bestBookType,null,bestBookTypesCallback,"json");
+    });
 
-        var compBookTemp = [
-            {"number":"1","name":"计算机技术"},
-            {"number":"2","name":"软件工程"},
-            {"number":"3",name:"编译原理"},
-            {"number":"4",name:"操作系统"},
-            {"number":"5",name:"网络技术"}
-        ];
-        compBookData.Rows = compBookTemp;
-        compBookData.length = compBookTemp.length;
+    function bestBookTypesCallback(data) {
+        for(var item in data.data) {
+            curDataTypeId[item] = data.data[item].bookTypeId;
+            curDataTypeName[item] = data.data[item].bookTypeName;
+            var divSelector = "type" + (parseInt(item)+1).toString();
+//            console.log(divSelector);
+            $("#" + divSelector + "").html(curDataTypeName[item]);
+        }
+//        console.log(curDataTypeId,curDataTypeName);
+        f_init();
+    }
 
-        var psyBookTemp = [
-            {"number":"1","name":"西方哲学史"},
-            {"number":"2","name":"马克思主义原理"},
-            {"number":"3",name:"自然辩证法"},
-            {"number":"4",name:"哲学研究"},
-            {"number":"5",name:"理想国"}
-        ];
-        psyBookData.Rows = psyBookTemp;
-        psyBookData.length = psyBookTemp.length;
+    function f_init() {
+        var t = 0;
+        for(t=0;t<curDataTypeId.length;t++) {
+//            $.post($.URL.anonymous.commends,{"bookTypeId":curDataTypeId[t]},commendsCallback,"json");
+            $.ajax({
+            url: $.URL.anonymous.commends,
+                async:true,
+                data:{"bookTypeId":curDataTypeId[t]},
+                type:"POST",
+                dataType:"json",
+                success:commendsCallback
+            })
+        }
+    }
+    var gridBookList = new Array();
+    var k = 0;
+    function commendsCallback(data){
+//        console.log(data.data);
+//        console.log(JSON.stringify(data.data));
+//        var gridBookData = JSON.stringify(data.data);
+        var gridBookData = data.data;
+        var gridData = {};
+        gridData.Rows = gridBookData;
+        gridData.Total = gridBookData.length;
+        var divSelector2 = "bookTab" + (parseInt(k)+1).toString();
+        gridBookList[k] = gridData;
+        k++;
+        console.log(divSelector2,k);
+        $("#" + divSelector2 + "").ligerGrid({
+            columns:[
+                { display: '编号', name: 'number', frozen: true,width:'auto' },
+                { display:'书名',name:'name',width:'auto'}
+            ],
+            enabledEdit: true,clickToEdit:false, isScroll: false,usePager:false,
+            data:gridData,
+            width:'19%'
+        });
+    }
 
-        var medBookTemp = [
-            {"number":"1","name":"分子生物学"},
-            {"number":"2","name":"遗传学"},
-            {"number":"3",name:"生物化学"},
-            {"number":"4",name:"生物工程"},
-            {"number":"5",name:"药理学"}
-        ];
-        medBookData.Rows = medBookTemp;
-        medBookData.length = medBookTemp.length;
-
-        var dayBookTemp = [
-            {"number":"1","name":"心灵鸡汤"},
-            {"number":"2","name":"人性的弱点"},
-            {"number":"3",name:"挪威的森林"},
-            {"number":"4",name:"培根随笔"},
-            {"number":"5",name:"时间简史"}
-        ];
-        dayBookData.Rows = dayBookTemp;
-        dayBookData.length = dayBookTemp.length;
-    });
-    $("#bookTab1").ligerGrid({
-        columns:[
-            { display: '序号', name: 'number', frozen: true,width:'auto' },
-            { display:'书名',name:'name',width:'auto'}
-        ],
-        enabledEdit: true,clickToEdit:false, isScroll: false,usePager:false,
-        data:lawBookData,
-        width:'19%'
-    });
-    $("#bookTab2").ligerGrid({
-        columns:[
-            { display: '序号', name: 'number', frozen: true,width:'auto' },
-            { display:'书名',name:'name',width:'auto'}
-        ],
-        enabledEdit: true,clickToEdit:false, isScroll: false,usePager:false,
-        data:compBookData,
-        width:'19%'
-    });
-    $("#bookTab3").ligerGrid({
-        columns:[
-            { display: '序号', name: 'number', frozen: true,width:'auto' },
-            { display:'书名',name:'name',width:'auto'}
-        ],
-        enabledEdit: true,clickToEdit:false, isScroll: false,usePager:false,
-        data:psyBookData,
-        width:'19%'
-    });
-    $("#bookTab4").ligerGrid({
-        columns:[
-            { display: '序号', name: 'number', frozen: true,width:'auto' },
-            { display:'书名',name:'name',width:'auto'}
-        ],
-        enabledEdit: true,clickToEdit:false, isScroll: false,usePager:false,
-        data:medBookData,
-        width:'19%'
-    });
-    $("#bookTab5").ligerGrid({
-        columns:[
-            { display: '序号', name: 'number', frozen: true,width:'auto' },
-            { display:'书名',name:'name',width:'auto'}
-        ],
-        enabledEdit: true,clickToEdit:false, isScroll: false,usePager:false,
-        data:dayBookData,
-        width:'19%'
-    });
 </script>
     <div id="typeTitle">
         <!--<img src="" style="background-color: #000000">-->
         |分类推荐书籍|
     </div>
 <div id="typeDiv">
-    <div id="type1" style="font-size: 20px;text-align:center;color: blue">法  律</div>
-    <div id="type2" style="font-size: 20px;text-align:center;color: blue">计算机</div>
-    <div id="type3" style="font-size: 20px;text-align:center;color: blue">哲  学</div>
-    <div id="type4" style="font-size: 20px;text-align:center;color: blue">医  学</div>
-    <div id="type5" style="font-size: 20px;text-align:center;color: blue">生  活</div>
+    <div id="type1" style="font-size: 20px;text-align:center;color: blue"></div>
+    <div id="type2" style="font-size: 20px;text-align:center;color: blue"></div>
+    <div id="type3" style="font-size: 20px;text-align:center;color: blue"></div>
+    <div id="type4" style="font-size: 20px;text-align:center;color: blue"></div>
+    <div id="type5" style="font-size: 20px;text-align:center;color: blue"></div>
 </div>
 <div id="bookTab1"></div>
 <div id="bookTab2"></div>

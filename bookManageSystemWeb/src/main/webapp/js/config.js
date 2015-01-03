@@ -31,7 +31,8 @@
             "test":"rs/anonymous/test",
             "validateImage":"rs/anonymous/validateImage",
             "register":"rs/anonymous/register",
-            "commends":"rs/anonymous/commends"
+            "commends":"rs/anonymous/commends",
+            "bestBookType":"rs/anonymous/bestBookType"
         },
         "readerRecord":{
             "add":"rs/readerRecord/add",
@@ -85,6 +86,10 @@
             "delete":"rs/bookType/delete",
             "list":"rs/bookType/list",
             "getIdByName":"rs/bookType/getIdByName"
+        },
+        "bookAnalyse":{
+            "getReaderBookList":"rs/bookAnalyse/getReaderBookList",
+            "getReaderCommendsList":"rs/bookAnalyse/getReaderCommendsList"
         }
     }
 })(jQuery);

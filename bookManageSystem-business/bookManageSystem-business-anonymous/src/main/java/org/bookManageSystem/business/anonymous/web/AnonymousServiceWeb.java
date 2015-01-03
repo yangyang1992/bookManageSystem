@@ -17,6 +17,7 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -65,11 +66,19 @@ public class AnonymousServiceWeb {
     @Path("/commends")
     @Produces(MediaType.APPLICATION_JSON+";charset=UTF-8")
     @POST
-    public String anonymousCommend() {
+    public String anonymousCommend(@FormParam("bookTypeId") Long bookTypeId) {
 //        long appId = UserContext.currentUserAppId();
         long appId = 1;
-        Map<String,List<Map<String,String>>> map = anonymousService.commendMap(appId);
-        logger.info("复杂的数据结构 " + map.toString());
-        return JsonResultUtils.getObjectResultByStringAsDefault(map, JsonResultUtils.Code.SUCCESS);
+        List<Map<String,String>> result = anonymousService.commendBook(bookTypeId, appId);
+        return JsonResultUtils.getObjectResultByStringAsDefault(result, JsonResultUtils.Code.SUCCESS);
+    }
+
+    @Path("/bestBookType")
+    @Produces(MediaType.APPLICATION_JSON+";charset=UTF-8")
+    @POST
+    public String getBestBookTypes() {
+        long appId = 1;
+        List<Map<String,Object>> bookTypes = anonymousService.getBestBookTypes(appId);
+        return JsonResultUtils.getObjectResultByStringAsDefault(bookTypes, JsonResultUtils.Code.SUCCESS);
     }
 }

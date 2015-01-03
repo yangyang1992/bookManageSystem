@@ -38,7 +38,7 @@ public class BookAnalyseTask extends TimerTask{
             /**
              * 开始聚类分析，主要用于分析书之间的关系
              */
-            kMeans = new KMeans<SubBook>(list,5);
+            kMeans = new KMeans<SubBook>(list,20);
             List<SubBook>[] result = kMeans.comput();
             for (int i=0; i<result.length; i++) {
                 System.out.println("===========类别" + (i + 1) + "================");
@@ -48,9 +48,8 @@ public class BookAnalyseTask extends TimerTask{
                             + b.getRentNum() + "," + b.getTotalNum() + "," + b.getBookTypeId());
                 }
             }
-//            bookAnalyseService.addToBookCluster(result);
+            bookAnalyseService.addToBookCluster(result);
 
-            bookAnalyseService.getClusterByAppId(Long.parseLong("1"));
             /**
              * 开始关联关系分析，主要用于读者数据聚类
              */
@@ -84,10 +83,9 @@ public class BookAnalyseTask extends TimerTask{
                     readerRule.setItemX(itemX);
                     readerRule.setItemY(itemY);
                     readerRule.setReaderId(Long.parseLong(s));
-//                    bookAnalyseService.addToReaderRule(readerRule);
+                    bookAnalyseService.addToReaderRule(readerRule);
                 }
             }
-            bookAnalyseService.getReaderRuleByReaderId(Long.parseLong("3"),Long.parseLong("1"));
             isRunning = false;
         } else {
             logger.info("等待上次任务完成");
