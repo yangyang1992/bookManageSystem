@@ -41,7 +41,7 @@
     {
         g = manager = $("#searchResult").ligerGrid({
             columns: [
-                { display: '编号', name: 'number', width:150, type: 'int', frozen: true},
+                { display: '编号', name: 'number', width:150, type: 'int'},
                 { display: '书名',name: 'name',width: 250} ,
                 { display: '作者',name: 'author',width:120},
                 { display: '出版单位', name: 'pressLocation',width:120},
@@ -75,7 +75,7 @@
             },
             enabledEdit: false,clickToEdit:false, isScroll: false,
             data: gridData,
-            width: '100%'
+            width: 900
         });
     }
     function onInput(){
@@ -83,6 +83,7 @@
         var searchContent=$("#searchCombo").val();
 //                console.log(typeVal);
         $.post($.URL.book.search,{"searchContent":searchContent,"typeVal":typeVal},listCallback,"json");
+        g.changePage("first");
     }
 </script>
 <body>
