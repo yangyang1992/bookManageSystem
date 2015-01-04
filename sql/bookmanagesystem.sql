@@ -1,7 +1,7 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : yy
+Source Server         : rct
 Source Server Version : 50151
 Source Host           : localhost:3306
 Source Database       : bookmanagesystem
@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50151
 File Encoding         : 65001
 
-Date: 2015-01-03 22:04:01
+Date: 2015-01-04 13:08:15
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -95,15 +95,15 @@ CREATE TABLE `book` (
   `image` varchar(255) DEFAULT NULL,
   `rentNumber` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=159 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=160 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of book
 -- ----------------------------
-INSERT INTO `book` VALUES ('1', '1', '社会科学概览', '0001', '自然辩证法是马克思主义的自然观和自然科学观的反映。体现马克思主义哲学的世界观、认识论、方法论的统一，是马克思主义哲学的一个组成部分。F.恩格斯的《自然辩证法》（Dialectics of Nature）所开创的研究领域。自然界本身的辩证法是通过自然科学和技术的发展日益被揭示出来的，两个方面的研究密切相联，不可分割。', null, '7', '1', '6', 'bookImage/sociality.jpg', '3');
-INSERT INTO `book` VALUES ('2', '2', '计算机网络', '0002', null, null, '2', '1', '32', null, '9');
-INSERT INTO `book` VALUES ('3', '3', '软件工程', '0003', null, null, '2', '1', '45', null, '3');
-INSERT INTO `book` VALUES ('4', '4', '历史', '0004', null, null, '6', '1', '12', null, '1');
+INSERT INTO `book` VALUES ('1', '1', '社会科学概览', '0001', '自然辩证法是马克思主义的自然观和自然科学观的反映。体现马克思主义哲学的世界观、认识论、方法论的统一，是马克思主义哲学的一个组成部分。F.恩格斯的《自然辩证法》（Dialectics of Nature）所开创的研究领域。自然界本身的辩证法是通过自然科学和技术的发展日益被揭示出来的，两个方面的研究密切相联，不可分割。', null, '7', '1', '11', 'bookImage/sociality.jpg', '2');
+INSERT INTO `book` VALUES ('2', '2', '计算机网络', '0002', null, null, '2', '1', '36', null, '10');
+INSERT INTO `book` VALUES ('3', '3', '软件工程', '0003', null, null, '2', '1', '48', null, '1');
+INSERT INTO `book` VALUES ('4', '4', '历史', '0004', null, null, '6', '1', '14', null, '0');
 INSERT INTO `book` VALUES ('5', '5', '水文学', '0005', '研究地球大气层、地表及地壳内水的分布、运动和变化规律，以及水与环境相互作用的学科，属于地球物理科学范畴。通过测验、分析计算和模拟，预报自然界中水量和水质的变化和发展，为开发利用水资源、控制洪水和保护水环境等方面提供科学依据。属于地球物理学和自然地理学的分支学科。', null, '7', '1', '23', 'bookImage/s5910099.jpg', '3');
 INSERT INTO `book` VALUES ('6', '6', '巴黎圣母院', '0006', null, null, '4', '1', '78', null, '6');
 INSERT INTO `book` VALUES ('7', '7', '生活宝典', '0007', null, null, '5', '1', '43', null, '7');
@@ -461,27 +461,24 @@ CREATE TABLE `readerrecord` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `readerId` bigint(20) DEFAULT NULL,
   `bookSet` varchar(255) DEFAULT NULL,
+  `curBookSet` varchar(255) DEFAULT NULL,
   `optionTypeId` bigint(20) DEFAULT NULL,
-  `createTime` date DEFAULT NULL,
+  `createTime` datetime DEFAULT NULL,
   `appId` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of readerrecord
 -- ----------------------------
-INSERT INTO `readerrecord` VALUES ('1', '1', '1;5;14;32;', '1', '2015-01-02', '1');
-INSERT INTO `readerrecord` VALUES ('2', '2', '8;45;', '1', '2015-01-02', '1');
-INSERT INTO `readerrecord` VALUES ('3', '3', '54;', '1', '2015-01-02', '1');
-INSERT INTO `readerrecord` VALUES ('4', '2', '67;', '1', '2015-01-02', '1');
-INSERT INTO `readerrecord` VALUES ('5', '1', '43;', '1', '2015-01-02', '1');
-INSERT INTO `readerrecord` VALUES ('6', '2', '67;', '1', '2015-01-02', '1');
-INSERT INTO `readerrecord` VALUES ('7', '3', '130;5;', '1', '2015-01-02', '1');
-INSERT INTO `readerrecord` VALUES ('8', '2', '121;', '1', '2015-01-02', '1');
-INSERT INTO `readerrecord` VALUES ('9', '3', '146;', '1', '2015-01-02', '1');
-INSERT INTO `readerrecord` VALUES ('10', '1', '67;24;', '1', '2015-01-02', '1');
-INSERT INTO `readerrecord` VALUES ('11', '2', '32;', '1', '2015-01-02', '1');
-INSERT INTO `readerrecord` VALUES ('12', '3', '32;', '1', '2015-01-02', '1');
+INSERT INTO `readerrecord` VALUES ('18', '1', '1;2;3;4;', '1;2;3;4;', '1', '2015-01-04 12:54:10', '1');
+INSERT INTO `readerrecord` VALUES ('19', '1', '2;4;', '1;3;', '2', '2015-01-04 12:54:17', '1');
+INSERT INTO `readerrecord` VALUES ('20', '1', '1;', '3;', '2', '2015-01-04 12:54:23', '1');
+INSERT INTO `readerrecord` VALUES ('21', '1', '1;2;', '3;1;2;', '1', '2015-01-04 12:54:32', '1');
+INSERT INTO `readerrecord` VALUES ('22', '1', '1;2;3;', '', '2', '2015-01-04 12:54:45', '1');
+INSERT INTO `readerrecord` VALUES ('23', '1', '1;2;3;4;', '1;2;3;4;', '1', '2015-01-04 12:55:32', '1');
+INSERT INTO `readerrecord` VALUES ('24', '1', '1;', '1;2;3;4;1;', '1', '2015-01-04 12:55:40', '1');
+INSERT INTO `readerrecord` VALUES ('25', '1', '1;', '2;3;4;1;', '2', '2015-01-04 12:55:59', '1');
 
 -- ----------------------------
 -- Table structure for `readerrule`

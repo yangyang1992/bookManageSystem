@@ -45,15 +45,15 @@
         {
             g = manager = $("#maingrid").ligerGrid({
                 columns: [
-                    { display: '主键', name: 'id', width: 50, type: 'int', frozen: true},
-                    { display: 'name',name: 'name',width: 100,editor:{type:'text'}} ,
-                    { display: 'readerNumber',name: 'number',width: 100,editor:{type:'text'}},
-                    { display: 'userId', name: 'userId',width: 100,editor:{type:'text'}},
-                    { display: 'sex', name: 'sex',width: 100,editor:{type:'text'}},
-                    { display: 'createTime',name: 'createTime',width: 100,format: 'yyyy-MM-dd',editor:{type:'date',format: 'yyyy-MM-dd'}},
+                    { display: '主键', name: 'id', width: '10%', type: 'int', frozen: true},
+                    { display: '姓名',name: 'name',width: '15%',editor:{type:'text'}} ,
+                    { display: '读者编号',name: 'number',width: '20%',editor:{type:'text'}},
+                    { display: '用户ID', name: 'userId',width: '15%',editor:{type:'text'}},
+                    { display: '性别', name: 'sex',width: '15%',editor:{type:'text'}},
+                    { display: '创建时间',name: 'createTime',width: '15%',format: 'yyyy-MM-dd',editor:{type:'date',format: 'yyyy-MM-dd'}},
 //                    { display: '描述',name: 'description',type:'string',editor: { type: 'text'}
 //                    },
-                    { display: '操作', isSort: false, width: 120, frozen: true,render: function (rowdata, rowindex, value)
+                    { display: '操作', isSort: false, width: '10%',render: function (rowdata, rowindex, value)
                     {
                         var h = "";
                         if (!rowdata._editing)
@@ -76,7 +76,7 @@
                 },
                 enabledEdit: true,clickToEdit:false, isScroll: false,
                 data: gridData,
-                width: 690
+                width: '100%'
             });
         }
         function beginEdit(rowid) {
@@ -176,22 +176,22 @@
 
         <table cellpadding="0" cellspacing="0" class="l-table-edit" >
             <tr>
-                <td align="right" class="l-table-edit-td">readerName:</td>
+                <td align="right" class="l-table-edit-td">读者姓名:</td>
                 <td align="left" class="l-table-edit-td"><input name="readerName" class="l-table-edit-input" type="text" id="readerName" ></td>
                 <td align="left"></td>
             </tr>
             <tr>
-                <td align="right" class="l-table-edit-td">userId:</td>
+                <td align="right" class="l-table-edit-td">用户ID:</td>
                 <td align="left" class="l-table-edit-td"><input name="userId" class="l-table-edit-input" type="text" id="userId" ></td>
                 <td align="left"></td>
             </tr>
             <tr>
-                <td align="right" class="l-table-edit-td">readerNumber:</td>
+                <td align="right" class="l-table-edit-td">读者编号:</td>
                 <td align="left" class="l-table-edit-td"><input name="readerNumber" type="text" id="readerNumber" ></td>
                 <td align="left"></td>
             </tr>
             <tr>
-                <td align="right" class="l-table-edit-td">sex:</td>
+                <td align="right" class="l-table-edit-td">性别:</td>
                 <td align="left" class="l-table-edit-td"><input name="sex" class="l-table-edit-input" type="text" id="sex" ></td>
                 <td align="left"></td>
             </tr>
