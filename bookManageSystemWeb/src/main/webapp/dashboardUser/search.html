@@ -51,6 +51,8 @@
     $("#searchBtn").click(
             function() {
                 var typeVal=$("input:radio[name='selRadio'][checked]").val();
+                totalType = typeVal;
+                totalContent = $("#searchCombo").val();
                 $("#center").load("dashboardUser/searchList.html");
             }
     );
@@ -66,10 +68,10 @@
 </div>
 
 <div id="searchSelDiv">
-    <input id="searchSelRadio1" type="radio" name="selRadio" value="all" style="margin-left:10%; margin-top:20px;" checked="checked"/><b>全部</b>
+    <input id="searchSelRadio1" type="radio" name="selRadio" value="name" style="margin-left:10%; margin-top:20px;" checked="checked"/><b>全部</b>
     <input id="searchSelRadio2" type="radio" name="selRadio" value="author" style="margin-left:15%;"/><b>作者</b><br/>
     <input id="searchSelRadio3" type="radio" name="selRadio" value="name" style="margin-left:10%; margin-top: 8%"/><b>书名</b>
-    <input id="searchSelRadio4" type="radio" name="selRadio" value="number" style="margin-left:15%;"/><b>ISBN</b><br/>
+    <input id="searchSelRadio4" type="radio" name="selRadio" value="number" style="margin-left:15%;"/><b>编号</b><br/>
 </div>
 <div id="searchLink">
     <a href="http://ieeexplore.ieee.org/" style="margin-top: 5%;" target="_blank">IEEE文献库</a>
