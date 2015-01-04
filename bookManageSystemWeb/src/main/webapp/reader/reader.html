@@ -25,7 +25,7 @@
 //                data.customerId=$("#customerName").ligerComboBox().getValue();
                 data.number = $("#readerNumber").val();
                 data.sex = $("#sex").val();
-                data.birthday = $("#birthday").val();
+//                data.birthday = $("#birthday").val();
                 var jsonString  = $.toJSON(data);
                 $.post($.URL.reader.add,{"jsonString":jsonString},addCallBack,"json") ;
             });
@@ -50,7 +50,7 @@
                     { display: 'readerNumber',name: 'number',width: 100,editor:{type:'text'}},
                     { display: 'userId', name: 'userId',width: 100,editor:{type:'text'}},
                     { display: 'sex', name: 'sex',width: 100,editor:{type:'text'}},
-                    { display: 'birthday',name: 'birthday',width: 100,format: 'yyyy-MM-dd',editor:{type:'date',format: 'yyyy-MM-dd'}},
+                    { display: 'createTime',name: 'createTime',width: 100,format: 'yyyy-MM-dd',editor:{type:'date',format: 'yyyy-MM-dd'}},
 //                    { display: '描述',name: 'description',type:'string',editor: { type: 'text'}
 //                    },
                     { display: '操作', isSort: false, width: 120, frozen: true,render: function (rowdata, rowindex, value)
@@ -195,11 +195,11 @@
                 <td align="left" class="l-table-edit-td"><input name="sex" class="l-table-edit-input" type="text" id="sex" ></td>
                 <td align="left"></td>
             </tr>
-            <tr>
-                <td align="right" class="l-table-edit-td">birthday:</td>
-                <td align="left" class="l-table-edit-td"><input name="birthday" type="text" id="birthday" ></td>
-                <td align="left"></td>
-            </tr>
+            <!--<tr>-->
+                <!--<td align="right" class="l-table-edit-td">birthday:</td>-->
+                <!--<td align="left" class="l-table-edit-td"><input name="birthday" type="text" id="birthday" ></td>-->
+                <!--<td align="left"></td>-->
+            <!--</tr>-->
         </table>
         <br />
         <input type="button" value="提交" id="submitBtn" class="l-button l-button-submit" />

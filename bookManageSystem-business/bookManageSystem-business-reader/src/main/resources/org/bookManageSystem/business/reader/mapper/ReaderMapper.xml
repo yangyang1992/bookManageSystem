@@ -12,7 +12,7 @@
         <result property="name" column="NAME"/>
         <result property="number" column="NUMBER"/>
         <result property="sex" column="SEX"/>
-        <result property="createTIme" column="CREATETIME"/>
+        <result property="createTime" column="CREATETIME"/>
         <result property="appId" column="APPID"/>
     </resultMap>
 
